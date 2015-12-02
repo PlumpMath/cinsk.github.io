@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>cinsk's yard</title>
+
+
+    <!-- Le styles -->
+    <link href="http://cinsk.github.io/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/bootstrap-responsive.css"
+          rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/docs.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/prettify.css" rel="stylesheet"/>
+    <link href="../../../css/articles.css" rel="stylesheet"/>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="/feed.xml">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://cinsk.github.io/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://cinsk.github.io/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://cinsk.github.io/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://cinsk.github.io/ico/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="http://cinsk.github.io/ico/favicon.png"/>
+
+    <link href="/css/org.css" rel="stylesheet"/>
+    <link href="/css/articles.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+      <!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+    </script>
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">cinsk.org</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <!-- toplink: invalid parameter, label() not found -->
+
+              <!--
+              id: home<br/>
+              label: Home<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class="active"><a href="../../../home/cinsk/www/www/index.html">Home</a></li>
+              
+              
+              <!--
+              id: cfaq<br/>
+              label: C FAQ<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/cfaqs/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/cfaqs/index.html">C FAQ</a></li>
+              
+              
+              <!--
+              id: article<br/>
+              label: Articles<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/articles.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/articles.html">Articles</a></li>
+              
+              
+              <!--
+              id: emacs<br/>
+              label: Emacs<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/emacs/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/emacs/index.html">Emacs</a></li>
+              
+              
+              <!--
+              id: resume<br/>
+              label: Résumé<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/resume.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/resume.html">Résumé</a></li>
+              
+              
+
+              <!--
+              
+                -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Subhead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1>cinsk's yard</h1>
+    <!-- <p class="lead">Emacs ruby-mode and RVM prompt</p> -->
+  </div>
+</header>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="span10"></div>
+      <div class="span2">
+        <!-- This div should be floating and should not scroll,
+             but I don't know anything about CSS, *sigh* -- cinsk -->
+        <section id="lang">
+          <-- DEBUG: url[en]:  --><-- DEBUG: url[ko]:  -->
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <header>
+  <h2 class='article-title'>Emacs ruby-mode and RVM prompt</h2>
+</header>
+<aside class='article-meta'>
+  <ul class='unstyled'>
+    <li class="date"><strong>31 Aug 2012</strong></li>
+    <li class="tags">emacs, prompt, ruby, and rvm</li>
+  </ul>
+</aside>
+<p>On emacs ruby-mode, if you do <code>M-x run-ruby</code> (or <code>C-c C-s</code>), the inferior ruby interpreter is provided in the "=*ruby*=" buffer so that you can evaluate lots of ruby statements or expressions.
+<span id="continue"></span></p>
+
+
+<p>
+When you press <code>M-p</code> (<code>M-x comint-previous-input</code>), Emacs will cycle to
+the previous input histrory saving input, so that you can easily
+re-evaulate of your previous input.
+</p>
+
+<p>
+It works like other inferior interpreter provided by python-mode,
+slime, and so on.
+</p>
+
+<p>
+What makes me frustrated is, it works for the ruby 1.8 installed in
+my gentoo system, but it does not work for the ruby 1.9.3 installed
+via RVM. The minibuffer shows sulpurous error:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span class="org-type">Search</span> <span class="org-constant">failed</span>: <span class="org-string">"^irb(.*)[0-9:]+0&gt; *"</span>
+</pre>
+</div>
+
+<p>
+Looking at the ruby-mode's source, I found that string is the value
+of '<code>inferior-ruby-first-prompt-pattern</code>' in <code>inf-ruby.el</code>. It looks
+like that ruby-mode uses <code>inferior-ruby-first-prompt-pattern</code> and
+<code>inferior-ruby-prompt-pattern</code> for the ruby's prompt pattern.
+</p>
+
+<p>
+Another notable different from the start between two rubies (v1.8
+system versus v1.9 RVM) are their prompt patterns:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span class="org-comment-delimiter"># </span><span class="org-comment">ruby 1.8 (system)</span>
+irb(main)<span class="org-constant">:001</span>:0&gt; _
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">ruby 1.9.3 (RVM)</span>
+ruby-1.9.2-p180 <span class="org-constant">:001</span> &gt; _
+</pre>
+</div>
+
+<p>
+Now it's clear who is the culprit. Due to the difference of the
+prompt pattern, ruby-mode could not provide me <code>M-p</code> or <code>M-n</code> working.
+</p>
+
+<p>
+So I modified two variables in <code>inf-ruby.el</code> and reports a bug to the
+Ruby issue tracking system and got a quick response.
+</p>
+
+<p>
+It turns out that it's not the fault of ruby-mode, but it's the
+fault of RVM. (Actually, it's not a defect. It just not right for my
+purpose.)
+</p>
+
+<p>
+By default, RVM uses different prompt from the native ruby. To solve
+this, you can force RVM ruby (irb) to use the native prompt
+pattern. It's simple: modify <code>$HOME/.irbrc</code> to include following:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span class="org-type">IRB</span>.conf[<span class="org-constant">:PROMPT_MODE</span>] = <span class="org-constant">:DEFAULT</span>
+</pre>
+</div>
+
+<p>
+I feel embbarassed that I blamed ruby-mode when I found something is
+wrong :(
+</p>
+
+
+      <hr/>
+
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'cinsk'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Copyright &copy; 2013  Seong-Kook Shin;  All rights reserved except, </p>
+        <p>CSS design, layouts are reserved to <a href="https://github.com/twitter/bootstrap/">bootstrap</a>,</p>
+        <p>Icons and symbols are reserved to <a href="http://glyphicons.com">Glyphicons</a></p>
+        <!--
+        <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="http://blog.getbootstrap.com">Blog</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/wiki">Roadmap and changelog</a></li>
+        </ul>
+        -->
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript"
+            src="http://platform.twitter.com/widgets.js"></script>
+
+    <script src="http://www.cinsk.org/bootstrap/js/jquery.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-transition.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-alert.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-modal.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-dropdown.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-scrollspy.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tab.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tooltip.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-popover.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-button.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-collapse.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-carousel.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-typeahead.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-affix.js"></script>
+
+    <script src="http://cinsk.github.io/js/holder/holder.js"></script>
+    <script src="http://cinsk.github.io/prettify.js"></script>
+
+    <script src="http://cinsk.github.io/js/application.js"></script>
+
+  </body>
+</html>

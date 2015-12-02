@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>cinsk's yard</title>
+
+
+    <!-- Le styles -->
+    <link href="http://cinsk.github.io/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/bootstrap-responsive.css"
+          rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/docs.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/prettify.css" rel="stylesheet"/>
+    <link href="../../../css/articles.css" rel="stylesheet"/>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="/feed.xml">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://cinsk.github.io/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://cinsk.github.io/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://cinsk.github.io/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://cinsk.github.io/ico/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="http://cinsk.github.io/ico/favicon.png"/>
+
+    <link href="/css/org.css" rel="stylesheet"/>
+    <link href="/css/articles.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+      <!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+    </script>
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">cinsk.org</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <!-- toplink: invalid parameter, label() not found -->
+
+              <!--
+              id: home<br/>
+              label: Home<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class="active"><a href="../../../home/cinsk/www/www/index.html">Home</a></li>
+              
+              
+              <!--
+              id: cfaq<br/>
+              label: C FAQ<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/cfaqs/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/cfaqs/index.html">C FAQ</a></li>
+              
+              
+              <!--
+              id: article<br/>
+              label: Articles<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/articles.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/articles.html">Articles</a></li>
+              
+              
+              <!--
+              id: emacs<br/>
+              label: Emacs<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/emacs/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/emacs/index.html">Emacs</a></li>
+              
+              
+              <!--
+              id: resume<br/>
+              label: Résumé<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/resume.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/resume.html">Résumé</a></li>
+              
+              
+
+              <!--
+              
+                -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Subhead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1>cinsk's yard</h1>
+    <!-- <p class="lead">Emacs: tabs and spaces, trailing whitespaces</p> -->
+  </div>
+</header>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="span10"></div>
+      <div class="span2">
+        <!-- This div should be floating and should not scroll,
+             but I don't know anything about CSS, *sigh* -- cinsk -->
+        <section id="lang">
+          <-- DEBUG: url[en]:  --><-- DEBUG: url[ko]:  -->
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <header>
+  <h2 class='article-title'>Emacs: tabs and spaces, trailing whitespaces</h2>
+</header>
+<aside class='article-meta'>
+  <ul class='unstyled'>
+    <li class="date"><strong>04 Nov 2012</strong></li>
+    <li class="tags">emacs, space, tab, and whitespace</li>
+  </ul>
+</aside>
+<p>Long time ago, when I never heard about Emacs, and the times when I used to code in Borland Turbo C, I hated spaces. I even didn't understand people who uses spaces to indent their codes. The main reason was, I hated that the code looks ugly (precisely, if the indentation broken) whenever I looked at the source code in other text editors.
+<span id="continue"></span></p>
+
+
+
+<p>
+Alas, the time had changed. Now we have the freedom to choose tab or
+spaces without any problem, thanks to the decent editors.
+</p>
+
+<p>
+Still, some people stick to use tab characters in their source
+codes. I suggest to those people to read the wonderful article, 
+<a href="http://www.jwz.org/doc/tabs-vs-spaces.html">Tabs versus Spaces: An Eternal Holy War</a> by Jamie Zawinski.
+</p>
+
+<p>
+Of course, we cannot completely ignore tab characters, notably
+<code>Makefile</code>. And in some scripts, we need to use actual tab characters,
+but mostly, we can live without tabs, especially dealing with
+compliation-style source code such as C, C++, Java, etc. What I want
+to emphasize is, don't use tab character to indent your code.
+</p>
+
+<p>
+Still, life is not that simple, I need to work with people who uses
+tab characters to indent their code. Some of them accidentally modify
+my code and put tab characters in it which I hate but all I can do is
+either to convince then to use spaces or to modify their code silently
+by my hand.
+</p>
+
+<p>
+The primary text editor for my disposal is Emacs. I used to use the
+scrips that Jamie Zawinski made in his article, but I found better
+solution which is built-in on recent version of Emacs, so I made some
+change.
+</p>
+
+<p>
+Following code will change the source code to convert tabs into spaces
+and remove any trailing whitespaces (This only works for the
+registered language modes):
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">These hook configuration ensures that all tab characters in C, C++</span>
+<span class="org-comment-delimiter">;; </span><span class="org-comment">source files are automatically converted to spaces on saving.</span>
+(<span class="org-keyword">defvar</span> <span class="org-variable-name">untabify-remove-trailing-spaces-on-write-modes</span>
+  '(c-mode c++-mode java-mode emacs-lisp-mode lisp-mode nxml-mode)
+  <span class="org-doc">"List of major mode that needs to convert tab characters into spaces,</span>
+<span class="org-doc">and to remove trailing whitespaces"</span>)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">untabify-remove-trailing-spaces-on-write</span> ()
+  <span class="org-doc">"Utility function that removes tabs and trailing whitespaces"</span>
+  (<span class="org-keyword">when</span> (memq major-mode untabify-remove-trailing-spaces-on-write-modes)
+    (<span class="org-keyword">save-restriction</span>
+      (widen)
+      (untabify (point-min) (point-max))
+      (delete-trailing-whitespace (point-min) (point-max))))
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Should return nil so that if this function is registered into</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">`</span><span class="org-comment"><span class="org-constant">write-contents-functions</span></span><span class="org-comment">', and if we need to propagate the control</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">to the other functions in `</span><span class="org-comment"><span class="org-constant">write-contents-functions</span></span><span class="org-comment">'.</span>
+  <span class="org-comment-delimiter">;;</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Personally, this function should be registered into</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">`</span><span class="org-comment"><span class="org-constant">before-save-hook</span></span><span class="org-comment">' anyway.</span>
+  nil)
+
+(add-hook 'before-save-hook 'untabify-remove-trailing-spaces-on-write)
+</pre>
+</div>
+
+<p>
+And here's the code that visualize:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">As suggested in</span>
+<span class="org-comment-delimiter">;;  </span><span class="org-comment">http://stackoverflow.com/questions/935723/find-tab-characters-in-emacs,</span>
+<span class="org-comment-delimiter">;;</span>
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Following sexp visualize tab character.</span>
+(add-hook 'font-lock-mode-hook
+          '(<span class="org-keyword">lambda</span> ()
+             (<span class="org-keyword">when</span> (memq major-mode
+                         untabify-remove-trailing-spaces-on-write-modes)
+               (font-lock-add-keywords nil
+                                       '((<span class="org-string">"\t"</span> 0
+                                          'trailing-whitespace prepend))))))
+</pre>
+</div>
+
+<p>
+Now I'm looking for easy way to decline GIT commit if the soure
+codes (depending on the file name extension) contains TAB
+characters&#x2026;
+</p>
+
+
+      <hr/>
+
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'cinsk'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Copyright &copy; 2013  Seong-Kook Shin;  All rights reserved except, </p>
+        <p>CSS design, layouts are reserved to <a href="https://github.com/twitter/bootstrap/">bootstrap</a>,</p>
+        <p>Icons and symbols are reserved to <a href="http://glyphicons.com">Glyphicons</a></p>
+        <!--
+        <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="http://blog.getbootstrap.com">Blog</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/wiki">Roadmap and changelog</a></li>
+        </ul>
+        -->
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript"
+            src="http://platform.twitter.com/widgets.js"></script>
+
+    <script src="http://www.cinsk.org/bootstrap/js/jquery.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-transition.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-alert.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-modal.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-dropdown.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-scrollspy.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tab.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tooltip.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-popover.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-button.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-collapse.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-carousel.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-typeahead.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-affix.js"></script>
+
+    <script src="http://cinsk.github.io/js/holder/holder.js"></script>
+    <script src="http://cinsk.github.io/prettify.js"></script>
+
+    <script src="http://cinsk.github.io/js/application.js"></script>
+
+  </body>
+</html>

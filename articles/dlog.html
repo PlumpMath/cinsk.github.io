@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    
+    <meta name="author" content="cinsk (Seong-Kook Shin)"/>
+    
+
+    <title>dlog</title>
+
+    <!-- Le styles -->
+    <link href="http://cinsk.github.io/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/bootstrap-responsive.css"
+          rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/docs.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/prettify.css" rel="stylesheet"/>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="/feed.xml">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://cinsk.github.io/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://cinsk.github.io/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://cinsk.github.io/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://cinsk.github.io/ico/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="http://cinsk.github.io/ico/favicon.png"/>
+
+    <link href="../css/org.css" rel="stylesheet"/>
+    <link href="../css/articles.css" rel="stylesheet"/>
+
+    
+    <link href="../css/ko.css" rel="stylesheet"/>
+    
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <!-- Navbar
+         ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar"
+                  data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">cinsk.org</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <!-- toplink: invalid parameter, label() not found -->
+
+              
+              <li class=""><a href="../home/cinsk/www/www/index.html">Home</a></li>
+              
+              
+              
+              <li class=""><a href="../home/cinsk/www/www/cfaqs/index.ko.html">C FAQ</a></li>
+              
+              
+              
+              <li class="active"><a href="../home/cinsk/www/www/articles.ko.html">글 목록</a></li>
+              
+              
+              
+              <li class=""><a href="../home/cinsk/www/www/emacs/index.ko.html">Emacs</a></li>
+              
+              
+              
+              <li class=""><a href="../home/cinsk/www/www/resume.html">Résumé</a></li>
+              
+              
+              <!--
+              
+              -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subhead
+         ================================================== -->
+    <header class="jumbotron subhead" id="overview">
+      <div class="container">
+        <h1>dlog</h1>
+        <p class="lead">message log for debugging</p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav">
+            
+
+            <!--
+            
+            -->
+          </ul>
+        </div>
+
+        <div class="span9">
+          <div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. 일러두기</a></li>
+<li><a href="#orgheadline2">2. dlog</a></li>
+<li><a href="#orgheadline3">3. 소개</a></li>
+<li><a href="#orgheadline6">4. First implemetation</a>
+<ul>
+<li><a href="#orgheadline4">4.1. 추가 기능</a></li>
+<li><a href="#orgheadline5">4.2. 생각해 볼 문제</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline9">5. Second Version: thread support</a>
+<ul>
+<li><a href="#orgheadline7">5.1. 추가 기능</a></li>
+<li><a href="#orgheadline8">5.2. 생각해 볼 문제</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline11">6. Third Version</a>
+<ul>
+<li><a href="#orgheadline10">6.1. 생각해 볼 점</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> 일러두기</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+이 글은 C 언어 프로그램을 작성/디버깅할 때 간단히 쓸 수 있는 출력
+함수 집합인 dlog 모듈에 관한 내용입니다.  가벼운 마음으로
+읽어보시고, 실제 현업에서 비슷한 목적으로 쓰실 것이라면 <a href="http://log4c.sourceforge.net/">log4c</a>,
+<a href="http://logging.apache.org/log4cxx">log4cxx</a>, <a href="http://logging.apache.org/log4j">log4j</a> 등을 쓰시길 추천합니다.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> dlog</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+가장 많이 쓰이는 디버깅 툴이 뭐냐고 물으면, 농담 반 진담 반으로
+<code>printf()</code>⁠라고 말합니다. 사실 <code>printf()</code>⁠는 별 다른 도구 없이, C
+라이브러리만 있으면 바로 쓸 수 있는 것이기 때문에, 많은 개발자들이
+즉석에서 활용할 수 있는 디버깅 툴이라고 할 수 있습니다.
+</p>
+
+<p>
+물론 엄밀히 말해서, <code>printf()</code> 뿐만 아니라, 출력에 관한 여러 함수가 다
+해당됩니다. 특히 Linux 환경에서 개발하신다면 아래와 같은 코드에 매우
+익숙할 것입니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">void</span>
+<span class="org-function-name">foo</span>(<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">pathname</span>)
+{
+  <span class="org-type">int</span> <span class="org-variable-name">fd</span>;
+
+  fd = open(pathname, O_RDONLY);
+  <span class="org-keyword">if</span> (ret == -1) {
+    fprintf(stderr, <span class="org-string">"myprogram: cannot open \"%s\": %s\n"</span>,
+            pathname, strerror(errno));
+    exit(1);
+  }
+  <span class="org-comment-delimiter">/* </span><span class="org-comment">... </span><span class="org-comment-delimiter">*/</span>
+}
+</pre>
+</div>
+
+<p>
+GNU C 라이브러리는 위와 같은 상황을 손쉽게 해결할 수 있도록, 다음과
+같은 <a href="http://www.gnu.org/software/hello/manual/libc/Error-Messages.html#index-error-217">error()</a>란 함수를 제공합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;error.h&gt;</span>
+<span class="org-type">void</span> <span class="org-function-name">error</span>(<span class="org-type">int</span> <span class="org-variable-name">STATUS</span>, <span class="org-type">int</span> <span class="org-variable-name">ERRNUM</span>, <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">FORMAT</span>, ...);
+</pre>
+</div>
+
+<p>
+이 때, STATUS가 0이 아닌 경우, error()는 메시지를 출력하고
+<code>exit(STATUS)</code>⁠를 호출하게 됩니다. 또 ERRNUM이 0이 아닌 경우, 해당하는
+에러 코드도 함께 출력해 줍니다. FORMAT 이후의 인자들은 printf()와
+사용법이 같습니다. 만약, 사용자 프로그램에서 <code>program_name</code>⁠이란 전역
+변수에 프로그램 이름을 문자열로 저장해 두었다면 출력할 모든 메시지에
+접두어로 프로그램 이름을 출력해 줍니다.
+</p>
+
+<p>
+따라서, 맨 앞에서 <code>fprintf()</code>⁠를 쓴 에러 출력 처리는 다음과 같이 간단하게
+만들 수 있습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;error.h&gt;</span>
+<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">program_name</span> = <span class="org-string">"myprogram"</span>;
+
+<span class="org-type">int</span>
+<span class="org-function-name">foo</span>(<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">pathname</span>)
+{
+  <span class="org-type">int</span> <span class="org-variable-name">fd</span>;
+  fd = open(pathname, O_RDONLY);
+  <span class="org-keyword">if</span> (fd == -1)
+    error(1, errno, <span class="org-string">"cannot open \"%s\""</span>, pathname);
+  <span class="org-comment-delimiter">/* </span><span class="org-comment">... </span><span class="org-comment-delimiter">*/</span>
+}
+</pre>
+</div>
+
+<p>
+규모가 작은 프로그램을 작성한다면, 위에서처럼 GNU C 라이브러리에서
+제공하는 error()를 쓰는 것으로 충분합니다. 또 파일 이름과 줄번호를
+출력해 주는 <a href="http://www.gnu.org/software/hello/manual/libc/Error-Messages.html#index-error_005fat_005fline-218">error<sub>at</sub><sub>line</sub>()</a>도 제공되므로 참고하기 바랍니다.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> 소개</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+글쓴이는, 덩치가 큰 프로그램을 작성하는 팀의 일부로 참여하다보니,
+프로그램을 실행하면, 수많은 로그 메시지가 출력이 되고, 각각 메시지
+포맷이 제각각이라서 알아보기 힘들었던 적이 있습니다. 그래서 가능하면,
+사용하기 쉽고, 일관된 메시지를 출력하도록, 메시지 처리용 함수가
+필요했습니다.
+</p>
+
+<p>
+기존 프로그램은 다양한 인터페이스를 써서 여러 방식으로 메시지를
+출력했는데, 이는, 프로그램 소스가 방대하고, 참여하는 개발자가 워낙
+많아서 각각 메시지를 출력하는 방식이 제각각이었기 때문입니다. 크게
+다음과 같은 문제가 있었습니다.
+</p>
+
+<ol class="org-ol">
+<li>메시지가 출력되는 곳이 제각각이다 &#x2013; 출력 stream을 stdout, stderr를
+아무런 규칙없이 마구 사용했습니다. 즉 어떤 모듈은 printf()를 써서
+메시지를 남기고 (stdout), 어떤 모듈은 fprintf(stderr, &#x2026;)를 써서
+출력합니다.  따라서, 메시지 출력이 꼬일 가능성이 있었습니다. 이유:
+stdout의 내부 버퍼 등.</li>
+<li>중요성에 상관없는 로그의 남발 &#x2013; 어떤 모듈은 (디버깅을 위해서) 내부
+변수의 상태 변화를 일일히 출력하는 반면, 어떤 모듈은 꼭 필요한
+정보만 출력합니다.  각각 모듈을 담당하는 개발자들이 기준없이 로그를
+남발하다보니, 결과적으로 출력된 로그들을 분석하기가 매우 힘듭니다.</li>
+<li>로그 출력 포맷을 내부적으로 정하지 않아서, 어떤 로그는 자신이 불려진
+코드의 파일 이름, 줄번호까지 출력하는 반면, 어떤 로그는 에러가
+발생했을 경우, 에러 원인도 출력하지 않았습니다.</li>
+</ol>
+
+<p>
+1의 경우는, 로그 기록 함수가 내부적으로 지정한 stream이나 파일에
+출력하고, 사용자에게 이 stream/파일을 노출시키지 않는 방식으로 해결하면
+됩니다. 물론 필요하다면 stream/파일을 지정할 수 있는 함수도 제공할 수
+있습니다.
+</p>
+
+<p>
+2의 경우는, 로그 기록 메시지마다 사용자가 메시지 category를 지정하고,
+나중에 메시지 category에 따라 출력을 filtering하게 하면 됩니다.
+</p>
+
+<p>
+3의 경우는 코드상으로 기준을 강제로 적용하기 힘듭니다. 개발자가
+출력하는 메시지 포맷은, 따로 개발자들끼리 협의를 거쳐서 기준을 정하는
+것이 맞습니다. 여러가지 포맷이 나올 수 있겠지만, 글쓴이는 GNU Coding
+Standard를 따르는 것이 올바른 선택이라고 생각합니다. 대충 요약하면
+다음과 같은 형태의 메시지를 사용합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">program:source-file-name:lineno: message
+program: message
+program:source-file-name:lineno:column: message
+</pre>
+</div>
+
+<p>
+공백을 쓴 곳을 주의해서 보기 바랍니다. 메시지 출력하는 소스는 각각
+':'로 구분하지만 공백을 두지 않습니다. 공백은 메시지 출력 소스와 실제
+메시지 사이에만 존재합니다.  이런 엄격한? 기준을 두는 이유는, 사람
+이외에 다른 필터 프로그램 등에서 정규식(regular expression)을 써서
+원하는 메시지를 쉽게 필터링하기 위한 것입니다.  실제로 Emacs는 컴파일러
+에러 메시지를 분석하여, 개발자가 손쉽게 에러가 발생한 소스를 찾을 수
+있도록 해 줍니다. (C-x `, next-error)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">4</span> First implemetation</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+일단, 사용자가 쉽게 사용할 수 있도록 메시지 정보는 printf() 형태로 받을
+수 있도록 합니다.  이 것은 가변 인자를 처리하는 방법만 알면 쉬운데,
+<a href="http://wiki.kldp.org/wiki.php/CLanguageVariableArgumentsList">C Programming: Variable Argument List</a>를 참고하기 바랍니다.
+</p>
+
+<p>
+먼저, (앞에서 조건 1) 메시지 출력을 위한 stream을 전역 변수로 준비합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">static</span> <span class="org-type">FILE</span> *<span class="org-variable-name">dlog_fp</span>;
+</pre>
+</div>
+
+<p>
+또, (앞에서 조건 2) 메시지 filtering을 위한 mask를 저장할 변수를 전역
+변수로 준비합니다. 나중에 사용자가 지정한 category가 이 mask에 있는
+종류라면, 메시지는 출력되지 않습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">static</span> <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">dlog_mask</span>;
+</pre>
+</div>
+
+<p>
+마지막으로, (앞에서 조건 3) 원할 경우 프로그램 이름 등을 출력하기 위해
+메시지 prefix로 사용할 문자열을 가리킬 전역 변수를 준비합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">dlog_prefix</span>;
+</pre>
+</div>
+
+<p>
+이제 메시지를 출력할 dlog 함수를 다음과 같이 만듭니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-comment-delimiter">/*</span>
+<span class="org-comment"> * dlog: print log messages.</span>
+<span class="org-comment"> *</span>
+<span class="org-comment"> * If error ERRNUM is non-zero, it's corresponding error string is</span>
+<span class="org-comment"> * prepended to the message.  The message's CATEGORY is ANDed against</span>
+<span class="org-comment"> * `dlog_mask' to be filtered out.</span>
+<span class="org-comment"> *</span>
+<span class="org-comment"> * The remaining paramters from FORMAT is in printf(3) style.</span>
+<span class="org-comment"> </span><span class="org-comment-delimiter">*/</span>
+<span class="org-type">void</span>
+<span class="org-function-name">dlog</span>(<span class="org-type">int</span> <span class="org-variable-name">errnum</span>, <span class="org-type">unsigned</span> <span class="org-variable-name">category</span>, <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">format</span>, ...)
+{
+  <span class="org-type">va_list</span> <span class="org-variable-name">ap</span>;
+
+  <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>dlog_fp)
+    <span class="org-keyword">return</span>;
+
+  <span class="org-keyword">if</span> (dlog_mask &amp; category)
+    <span class="org-keyword">return</span>;
+
+  fflush(stdout);
+  fflush(dlog_fp);
+
+  <span class="org-keyword">if</span> (dlog_prefix)
+    fprintf(dlog_fp, <span class="org-string">"%s: "</span>, dlog_prefix);
+
+  va_start(ap, format);
+  vfprintf(dlog_fp, format, ap);
+  va_end(ap);
+
+  <span class="org-keyword">if</span> (errnum)
+    fprintf(dlog_fp, <span class="org-string">": %s"</span>, strerror(errnum));
+
+  fputc(<span class="org-string">'\n'</span>, dlog_fp);
+
+  fflush(dlog_fp);
+}
+</pre>
+</div>
+
+<p>
+위 함수는 크게 설명이 필요한 부분이 별로 없을 정도로 간단합니다.
+다만, 대개의 경우, <code>dlog_fp</code>⁠는 stderr일 것이므로, stdout과 출력이 꼬일
+것을 염려해서, 군데군데 <code>fflush()</code>⁠를 써 준 것을 잘 보기 바랍니다.
+</p>
+
+<p>
+또, 위 함수의 prototype은 다음과 같습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">extern</span> <span class="org-type">void</span> <span class="org-function-name">dlog</span>(<span class="org-type">int</span> <span class="org-variable-name">errnum</span>, <span class="org-type">unsigned</span> <span class="org-variable-name">category</span>, <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">format</span>, ...)
+  <span class="org-keyword">__attribute__</span> ((format (printf, 3, 4)));
+</pre>
+</div>
+
+<p>
+이 때, `_<sub>attribte</sub>__ ()'는 GCC의 확장 기능입니다. 여기서 사용한
+"(format (printf, 3, 4))"의 뜻은, 세번째 파라메터(format)이 printf(3)
+형태의 포맷을 지정하는 문자열이며, 네번째 인자부터 가변 인자라는 것을
+나타냅니다.  이 정보를 주면, 실제 포맷을 지정하는
+format-specifier('%s'등)와, 주어진 가변 인자의 타입이 다를 경우, GCC가
+경고를 출력해 줍니다. 예를 들면:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">void</span>
+<span class="org-function-name">foo</span>(<span class="org-type">void</span>)
+{
+  dlog(0, 0, <span class="org-string">"hello, %s"</span>, 1234);
+  <span class="org-comment-delimiter">/* </span><span class="org-comment">... </span><span class="org-comment-delimiter">*/</span>
+}
+</pre>
+</div>
+
+<p>
+처럼 호출했을 경우, GCC는 다음과 같은 경고를 발생합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ gcc -Wall -c tmp.c
+tmp.c: In <span class="org-keyword">function</span> ‘foo’:
+tmp.c:61: warning: format ‘%s’ expects type ‘char *’, but argument 4 has type ‘int’
+$ _
+</pre>
+</div>
+
+<p>
+앞에서 만든 dlog()를 쓰면 "program: message" 형태의 메시지를 쉽게
+처리할 수 있습니다. 이제 "program:<a href="line">line</a>: message" 형태를 출력하기
+위한 함수 <code>dlog_at_line()</code>⁠을 만듭니다. 사실상, 파일 이름과 줄 번호를
+출력하는 것을 제외한 나머지는 <code>dlog()</code>⁠와 같기 때문에, 지면상 소스의
+일부분만 보이겠습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">void</span> <span class="org-function-name">dlog_at_line</span>(<span class="org-type">int</span> <span class="org-variable-name">errnum</span>, <span class="org-type">unsigned</span> <span class="org-variable-name">category</span>,
+                  <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">filename</span>, <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">lineno</span>,
+                  <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">format</span>, ...)
+  <span class="org-keyword">__attribute__</span> ((format (printf, 4, 5)));
+
+
+<span class="org-type">void</span>
+<span class="org-function-name">dlog_at_line</span>(<span class="org-type">int</span> <span class="org-variable-name">errnum</span>, <span class="org-type">unsigned</span> <span class="org-variable-name">category</span>,
+             <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">filename</span>, <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">lineno</span>,
+             <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">format</span>, ...)
+{
+  <span class="org-comment-delimiter">/* </span><span class="org-comment">... </span><span class="org-comment-delimiter">*/</span>
+  <span class="org-keyword">if</span> (dlog_prefix)
+    fprintf(dlog_fp, <span class="org-string">"%s:"</span>, dlog_prefix);
+
+  fprintf(dlog_fp, <span class="org-string">"%s:%u "</span>, filename, lineno);
+
+  <span class="org-keyword">if</span> (status)
+    fprintf(dlog_fp, <span class="org-string">"%s: "</span>, strerror(status));
+
+  <span class="org-comment-delimiter">/* </span><span class="org-comment">... </span><span class="org-comment-delimiter">*/</span>
+}
+</pre>
+</div>
+
+<p>
+이처럼 만들어 두었다면, 이제 프로그램을 개발할 때, 다음과 같이 활용할
+수 있습니다.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">if</span> (cannot_open_file) {
+  dlog(0x0001, errno, <span class="org-string">"cannot open XXX file"</span>);
+  <span class="org-comment-delimiter">/* </span><span class="org-comment">handle the error here </span><span class="org-comment-delimiter">*/</span>
+}
+...
+
+<span class="org-keyword">if</span> (missing_element_tag_on_parsing) {
+  dlog_at_line(0x0010, 0, filename, lineno,
+               <span class="org-string">"missing element &lt;%s&gt;"</span>, elem-&gt;name);
+  <span class="org-comment-delimiter">/* </span><span class="org-comment">handle the error here </span><span class="org-comment-delimiter">*/</span>
+}
+</pre>
+</div>
+
+<p>
+또, 단순히 메시지 출력이 아닌, 프로그램 종료 기능까지 추가된 함수인
+<code>derror()</code>⁠도 만듭니다. <code>derror()</code>⁠는 첫번째 파라메터인 STATUS가 0이 아닌
+경우, <code>exit(STATUS)</code>⁠를 호출한다는 것만 <code>dlog()</code>⁠와 다릅니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">extern</span> <span class="org-type">void</span> <span class="org-function-name">derror</span>(<span class="org-type">int</span> <span class="org-variable-name">status</span>, <span class="org-type">int</span> <span class="org-variable-name">errnum</span>, <span class="org-type">unsigned</span> <span class="org-variable-name">category</span>,
+                   <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">format</span>, ...)
+  <span class="org-keyword">__attribute__</span> ((format (printf, 4, 5)));
+</pre>
+</div>
+
+<p>
+이제, 맨 앞에서 소개했던 전역 변수들(<code>dlog_fp</code>, <code>dlog_mask</code>, <code>dlog_prefix</code>)을
+다루기 위한, utility 함수들을 만듭니다. 이 함수들은 단순히, 입력받은
+값을 전역 변수에 덮어쓰는 함수이기 때문에, prototype만 소개합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">extern</span> <span class="org-type">FILE</span> *<span class="org-function-name">dlog_set_stream</span>(<span class="org-type">FILE</span> *<span class="org-variable-name">new_fp</span>);
+<span class="org-keyword">extern</span> <span class="org-type">unsigned</span> <span class="org-function-name">dlog_set_filter</span>(<span class="org-type">unsigned</span> <span class="org-variable-name">new_mask</span>);
+<span class="org-keyword">extern</span> <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-function-name">dlog_set_prefix</span>(<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">new_prefix</span>);
+</pre>
+</div>
+
+<p>
+<code>dlog_set_stream()</code>⁠은, 단순히 <code>dlog_fp</code>⁠를 설정하는 것 이외에도, 주어진
+스트림의 내부 버퍼를 없애는 역할도 합니다. 만약 메시지 출력이
+buffered된다면, (특히 디버깅할 때) 메시지 출력 시점과, 출력 함수를
+호출한 시점이 다를 수 있기 때문입니다.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">FILE</span> *
+<span class="org-function-name">dlog_set_stream</span>(<span class="org-type">FILE</span> *<span class="org-variable-name">fp</span>)
+{
+  <span class="org-type">FILE</span> *<span class="org-variable-name">old</span> = dlog_fp;
+
+  <span class="org-keyword">if</span> (fp != dlog_fp)
+    fclose(dlog_fp);
+
+  dlog_fp = fp;
+  setvbuf(dlog_fp, <span class="org-constant">NULL</span>, _IONBF, 0);
+
+  <span class="org-keyword">return</span> old;
+}
+</pre>
+</div>
+
+<p>
+추가적으로, 사용자가 stream을 등록했다면, 이 stream을 닫는 함수도
+다음과 같이 만들어 줍니다.  이 함수는 나중에 <code>dlog_init()</code>⁠에서
+<code>atexit(3)</code>⁠를 써서 프로그램이 끝날때 자동으로 호출되게 할 것입니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">static</span> <span class="org-type">void</span>
+<span class="org-function-name">dlog_close_stream</span>(<span class="org-type">void</span>)
+{
+  <span class="org-keyword">if</span> (dlog_fp)
+    fclose(dlog_fp);
+}
+</pre>
+</div>
+
+<p>
+사용자가 프로그램 시작에 앞서, 위 세 함수를 써서 설정하도록 하면, 매우
+귀찮아할 것입니다. 따라서 프로그램이 시작할 때, <code>dlog_init()</code>⁠을 부르게
+하고, <code>dlog_init()</code>⁠이 적절하게 초기값을 설정하도록 합니다. 또, 환경
+변수(environment variable)를 써서, 이 초기값을 바꿀 수 있도록 하면,
+이러한 값을 변경하기 위해서 프로그램을 다시 컴파일할 필요가 없기 때문에
+매우 편리할 것입니다.  즉, 환경 변수 "DLOG<sub>FILE</sub>"이 파일 이름을 가리키고
+있다면, 모든 메시지 출력이 해당 파일로 기록되게 합니다. 만약 이 환경
+변수의 값이 ""이거나, 정의되지 않았을 경우에는, default로 <code>stderr</code>⁠를
+사용합니다.  비슷하게, 환경 변수 "DLOG<sub>MASK</sub>"가 적절한 mask 값을 설정할
+수 있도록 하면, 프로그램을 재컴파일할 필요없이, 원하는 category의
+메시지만 얻을 수 있습니다. 또, mask는 십진수(ex. 1024),
+십육진수(ex. 0x010), 팔진수(ex. 077) 등을 모두 쓸 수 있도록 하는 것이
+편리합니다.  이 모든 작업을 하는 <code>dlog_init()</code>⁠은 다음과 같습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">int</span>
+<span class="org-function-name">dlog_init</span>(<span class="org-type">void</span>)
+{
+  <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">p</span>;
+  <span class="org-type">char</span> *<span class="org-variable-name">endptr</span> = <span class="org-constant">NULL</span>;
+  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">mask</span>;
+  <span class="org-type">FILE</span> *<span class="org-variable-name">fp</span>;
+
+  dlog_set_stream(stderr);
+  p = getenv(<span class="org-string">"DLOG_FILE"</span>);
+  <span class="org-keyword">if</span> (p) {
+    <span class="org-keyword">if</span> (p[0] == <span class="org-string">'\0'</span>)
+      dlog_set_stream(0);
+    <span class="org-keyword">else</span>
+      fp = fopen(p, <span class="org-string">"w"</span>);
+
+    <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>fp)
+      fprintf(stderr, <span class="org-string">"dlog: warning: cannot open file in DLOG_FILE\n"</span>);
+    <span class="org-keyword">else</span>
+      dlog_set_stream(fp);
+  }
+  atexit(dlog_close_stream);
+
+  p = getenv(<span class="org-string">"DLOG_MASK"</span>);
+  <span class="org-keyword">if</span> (p &amp;&amp; p[0] != <span class="org-string">'\0'</span>) {
+    mask = strtoul(p, &amp;endptr, 0);
+    <span class="org-keyword">if</span> (*endptr == <span class="org-string">'\0'</span>) {
+      dlog_mask = mask;
+    }
+    <span class="org-keyword">else</span> {
+      fprintf(stderr, <span class="org-string">"dlog: warning: unrecognized format in DLOG_MASK\n"</span>);
+    }
+  }
+
+  <span class="org-keyword">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+위에서, <code>atexit()</code>⁠를 써서 등록한 함수는, 단순히 <code>dlog_fp</code>⁠가 NULL이 아닐
+경우, <code>fclose(dlog_fp)</code>⁠를 호출하는 함수입니다. 나머지 코드에 대한 설명은
+생략합니다.
+</p>
+
+<p>
+환경 변수를 써서 dlog 모듈의 메시지를 제어하는 것을 테스트해
+봅시다. 예를 들어 다음과 같은 간단한 프로그램 a.out이 있다고
+가정합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#define</span> <span class="org-variable-name">D_FATAL</span>  0x08
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">D_ERR</span>    0x04
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">D_WARN</span>   0x02
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">D_LOG</span>    0x01
+
+<span class="org-type">int</span>
+<span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
+{
+  dlog_init();
+  dlog_set_prefix(argv[0]);
+
+  dlog(D_LOG, 0, <span class="org-string">"argc = %d"</span>, argc);
+  dlog(D_WARN, 0, <span class="org-string">"no init file found"</span>);
+  dlog(D_ERR, 0, <span class="org-string">"parse error"</span>);
+  dlog(D_FATAL, 0, <span class="org-string">"out of memory"</span>);
+  <span class="org-keyword">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+이 프로그램을 실행하면 다음과 같은 출력을 얻습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ ./a.out
+./a.out: argc = 1
+./a.out: no init file found
+./a.out: parse error
+./a.out: out of memory
+$ _
+</pre>
+</div>
+
+<p>
+로그와 경고 수준의 메시지를 보고 싶지 않다면, 다음과 같이 DLOG<sub>MASK를</sub>
+설정하면 됩니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ <span class="org-variable-name">DLOG_MASK</span>=0x3 ./a.out
+./a.out: parse error
+./a.out: out of memory
+$ _
+</pre>
+</div>
+
+<p>
+dlog 모듈의 출력을 모두 err.log로 기록하고 싶다면, 다음과 같이
+DLOG<sub>FILE을</sub> 설정합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ <span class="org-variable-name">DLOG_FILE</span>=err.log ./a.out
+$ cat err.log
+./a.out: argc = 1
+./a.out: no init file found
+./a.out: parse error
+./a.out: out of memory
+$ _
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">4.1</span> 추가 기능</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+위 예제를 살펴모면 <code>dlog_set_prefix()</code>⁠에 <code>argv[0]</code>⁠을 준 것을 볼 수
+있습니다. 대부분의 shell 프로그램이 <code>argv[0]</code>⁠에 실행한 프로그램의 경로를
+넣어주기 때문입니다.  하지만, <code>argv[0]</code>⁠이 프로그램의 이름을 가리킨다는
+보장은 없습니다. 이는 <code>exec()</code>⁠를 실행한 프로세스(shell)에 전적으로
+의존하는 부분이기 때문에, <code>argv[0]</code>⁠을 바로 쓰는 것은 별로 바람직한 방법이
+아닙니다.
+</p>
+
+<p>
+GNU C 라이브러리는 <code>error()</code> 함수를 만들때, 전역 변수 <code>program_name</code>⁠이
+정의된 경우, 자동으로 이 변수에 설정된 문자열을 prefix로
+사용합니다. <code>dlog()</code> 또한 <code>program_name</code>⁠을 활용하도록 만들면 좋을 것 같다는
+생각이 듭니다.  다음과 같은 예를 보기 바랍니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;dlog.h&gt;</span>
+
+<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">program_name</span> = <span class="org-string">"my_program"</span>;
+
+<span class="org-type">int</span>
+<span class="org-function-name">main</span>(<span class="org-type">void</span>)
+{
+  dlog_init();
+  dlog(...);
+  <span class="org-keyword">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+즉, 사용자 프로그램에서 전역 변수 "program<sub>name</sub>"을 정의한 경우,
+<code>dlog_init()</code>⁠이 자동으로 <code>dlog_set_prefix(program_name)</code>⁠을 부르도록 하면
+됩니다.  따라서 <code>dlog_init()</code> 맨 마지막에 다음과 같은 코드를 추가합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">extern</span> <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">program_name</span>;
+
+<span class="org-type">void</span>
+<span class="org-function-name">dlog_init</span>(<span class="org-type">void</span>)
+{
+  <span class="org-comment-delimiter">/* </span><span class="org-comment">기존과 동일 </span><span class="org-comment-delimiter">*/</span>
+  <span class="org-keyword">if</span> (program_name)
+    dlog_set_prefix(program_name);
+}
+</pre>
+</div>
+
+<p>
+그러나, 위 코드는 큰 문제점이 있습니다.  실제 프로그램에서
+<code>program_name</code>⁠을 정의했다면, 문제없이 동작하지만, <code>program_name</code>⁠을 정의하지
+않았다면, <code>program_name</code>⁠이 정의되지 않았기 때문에 다음과 같은 에러가
+발생할 것입니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ gcc -I. tmp.c dlog.c
+/tmp/ccnZ5BkJ.o: In <span class="org-keyword">function</span> <span class="org-sh-quoted-exec">`dlog_init':</span>
+<span class="org-sh-quoted-exec">dlog.c:(.text+0x3a6): undefined reference to `</span>program_name<span class="org-string">'</span>
+</pre>
+</div>
+
+<p>
+그렇다고 <code>program_name</code>⁠을 dlog 모듈에서 직접 정의한다면, 사용자가 또
+<code>program_name</code>⁠을 정의하지 않았다면 괜찮지만, 사용자도 정의했을 경우에는
+다음과 같은 에러가 발생합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c">$ gcc -I. tmp.c dlog.c
+/tmp/ccUHGkGr.o:(.bss+0x0): multiple definition of `program_name<span class="org-warning">'</span>
+<span class="org-string">/tmp/cc4sTyyh.o:(.data+0x0): first defined here</span>
+</pre>
+</div>
+
+<p>
+정확히 말해서, 이런 문제는 C 언어의 문제가 아니라 linker의 문제입니다.
+여기에서 필요한 것은, 사용자가 정의했으면 <code>program_name</code>⁠을 쓰고, 정의하지
+않았다면 <code>program_name</code>⁠을 안 쓰는 것인데, 이 문제를 해결하는 방법은 GCC의
+확장 기능인 "_<sub>attribute</sub>_<sub>((weak))</sub>"를 쓰는 것입니다. 즉, dlog
+모듈에서, 전역 변수 <code>program_name</code>⁠을 다음과 같이 정의합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">program_name</span> <span class="org-keyword">__attribute__</span>((weak)) = <span class="org-constant">NULL</span>;
+</pre>
+</div>
+
+<p>
+위와 같이 선언하면, 오브젝트 파일 안에서, <code>program_name</code>⁠이란 심볼의
+속성이 "weak"가 됩니다. "weak" 심볼의 경우, 링크할 때, 같은 이름의 다른
+심볼이 있는 경우에 무시됩니다. 따라서 사용자가 <code>program_name</code>⁠을 정의한
+경우에는, dlog 모듈 안의 <code>program_name</code>⁠은 무시됩니다.  사용자가 따로
+정의하지 않은 경우에는, dlog 모듈 안의 <code>program_name</code>⁠이 쓰이게 됩니다.
+</p>
+
+<p>
+이왕 설명하는 김에.. ^^  이 차이는 nm(1)을 쓰면 확실히 알 수 있습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ <span class="org-comment-delimiter"># </span><span class="org-comment">weak 속성을 쓰지 않은 경우.</span>
+$ cc -I. -c dlog.c
+$ nm dlog.o | grep program_name
+00000000 B program_name
+$ <span class="org-comment-delimiter"># </span><span class="org-comment">weak 속성을 쓴 경우</span>
+$ cc -I. -c dlog.c
+$ nm dlog.o | grep program_name
+00000000 V program_name
+$ _
+</pre>
+</div>
+
+<p>
+위 출력을 보면, 같은 심볼 <code>program_name</code>⁠에 대해서 각각 "B"와 "V"로 나온
+것을 알 수 있습니다. "B"는 초기화된 data section에 있는 심볼을 뜻하며,
+"V"는 weak 심볼을 나타냅니다.  자세한 것은 <code>nm(1)</code>⁠의 manual을 참고하기
+바랍니다.  또, <a href="http://kldp.org/node/68410">nm과 c++filt 활용</a>도 읽어보시기 바랍니다.
+</p>
+
+<p>
+주의, 위에서 설명한 weak 심볼에 관한 내용은 OS에서 쓰는 binary file
+format에 따라 불가능할 수도 있습니다.  (Linux는 ELF 파일 포맷을
+기본으로 하고 있으며, weak 심볼을 쓸 수 있습니다.)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">4.2</span> 생각해 볼 문제</h3>
+<div class="outline-text-3" id="text-4-2">
+<ol class="org-ol">
+<li>dlog 모듈은 async-safe하지 않기 때문에, signal handler에서 쓸 수
+없습니다.  이 문제에 대해서는 이 글의 마지막에서 다시 한 번
+다루겠습니다.</li>
+<li>multi-threaded 프로그램에서 쓸 수 없습니다.  당연히 multi-thread를
+고려하지 않았기 때문에 문제가 있을 수 밖에 없습니다. 이 문제는 바로
+다음에서 해결할 것입니다.</li>
+<li>multi-process 프로그램에서 쓸 수 없습니다.</li>
+<li>원론적으로, 이런 디버깅 메시지를 출력하는 모듈은 assert(3)와
+비슷하게, 특정 매크로를 정의해서(주로 NDEBUG), release build에서는
+코드를 만들때 제거하는 트릭을 씁니다.  dlog()는 이러한 기능을
+제공하지 않습니다.  (글쓴이의 개인적인 의견임) 디버그 메시지 출력
+기능을 전부 삭제하는 것은 좋지 않다고 생각하기 때문입니다.  사실
+출력 mask로 모두 출력하지 않게 만들면, 실제론 category를 검사해서
+바로 리턴하기 때문에, dlog()의 overhead는 그리 크지 않습니다.</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">5</span> Second Version: thread support</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+앞에서 만든 dlog module을 multi-thread 프로그램에서 쓰려면, 몇가지
+수정이 필요합니다.
+</p>
+
+<p>
+첫째. multi-thread를 전혀 고려하지 않고 설계되었으므로, <code>dlog()</code> 등의
+함수에서 출력하는 메시지가 atomic하게 출력된다는 보장이 없습니다.
+</p>
+
+<p>
+둘째. 각 thread에서 <code>dlog()</code>⁠를 불렀을 경우, 메시지가 어떤 thread에서
+호출된 것인지 구별할 필요가 발생합니다. 따라서, 메시지 출력 포맷에 대해
+조금 더 생각해 보아야 합니다.  주저리주저리 설명했지만, 각 thread마다
+이름을 붙이고, 이 이름을 붙여서 메시지를 만들면 해결될 문제입니다.  이
+목적에 가장 가까운 데이터 타입이 <code>pthread_t</code>⁠이지만, <code>pthread_t</code>⁠의 타입을
+출력할 방법이 없다는 것이 골치아픈 문제입니다. 또, 앞에서 GNU Coding
+Standard에서 쓸 수 있는 메시지 포맷을 지키는 것을 기억해야 합니다.
+</p>
+
+<p>
+이 장에서는 위 두 문제를 해결하는 방법을 설명합니다.
+</p>
+
+<p>
+먼저, 두번째 문제부터 해결합니다.  일단, thread별로 이름이 붙어있다고
+가정하고, 메시지 출력 format을 정해야 합니다. 여러 가지 방법이
+있겠지만, 간단하게 다음과 같이 정의하고 쓸 것입니다.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">program:source-file-name:lineno: &lt;thread-name&gt; message
+program: &lt;thread-name&gt; message
+program:source-file-name:lineno:column: &lt;thread-name&gt; message
+</pre>
+</div>
+
+<p>
+다음으로 thread에 이름을 붙이는 방법에 대해 생각해봅시다. pthread에서
+각 thread id는 <code>pthread_t</code> 타입에 저장됩니다. 문제는, 이 타입이 scalar
+type이 아닐 수도 있다는 것입니다. 따라서 다음과 같은 코드는 100% 잘못된
+예입니다.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">pthread_t</span> <span class="org-variable-name">tid</span>;
+
+printf(<span class="org-string">"thread: %d"</span>, (<span class="org-type">int</span>)tid); <span class="org-comment-delimiter">/* </span><span class="org-comment">wrong: pthread_t may not be a scalar type </span><span class="org-comment-delimiter">*/</span>
+printf(<span class="org-string">"thread: %p"</span>, &amp;tid);     <span class="org-comment-delimiter">/* </span><span class="org-comment">wrong: compilable, but incorrect context </span><span class="org-comment-delimiter">*/</span>
+</pre>
+</div>
+
+<p>
+시스템에 따라서, <code>pthread_t</code>⁠가 간단한 정수 타입일 수도 있지만, 아닐
+가능성도 있기 때문에, <code>pthread_t</code>⁠를 직접 thread 이름을 저장하기 위해 쓸
+수 없습니다.  직접 (<code>pthread_t</code>, name) pair를 저장하는 hash table을 만들
+수도 있지만, 이 글에서는 가장 간단한 방법을 쓰겠습니다. 바로
+pthread에서 제공하는 thread-specific data를 쓰는 것입니다.
+Thread-specific data는, thread만의 고유한 데이터 영역이며, 한 thread가
+다른 thread의 thread-specific data에 접근할 수 없습니다.
+</p>
+
+<p>
+Thread-specific data를 만들려면, 먼저 이 데이터 영역에 대한 key를
+만들어야 합니다. 그리고 나서 각 thread는 이 key를 써서 thread 자신만의
+데이터를 읽거나 쓸 수 있습니다.  key를 만드는 함수는
+<code>pthread_key_create()</code>⁠이며, key를 이용, 데이터를 쓰는(write) 함수는
+<code>pthread_setspecific()</code>, 데이터를 읽는 함수는
+<code>pthread_getspecific()</code>⁠입니다.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;pthread.h&gt;</span>
+
+<span class="org-type">int</span> <span class="org-function-name">pthread_key_create</span>(<span class="org-type">pthread_key_t</span> *<span class="org-variable-name">key</span>, <span class="org-type">void</span> (*<span class="org-variable-name">destructor</span>)(<span class="org-type">void</span>*));
+<span class="org-type">void</span> *<span class="org-function-name">pthread_getspecific</span>(<span class="org-type">pthread_key_t</span> <span class="org-variable-name">key</span>);
+<span class="org-type">int</span> <span class="org-function-name">pthread_setspecific</span>(<span class="org-type">pthread_key_t</span> <span class="org-variable-name">key</span>, <span class="org-keyword">const</span> <span class="org-type">void</span> *<span class="org-variable-name">value</span>);
+</pre>
+</div>
+
+<p>
+<code>pthread_key_create()</code>⁠의 두번째 파라메터는, thread가 끝났을 경우, 각
+key에 설정된 값&#x2013;즉 <code>pthread_setspecific()</code>⁠에서 두번째 인자로 준 value에
+대해&#x2013; 호출될 파괴자입니다.
+</p>
+
+<p>
+사용자가 따로 지정하지 않았다면, 각 thread별로 "thread#1", "thread#2"
+등으로 이름을 붙일 것입니다. 이 때, 수치를 위한 counter를 만들고, 이
+counter를 증가시켜서 다음 thread에 대한 이름을 만듭니다.
+</p>
+
+<p>
+지금까지 설명한 내용을 바탕으로, thread를 지원하기 위해, 다음과 같이
+구조체를 만들고, 필요한 멤버를 초기화합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-variable-name">dlog_thread</span> = 0;     <span class="org-comment-delimiter">/* </span><span class="org-comment">If zero, disable thread support. </span><span class="org-comment-delimiter">*/</span>
+
+<span class="org-keyword">struct</span> <span class="org-type">thinfo_</span> {
+  <span class="org-type">int</span> <span class="org-variable-name">counter</span>;                  <span class="org-comment-delimiter">/* </span><span class="org-comment">for naming each thread </span><span class="org-comment-delimiter">*/</span>
+  <span class="org-type">pthread_once_t</span> <span class="org-variable-name">once</span>;          <span class="org-comment-delimiter">/* </span><span class="org-comment">once control for the initializer </span><span class="org-comment-delimiter">*/</span>
+  <span class="org-type">pthread_mutex_t</span> <span class="org-variable-name">mutex</span>;        <span class="org-comment-delimiter">/* </span><span class="org-comment">mutex for `counter' member </span><span class="org-comment-delimiter">*/</span>
+  <span class="org-type">pthread_key_t</span> <span class="org-variable-name">key</span>;            <span class="org-comment-delimiter">/* </span><span class="org-comment">thread-specific data for thread names </span><span class="org-comment-delimiter">*/</span>
+};
+
+<span class="org-keyword">static</span> <span class="org-keyword">struct</span> <span class="org-type">thinfo_</span> <span class="org-variable-name">thinfo</span> = {
+  0,
+  PTHREAD_ONCE_INIT,
+  PTHREAD_MUTEX_INITIALIZER,
+                                <span class="org-comment-delimiter">/* </span><span class="org-comment">no initializer for `key' member </span><span class="org-comment-delimiter">*/</span>
+};
+</pre>
+</div>
+
+<p>
+위에서 보인 것처럼, thread 지원에 필요한 데이터를 초기화하는 함수를
+<code>pthread_once(3p)</code>⁠를 써서 만듭니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">static</span> <span class="org-type">void</span>
+<span class="org-function-name">free_thname</span>(<span class="org-type">void</span> *<span class="org-variable-name">value</span>)
+{
+  <span class="org-keyword">if</span> (value)
+    free(value);
+}
+
+<span class="org-keyword">static</span> <span class="org-type">void</span>
+<span class="org-function-name">dlog_thread_init_once</span>(<span class="org-type">void</span>)
+{
+  thinfo.counter = 0;
+  <span class="org-keyword">if</span> (pthread_key_create(&amp;thinfo.key, free_thname) &lt; 0)
+    fprintf(stderr, <span class="org-string">"dlog: cannot create a thread key: %s\n"</span>,
+            strerror(errno));
+}
+
+<span class="org-type">int</span>
+<span class="org-function-name">dlog_thread_init</span>(<span class="org-type">void</span>)
+{
+  <span class="org-type">int</span> <span class="org-variable-name">ret</span> = -1;
+
+  ret = 0;
+  dlog_thread = 1;
+  <span class="org-keyword">if</span> (pthread_once(&amp;thinfo.once, dlog_thread_init_once) != 0)
+    <span class="org-keyword">return</span> -1;
+
+  <span class="org-keyword">return</span> ret;
+}
+</pre>
+</div>
+
+<p>
+위에서, <code>pthread_once(3p)</code>⁠는 두번째 인자로 주어진 함수를 딱 한번만 실행해
+주는 함수입니다.  예를 들어 위에서 만든 <code>dlog_thread_init()</code>⁠을 여러
+thread에서 동시에 부른다 하더라도, <code>dlog_thread_init_once()</code>⁠는 딱 한 번만
+실행됩니다.
+</p>
+
+<p>
+이제, 자동으로 thread 이름을 만들어 주는 함수를 만듭니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">static</span> <span class="org-type">char</span> *
+<span class="org-function-name">dlog_create_name</span>(<span class="org-type">void</span>)
+{
+  <span class="org-type">char</span> *<span class="org-variable-name">name</span> = <span class="org-constant">NULL</span>;
+  <span class="org-type">int</span> <span class="org-variable-name">id</span>;
+
+  pthread_mutex_lock(&amp;thinfo.mutex);
+  id = ++thinfo.counter;
+  pthread_mutex_unlock(&amp;thinfo.mutex);
+
+  <span class="org-keyword">if</span> (asprintf(&amp;name, <span class="org-string">"thread#%u"</span>, id) &lt; 0)
+    <span class="org-keyword">return</span> <span class="org-constant">NULL</span>;
+
+  <span class="org-keyword">return</span> name;
+}
+</pre>
+</div>
+
+<p>
+thinfo.counter는 현재 마지막 thread에 붙은 번호를 저장합니다. 이 변수는
+여러 thread에서 접근하기 때문에, mutex를 써서 lock을 걸어주어야
+합니다. <code>[[http://www.gnu.org/software/hello/manual/libc/Dynamic-Output.html][asprintf(3)</code>⁠]]는 GNU C 라이브러리의 확장 기능으로, <code>malloc(3)</code>⁠과
+<code>sprintf(3)</code>⁠를 합한 기능을 합니다. 즉, <code>printf(3)</code> 형태의 인자를 받아서
+<code>malloc(3)</code>⁠을 써서 문자열을 만들고, 첫번째 인자에 전달된 포인터가
+가리키도록 해 줍니다.
+</p>
+
+<p>
+이제, thread 이름을 사용자가 설정하고, 얻어낼 수 있는 함수를 만듭니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">int</span>
+<span class="org-function-name">dlog_set_thread_name</span>(<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">name</span>)
+{
+  <span class="org-type">char</span> *<span class="org-variable-name">p</span>;
+
+  name = strdup(name);
+  <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>name)
+    <span class="org-keyword">return</span> -1;
+
+  p = pthread_getspecific(thinfo.key);
+  free_thname(p);
+
+  <span class="org-keyword">if</span> (pthread_setspecific(thinfo.key, name) != 0)
+    <span class="org-keyword">return</span> -1;
+
+  <span class="org-keyword">return</span> 0;
+}
+
+
+<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">char</span> *
+<span class="org-function-name">dlog_get_thread_name</span>(<span class="org-type">void</span>)
+{
+  <span class="org-type">char</span> *<span class="org-variable-name">p</span> = <span class="org-constant">NULL</span>;
+
+  p = pthread_getspecific(thinfo.key);
+  <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>p) {
+    p = dlog_create_name();
+    dlog_set_thread_name(p);
+    free(p);
+  }
+  p = pthread_getspecific(thinfo.key);
+
+  <span class="org-keyword">return</span> p;
+}
+</pre>
+</div>
+
+<p>
+위에서, <code>dlog_set_thread_name()</code>⁠은 사용자가 "thread#1", "thread#2"등처럼
+자동으로 붙는 이름 대신, 직접 thread 이름을 지정할 때 쓰는 함수입니다.
+<code>dlog_get_thread_name()</code>⁠는 나중에 <code>dlog()</code>⁠가 쓸 함수이기 때문에 외부에
+노출할 필요가 없어서 static 함수로 만들었습니다.
+</p>
+
+<p>
+지금까지 설명한 코드들은, 모두 thread별로 이름을 붙이기 위한 것입니다.
+이제 이 장의 맨 앞에서 첫번째 문제점으로 설명한, <code>dlog()</code>⁠의 thread-safe
+기능에 대해 생각해봅시다.
+</p>
+
+<p>
+POSIX에 따르면 stream 연산은 atomic합니다. 즉, FILE *에 출력하는
+함수들은 각각 atomic하게 동작합니다. 예를 들어 아래 코드를 여러
+thread에서 동시에 실행한다고 가정해 봅시다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c">printf(<span class="org-string">"hello"</span>);
+</pre>
+</div>
+
+<p>
+Stream 연산은 atomic하기 때문에, (순서는 보장할 수 없지만) 항상
+"hellohello&#x2026;" 이런 식으로 출력됩니다. 즉 "hehellollo"등으로 섞여서
+출력되지 않는다는 뜻입니다.
+</p>
+
+<p>
+하지만, <code>dlog()</code>⁠와 마찬가지로 stream 출력 함수들을 여러번 호출하는
+경우에는 문제가 됩니다.  앞에서 구현한 <code>dlog()</code>⁠는 내부에서 stream 출력
+함수를 여러번 호출해서 한 메시지를 만듭니다. 따라서, 여러 thread가
+<code>dlog()</code>⁠를 동시에 부르면, 메시지별로 출력될 수도 있지만, 한 메시지 출력
+도중, 다른 메시지가 출력될 가능성이 짙습니다. 결국, 이 문제를
+해결하려면 <code>dlog()</code> 함수 기능인 메시지 출력도 atomic하게 만들어야
+합니다.
+</p>
+
+<p>
+물론 mutex를 하나 만들고 <code>pthread_mutex_*</code> 함수들을 써서 이 문제를 해결할
+수도 있지만, pthread는 stream을 위해서 특별히 다음과 같은 함수들을
+제공합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+
+<span class="org-type">void</span> <span class="org-function-name">flockfile</span>(<span class="org-type">FILE</span> *<span class="org-variable-name">file</span>);
+<span class="org-type">int</span> <span class="org-function-name">ftrylockfile</span>(<span class="org-type">FILE</span> *<span class="org-variable-name">file</span>);
+<span class="org-type">void</span> <span class="org-function-name">funlockfile</span>(<span class="org-type">FILE</span> *<span class="org-variable-name">file</span>);
+</pre>
+</div>
+
+<p>
+간단하게, <code>flockfile()</code>⁠은 lock을 얻는 함수이며, <code>funlockfile()</code>⁠은 lock을
+풉니다. <code>ftrylockfile()</code>⁠은 flockfile의 non-blocking 버전입니다. 이
+함수들은 recursive하게 동작합니다. 즉, <code>flockfile()</code>⁠을 같은 stream에
+대해서 여러번 부를 수 있으며, lock을 건 횟수만큼 <code>funlockfile()</code>⁠이
+호출되어야 lock이 풀리는 형태입니다.
+</p>
+
+<p>
+따라서, <code>dlog()</code>⁠가 사용하는 <code>dlog_fp</code>⁠를 위 함수들을 써서 적절하게 lock을
+걸고 풀어준다면, <code>dlog()</code>⁠를 thread-safe한 함수로 만들 수 있습니다.
+</p>
+
+<p>
+이제 앞에서 설명한 모든 기능을 써서 <code>dlog()</code>⁠를 새로 작성할
+때입니다. 다음과 같습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">void</span>
+<span class="org-function-name">dlog</span>(<span class="org-type">int</span> <span class="org-variable-name">errnum</span>, <span class="org-type">unsigned</span> <span class="org-variable-name">category</span>, <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">format</span>, ...)
+{
+  <span class="org-type">va_list</span> <span class="org-variable-name">ap</span>;
+
+  <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>dlog_fp)
+    <span class="org-keyword">return</span>;
+
+  <span class="org-keyword">if</span> (dlog_mask &amp; category)
+    <span class="org-keyword">return</span>;
+
+  fflush(stdout);
+  flockfile(dlog_fp);         <span class="org-comment-delimiter">/* </span><span class="org-comment">Enter the critical section </span><span class="org-comment-delimiter">*/</span>
+
+
+  <span class="org-keyword">if</span> (dlog_prefix)
+    fprintf(dlog_fp, <span class="org-string">"%s: "</span>, dlog_prefix);
+
+  <span class="org-keyword">if</span> (dlog_thread)            <span class="org-comment-delimiter">/* </span><span class="org-comment">print the thread name </span><span class="org-comment-delimiter">*/</span>
+    fprintf(dlog_fp, <span class="org-string">"&lt;%s&gt; "</span>, dlog_get_thread_name());
+
+  va_start(ap, format);
+  vfprintf(dlog_fp, format, ap);
+  va_end(ap);
+
+  <span class="org-keyword">if</span> (errnum)
+    fprintf(dlog_fp, <span class="org-string">": %s"</span>, strerror(errnum));
+
+  fputc(<span class="org-string">'\n'</span>, dlog_fp); 
+  fflush(dlog_fp);
+  funlockfile(dlog_fp);       <span class="org-comment-delimiter">/* </span><span class="org-comment">Leave the critical section </span><span class="org-comment-delimiter">*/</span>
+}
+</pre>
+</div>
+
+<p>
+지금까지 만든 dlog를 쓰려면, <code>dlog_init()</code> 다음에 다음과 같이
+<code>dlog_thread_init()</code>⁠을 불러주어야 합니다. 만약 <code>dlog_thread_init()</code>⁠을
+부르지 않으면, thread 별 이름은 출력되지 않습니다.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;dlog.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;pthread.h&gt;</span>
+
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">NUM_WORKERS</span>     4
+
+<span class="org-type">void</span> *<span class="org-function-name">worker_proc</span>(<span class="org-type">void</span> *<span class="org-variable-name">arg</span>);
+
+<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">program_name</span> = <span class="org-string">"a.out"</span>;
+<span class="org-type">pthread_t</span> <span class="org-variable-name">workers</span>[NUM_WORKERS];
+
+<span class="org-type">int</span>
+<span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
+{
+  <span class="org-type">int</span> <span class="org-variable-name">i</span>;
+  <span class="org-type">void</span> *<span class="org-variable-name">retval</span>;
+
+  dlog_init();
+  dlog_thread_init();
+
+  dlog_set_thread_name(<span class="org-string">"main"</span>);
+  dlog(0, 0, <span class="org-string">"Let's rock!"</span>);
+  <span class="org-keyword">for</span> (i = 0; i &lt; NUM_WORKERS; i++) {
+    pthread_create(&amp;workers[i], <span class="org-constant">NULL</span>, worker_proc, (<span class="org-type">void</span> *)i);
+  }
+
+  <span class="org-keyword">for</span> (i = 0; i &lt; NUM_WORKERS; i++) {
+    pthread_join(workers[i], &amp;retval);
+    dlog(0, 0, <span class="org-string">"thread finished with return val %d"</span>, (<span class="org-type">int</span>)retval);
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">... </span><span class="org-comment-delimiter">*/</span>
+  }
+  dlog(0, 0, <span class="org-string">"Bye!"</span>);
+  <span class="org-keyword">return</span> 0;
+}
+
+<span class="org-type">void</span> *
+<span class="org-function-name">worker_proc</span>(<span class="org-type">void</span> *<span class="org-variable-name">arg</span>)
+{
+  dlog(0, 0, <span class="org-string">"thread started"</span>);
+  <span class="org-keyword">return</span> arg;
+}
+</pre>
+</div>
+
+<p>
+위 소스(tmp.c)를 컴파일하고 실행한 결과는 다음과 같습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ gcc -I. tmp.c dlog.c -lpthread
+$ ./a.out 
+a.out: &lt;main&gt; Let<span class="org-string">'s rock!</span>
+<span class="org-string">a.out: &lt;thread#1&gt; thread started</span>
+<span class="org-string">a.out: &lt;thread#2&gt; thread started</span>
+<span class="org-string">a.out: &lt;thread#3&gt; thread started</span>
+<span class="org-string">a.out: &lt;thread#4&gt; thread started</span>
+<span class="org-string">a.out: &lt;main&gt; thread finished with return val 0</span>
+<span class="org-string">a.out: &lt;main&gt; thread finished with return val 1</span>
+<span class="org-string">a.out: &lt;main&gt; thread finished with return val 2</span>
+<span class="org-string">a.out: &lt;main&gt; thread finished with return val 3</span>
+<span class="org-string">a.out: &lt;main&gt; Bye!</span>
+<span class="org-string">$ _</span>
+</pre>
+</div>
+
+<p>
+물론, 시스템에 따라서 2-5번째 출력("thread started")의 순서는 바뀔 수
+있습니다.
+</p>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">5.1</span> 추가 기능</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+pthread에는 정수 형태의 thread id를 얻어내는 함수가 없지만, Linux에는
+(Linux 2.4.11 이후 버전부터) <code>gettid(2)</code>⁠란 시스템 콜이 존재합니다.
+앞에서 우리는 thread 이름을 위해 직접 "thread#1"등의 이름을 붙여서
+메시지를 만들었지만, <code>gettid(2)</code>⁠를 써서, 이름 대신, thread id를 직접 쓸
+수도 있습니다. <code>gettid(2)</code>⁠의 prototype은 다음과 같습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/types.h&gt;</span>
+
+<span class="org-type">pid_t</span> <span class="org-function-name">gettid</span>(<span class="org-type">void</span>);
+</pre>
+</div>
+
+<p>
+그런데, GNU C 라이브러리는 위 시스템 콜에 대해 wrapper를 제공하지
+않으므로, <code>gettid(2)</code>⁠를 그냥 쓸 수는 없고, 다음과 같이 wrapper를 만들어
+써야 합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;unistd.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/types.h&gt;</span>
+
+<span class="org-preprocessor">#if</span> <span class="org-preprocessor">defined</span>(USE_GETTID) &amp;&amp; (USE_GETTID &gt; 0)
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/syscall.h&gt;</span>
+
+<span class="org-keyword">static</span> <span class="org-type">pid_t</span>
+<span class="org-function-name">gettid</span>(<span class="org-type">void</span>)
+{
+  <span class="org-keyword">return</span> syscall(SYS_gettid);
+}
+<span class="org-preprocessor">#endif</span>  <span class="org-comment-delimiter">/* </span><span class="org-comment">USE_GETTID </span><span class="org-comment-delimiter">*/</span>
+</pre>
+</div>
+
+<p>
+그리고 나서, thread 이름을 만들어 주는 <code>dlog_create_name()</code>⁠을 다음과 같이
+바꾸면 됩니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">static</span> <span class="org-type">char</span> *
+<span class="org-function-name">dlog_create_name</span>(<span class="org-type">void</span>)
+{
+  <span class="org-type">char</span> *<span class="org-variable-name">name</span> = <span class="org-constant">NULL</span>;
+
+<span class="org-preprocessor">#if</span> <span class="org-preprocessor">defined</span>(USE_GETTID) &amp;&amp; (USE_GETTID &gt; 0)
+  <span class="org-keyword">if</span> (asprintf(&amp;name, <span class="org-string">"%u"</span>, (<span class="org-type">unsigned</span>)gettid()) &lt; 0)
+    <span class="org-keyword">return</span> <span class="org-constant">NULL</span>;
+<span class="org-preprocessor">#else</span>
+  <span class="org-type">int</span> <span class="org-variable-name">id</span>;
+
+  pthread_mutex_lock(&amp;thinfo.mutex);
+  id = ++thinfo.counter;
+  pthread_mutex_unlock(&amp;thinfo.mutex);
+
+  <span class="org-keyword">if</span> (asprintf(&amp;name, <span class="org-string">"thread#%u"</span>, id) &lt; 0)
+    <span class="org-keyword">return</span> <span class="org-constant">NULL</span>;
+<span class="org-preprocessor">#endif</span>  <span class="org-comment-delimiter">/* </span><span class="org-comment">USE_GETTID </span><span class="org-comment-delimiter">*/</span>
+
+  <span class="org-keyword">return</span> name;
+}
+</pre>
+</div>
+
+<p>
+그리고 나서, dlog 메시지를 출력하면 <code>pid_t</code> 형태의 thread 이름이
+출력됩니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ gcc -I. tmp.c dlog.c -lpthread
+$ ./a.out
+a.out: &lt;main&gt; Let<span class="org-string">'s rock!</span>
+<span class="org-string">a.out: &lt;21716&gt; thread started</span>
+<span class="org-string">a.out: &lt;21717&gt; thread started</span>
+<span class="org-string">a.out: &lt;21718&gt; thread started</span>
+<span class="org-string">a.out: &lt;21719&gt; thread started</span>
+<span class="org-string">a.out: &lt;main&gt; thread finished with return val 0</span>
+<span class="org-string">a.out: &lt;main&gt; thread finished with return val 1</span>
+<span class="org-string">a.out: &lt;main&gt; thread finished with return val 2</span>
+<span class="org-string">a.out: &lt;main&gt; thread finished with return val 3</span>
+<span class="org-string">a.out: &lt;main&gt; Bye!</span>
+<span class="org-string">$ _</span>
+</pre>
+</div>
+<p>
+&lt;/source&gt;
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">5.2</span> 생각해 볼 문제</h3>
+<div class="outline-text-3" id="text-5-2">
+<ol class="org-ol">
+<li>mult-thread를 지원하는 dlog 모듈을 만들었지만, pthread 기능을 쓰기
+때문에, thread를 쓰지 않는 프로그램에 쓰더라도 링크시 "-lpthread"
+옵션을 써야 합니다.  따라서 thread 관련된 코드를, 모두 NO<sub>THREAD란</sub>
+매크로가 정의되지 않았을 때에만 컴파일되도록 #ifndef &#x2026; #endif를
+써서 묶어주는 것도 좋을 것입니다.</li>
+<li>thread별 원치 않은 sync가 발생할 수 있습니다.  사실 이 문제는 단순히
+<code>printf(3)</code>⁠를 쓰더라도 발생하는 문제입니다.  즉, <code>printf(3)</code> 또는
+<code>dlog()</code>⁠를 썼을 때에는 문제가 없지만, 이런 출력 함수를 지웠을 경우에
+문제가 발생할 수 있습니다.  이 문제는 출력 함수 문제가 아니라,
+필요한 곳에 동기화(syncronization) 관련 기능을 쓰지 않아서
+발생합니다.  즉, 코드의 어디엔가 race condition이 숨어 있을 가능성이
+높습니다.</li>
+<li>pthread 관련 함수를 쓰지 않고, multi-thread를 지원하는 <code>dlog()</code>⁠를 만들
+수도 있습니다. <code>dlog()</code>⁠에서 여러번 <code>fprintf(3)</code>⁠를 불러서 메시지를
+출력하지 않고, <code>snprintf(3)</code> 등을 써서 메시지를 만든 다음,
+<code>fprintf(3)</code>⁠를 한 번 불러서 완전한 메시지를 출력하게 만드는 것입니다.
+이 방법이 가능한 이유는 stream 관련 함수는 (thread 범위에서)
+atomic하기 때문입니다.  단, 이 경우, thread 이름을 출력할 방법이
+애매해집니다.</li>
+<li>위에서 stream 관련 함수가 atomic하다고 했지만, 이 것은 같은 프로세스
+안에서 thread 사이에서 atomic하다는 뜻입니다.  만약, <code>dlog()</code>⁠를 쓰는
+프로그램이 <code>fork(2)</code> 등을 써서 multi-process로 동작한다면 문제가
+됩니다. stream 관련 함수는 multi-process에서 atomic하지 않습니다.</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">6</span> Third Version</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+이번에는 multi-process를 지원하도록 dlog 모듈을 수정해 봅시다.  먼저
+알아둘 것이 몇가지 있습니다.
+</p>
+
+<p>
+가장 먼저, stream 연산은 말할 것도 없고, 저수준 write(2) 경우에도
+출력은 atomic하지 않습니다. 즉, fork(2) 후에, printf(3)를 그냥 쓰면,
+parent와 child의 출력이 섞일 수 있습니다.  마찬가지로 write(2)를 써서
+STDOUT<sub>FILENO에</sub> 출력하는 것도, 두 출력이 섞일 수 있습니다.
+</p>
+
+<p>
+File descriptor를 공유하는 프로세스끼리 동기화(synchronization)를
+보장받는 방법은 (글쓴이가 알기론) 다음과 같습니다:
+</p>
+
+<p>
+첫째, <code>pipe(2)</code>⁠를 통해서 <code>write(2)</code>⁠하는 경우, write하는 데이터의 크기가
+<code>PIPE_MAX</code>⁠보다 작을 경우, atomic하게 쓸(write)할 수 있습니다.
+</p>
+
+<p>
+둘째, 다른 방법과 달리, 간단하게 만들려면, 프로세스 별로 로그 데이터를
+기록하는 파일을 별도로 유지하면 됩니다.  즉, 동기화할 필요성을 없애면
+됩니다.
+</p>
+
+<p>
+세째, file lock을 써서 동기화를 하는 경우에 atomic을 보장받을 수
+있습니다. 이는 <code>fcntl(2)</code> 함수에 <code>F_SETLK</code>, <code>F_GETLK</code> 등을 써서 할 수
+있습니다.
+</p>
+
+<p>
+네째, <code>O_APPEND</code> flag을 써서 <code>open(2)</code>⁠한 파일에 그냥 <code>write(2)</code>⁠를 써서
+메시지 출력을 하는 것입니다.
+</p>
+
+<p>
+이제 위 세 가지 방법에 대해 각각 장단점을 따져 봅시다. 첫번째 방법을
+쓴다는 것은, 각 <code>dlog()</code> 함수 호출이 미리 만들어진 pipe에 <code>write(2)</code>⁠한다는
+것을 뜻합니다.  그렇다면, 누군가가 이 pipe에서 메시지를 <code>read(2)</code>⁠해서
+다시 지정한 파일에 <code>write(2)</code>⁠해 주어야한다는 것인데, 이 작업을 하려면
+별도의 read thread 또는 read process를 만들어야하는데, 단순한 메시지
+기록 모듈에 이러한 작업을 하는 것은 배보다 배꼽이 더 클 우려가
+있습니다. 따라서 패스~
+</p>
+
+<p>
+세번째 방법의 경우에는 프로세스 별로 독립적인 파일을 유지하기 때문에,
+구현은 매우 간단합니다. 다만, 한 파일로 출력하는 것이 아니기 때문에,
+화면(예: stdout, stderr 등)으로 출력할 경우에는 메시지가 뒤섞일 수
+있습니다.  또 각 프로세스 별로 독립적인 파일을 쓰기 때문에, 각각
+파일에서 메시지의 순서를 알 수가 없습니다.  순서를 알려면 메시지를
+출력할 때, 메시지 출력 시간을 표시하면 가능하긴 합니다.  실제로
+valgrind와 같은 툴은 "&#x2013;trace-children=yes"란 옵션을 쓰면, 각 프로세스
+별로 로그 파일을 만들어 줍니다.
+</p>
+
+<p>
+두번째 방법의 경우, 가장 확실한 방법이긴 합니다.  문제는 지금까지 dlog
+관련 함수들은 모두 입출력을 stream 함수를 써서 했고, fcntl은 file
+descriptor를 사용하는 low I/O 함수라는 것입니다.  또, file lock은 NFS
+v2, v3에서 지원하지 않습니다.  기존 코드를 유지하려면 <code>fcntl()</code>⁠을 부를
+때마다 <code>fileno(3)</code>⁠를 써서 <code>FILE *</code>⁠에서 file descriptor를 얻어내야합니다.
+이 방법이 걱정되는 것은 FILE *와 file descriptor를 번갈아가며 쓰는 것이
+위험하면서도 성능상 문제가 될 수 있기 때문입니다.  이 방법을 쓰면서
+가장 안전한? 방법은 기존 dlog 관련 함수가 stream 함수 대신 (file
+descriptor를 사용하는) low I/O 함수를 써서 입/출력을 하도록 만드는
+것입니다.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+
+<span class="org-type">int</span> <span class="org-function-name">fileno</span>(<span class="org-type">FILE</span> *<span class="org-variable-name">stream</span>);
+</pre>
+</div>
+
+<p>
+또는, 아예 stream 관련 입출력을 쓰지 않고, 모두 low I/O를 쓰도록 해도
+됩니다.  물론 이 경우, 대부분 메시지 formatting은 <code>sprintf(3)</code>⁠나
+<code>snprintf(3)</code>⁠를 써서 만들면 됩니다.
+</p>
+
+<p>
+마지막으로 네째 방법에 대해 생각해 봅시다.  앞에서 pipe에
+<code>PIPE_BUF</code>⁠보다 작은 크기의 데이터를 쓸 때 atomic을 보장받을 수 있다고
+했습니다.  그리고 파일을 열 때, <code>O_APPEND</code>⁠를 써서 열었다면,
+<code>write(2)</code>⁠를 부를 경우, 자동으로 <code>lseek(2)</code>⁠를 부른 것처럼, file
+offset이 맨 뒤로 이동합니다.  <code>O_APPEND</code> flag은 <code>lseek(2)</code>⁠와
+<code>write(2)</code>⁠를 불러서 파일의 맨 뒷 부분에 데이터를 쓸 때, <code>lseek()</code>⁠와
+<code>write()</code> 사이에 (다른 프로세스 등에 의해) 다른 lseek/write가
+끼어들(intermixed) 수 없도록 해 줍니다. 사실 여기까지는 POSIX에 정의된
+내용입니다.  POSIX에서 <code>write(2)</code>⁠가 atomic하다는 말은
+없습니다. 하지만, <code>write(2)</code>⁠가 atomic하지 않다면 <code>O_APPEND</code> flag의 존재
+의미가 희미해집니다.  그렇다고 엄청난 크기의 데이터를 <code>write(2)</code>⁠하는
+경우, atomic하지 않을 거라는 것은 쉽게 예상할 수 있습니다.  그럼 어느
+정도의 크기가 atomic을 보장받을 수 있을까?  여기에 대한 정확한 답변은
+없습니다.  하지만, 이미 pipe에서 <code>PIPE_BUF</code>⁠를 쓰고 있으므로, 상대적으로
+reasonable한 system이라면 <code>PIPE_BUF</code> 크기의 데이터를 <code>O_APPEND</code> flag을
+써서 연 파일에 대해 <code>write(2)</code>⁠할 경우, atomic하다고 봐도 문제없을
+것입니다.
+</p>
+
+<p>
+게다가, write(2)의 경우, thread-safe한 함수이므로, 바로 앞 장에서
+thread-safe 버전을 만들 때 <code>flockfile</code> / <code>funlockfile</code>⁠을 쓸 이유도
+없어집니다.  따라서 글쓴이는 stream I/O를 하는 부분을 모두 low-level
+I/O로 바꾸고, 메시지의 크기는 <code>PIPE_BUF</code>⁠보다 작아야 한다는 제한을 더해서
+dlog를 새로 만들려고 합니다.
+</p>
+
+<p>
+가장 먼저 dlog<sub>fp</sub> 대신 다음과 같이 dlog<sub>fd를</sub> 만듭니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-variable-name">dlog_fd</span> = -1;
+</pre>
+</div>
+
+<p>
+먼저, <code>FILE *</code>⁠를 받아서, output stream을 설정했던 <code>dlog_set_stream()</code>⁠을
+<code>dlog_set_file()</code>⁠로 바꿔봅시다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">int</span> <span class="org-function-name">dlog_set_file</span>(<span class="org-type">int</span> <span class="org-variable-name">fd</span>);
+</pre>
+</div>
+
+<p>
+주어진 fd가 <code>O_APPEND</code>⁠로 열린 파일이 아닐 가능성도 있으므로,
+<code>fcntl(2)</code>⁠을 써서 <code>O_APPEND</code> flag을 추가하는 것, 그리고, 이미 이 fd에
+대하여 data가 들어가 있을 경우를 대비해서 <code>fflush(3)</code> 대신 <code>fsync(2)</code>⁠를
+불러주는 것 이외에는 기존 함수와 거의 같습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">int</span>
+<span class="org-function-name">dlog_set_file</span>(<span class="org-type">int</span> <span class="org-variable-name">fd</span>)
+{
+  <span class="org-type">int</span> <span class="org-variable-name">old</span> = dlog_fd;
+
+  <span class="org-keyword">if</span> (dlog_fd != fd) {
+    <span class="org-keyword">if</span> (dlog_fd != -1)
+      close(dlog_fd);
+
+    <span class="org-keyword">if</span> (fd != -1) {
+      fsync(fd);
+      <span class="org-keyword">if</span> (fcntl(fd, F_SETFL, O_APPEND) == -1)
+        <span class="org-keyword">return</span> -1;
+
+      dlog_fd = fd;
+    }
+  }
+}
+</pre>
+</div>
+
+<p>
+또, <code>dlog_close_stream()</code>⁠을 <code>dlog_close_file()</code>⁠로 바꿉니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-keyword">static</span> <span class="org-type">void</span>
+<span class="org-function-name">dlog_close_file</span>(<span class="org-type">void</span>)
+{
+  <span class="org-keyword">if</span> (dlog_fd != -1)
+    close(dlog_fd);
+}
+</pre>
+</div>
+
+<p>
+=dlog<sub>init</sub>()=에서 기존 stream 관련 함수를 부르는 부분을 모두
+바꿉니다. 또, 환경 변수 "DLOG<sub>TRACE</sub><sub>CHILD</sub>"의 값에 따라 process ID 출력
+여부를 결정할 수 있도록 합니다.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#define</span> <span class="org-variable-name">FILE_MODE</span>       (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
+
+<span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-variable-name">dlog_trace_child</span> = 0; <span class="org-comment-delimiter">/* </span><span class="org-comment">If nonzero, print PID of each process </span><span class="org-comment-delimiter">*/</span>
+
+<span class="org-type">void</span>
+<span class="org-function-name">dlog_process_init</span>(<span class="org-type">void</span>)
+{
+  dlog_trace_child = 1;
+}
+
+
+<span class="org-type">int</span>
+<span class="org-function-name">dlog_init</span>(<span class="org-type">void</span>)
+{
+  <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">p</span>;
+  <span class="org-type">char</span> *<span class="org-variable-name">endptr</span> = <span class="org-constant">NULL</span>;
+  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">mask</span>;
+  <span class="org-type">int</span> <span class="org-variable-name">fd</span>;
+  <span class="org-type">int</span> <span class="org-variable-name">tracep</span>;
+
+  dlog_set_file(STDERR_FILENO);
+  p = getenv(<span class="org-string">"DLOG_FILE"</span>);
+  <span class="org-keyword">if</span> (p) {
+    <span class="org-keyword">if</span> (p[0] == <span class="org-string">'\0'</span>)
+      dlog_set_file(-1);
+    <span class="org-keyword">else</span> <span class="org-keyword">if</span> (strcmp(p, <span class="org-string">"-"</span>) == 0)
+      dlog_set_file(STDOUT_FILENO);
+    <span class="org-keyword">else</span> {
+      fd = open(p, O_WRONLY | O_CREAT | O_APPEND | O_TRUNC, FILE_MODE);
+
+      <span class="org-keyword">if</span> (fd == -1)
+        fprintf(stderr, <span class="org-string">"warning: cannot open file in DLOG_FILE\n"</span>);
+      <span class="org-keyword">else</span>
+        dlog_set_file(fd);
+    }
+  }
+
+  p = getenv(<span class="org-string">"DLOG_TRACE_CHILD"</span>);
+  <span class="org-keyword">if</span> (p) {
+    <span class="org-keyword">if</span> (p[0] != <span class="org-string">'\0'</span>) {
+      tracep = strtoul(p, &amp;endptr, 0);
+      <span class="org-keyword">if</span> (*endptr == <span class="org-string">'\0'</span> &amp;&amp; tracep != 0)
+        dlog_process_init();
+    }
+    <span class="org-keyword">else</span>
+      dlog_trace_child = 0;
+  }
+  <span class="org-comment-delimiter">/* </span><span class="org-comment">... </span><span class="org-comment-delimiter">*/</span>
+}
+</pre>
+</div>
+
+<p>
+이제 마지막으로, <code>dlog()</code>⁠를 고칠 단계입니다.  먼저, 앞에서 모든 메시지는
+바로 출력하는 것이 아니라, 버퍼에다 메시지를 만들고 나서, <code>write(2)</code>⁠를
+써서 한 번에 출력합니다.  이 때 버퍼의 크기는 <code>PIPE_BUF</code>⁠이며, 버퍼에
+메시지를 작성하는 부분은 <code>snprintx()</code>⁠를 써서 만듭니다.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;snprintx.h&gt;</span>
+
+<span class="org-type">int</span> <span class="org-function-name">snprintx</span>(<span class="org-type">char</span> **<span class="org-variable-name">buf</span>, <span class="org-type">ssize_t</span> *<span class="org-variable-name">size</span>, <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">format</span>, ...);
+</pre>
+</div>
+
+<p>
+<code>snprintx()</code>⁠는 글쓴이가 만든 함수이며, <code>snprintf(3)</code>⁠와 같은 일을
+합니다. 다만, 첫 두 인자가 char *와 ssize<sub>t에</sub> 대한 포인터를 받고,
+문자열을 만든 다음에 이 문자열의 끝을 가리키도록 두 인자가 바뀐다는
+점이 다릅니다.  예를 들어, 주어진 버퍼에 "hello"와 "world"를 연속적으로
+붙여서 문자열을 만들고 싶다면, 다음과 같이 할 수 있습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">char</span> <span class="org-variable-name">buf</span>[BUF_MAX];
+<span class="org-type">char</span> *<span class="org-variable-name">p</span> = buf;
+<span class="org-type">ssize_t</span> <span class="org-variable-name">bufsize</span> = <span class="org-keyword">sizeof</span>(buf);
+
+snprintx(&amp;p, &amp;bufsize, <span class="org-string">"hello"</span>);
+snprintx(&amp;p, &amp;bufsize, <span class="org-string">"world"</span>);
+printf(<span class="org-string">"%s\n"</span>, buf);
+</pre>
+</div>
+
+<p>
+snprintx 모듈은 두 파일로 구성되어 있으며, 각각
+[<a href="http://www.cinsk.org/viewvc/snippets/snprintx.h?view=markup">http://www.cinsk.org/viewvc/snippets/snprintx.h?view=markup</a>
+snprintx.h]와
+[<a href="http://www.cinsk.org/viewvc/snippets/snprintx.c?view=markup">http://www.cinsk.org/viewvc/snippets/snprintx.c?view=markup</a>
+snprintx.c]입니다.
+</p>
+
+<p>
+아래는, 모든 것을 반영한 <code>dlog()</code>⁠입니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">void</span>
+<span class="org-function-name">dlog</span>(<span class="org-type">int</span> <span class="org-variable-name">errnum</span>, <span class="org-type">unsigned</span> <span class="org-variable-name">category</span>, <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">format</span>, ...)
+{
+  <span class="org-type">va_list</span> <span class="org-variable-name">ap</span>;
+  <span class="org-type">char</span> <span class="org-variable-name">buf</span>[PIPE_BUF];
+  <span class="org-type">char</span> *<span class="org-variable-name">ptr</span> = buf;
+  <span class="org-type">ssize_t</span> <span class="org-variable-name">bufsize</span> = <span class="org-keyword">sizeof</span>(buf);
+
+  <span class="org-keyword">if</span> (dlog_fd != -1) {
+    <span class="org-keyword">if</span> (dlog_mask &amp; category)
+      <span class="org-keyword">return</span>;
+
+    fflush(stdout);
+    <span class="org-keyword">if</span> (dlog_fd == STDERR_FILENO)
+      fflush(stderr);
+
+    <span class="org-keyword">if</span> (dlog_prefix)
+      snprintx(&amp;ptr, &amp;bufsize, <span class="org-string">"%s: "</span>, dlog_prefix);
+
+    <span class="org-keyword">if</span> (dlog_trace_child &amp;&amp; dlog_thread)
+      snprintx(&amp;ptr, &amp;bufsize, <span class="org-string">"&lt;%d-%s&gt; "</span>, (<span class="org-type">unsigned</span> <span class="org-type">int</span>)getpid(),
+              dlog_get_thread_name());
+    <span class="org-keyword">else</span> <span class="org-keyword">if</span> (dlog_trace_child)
+      snprintx(&amp;ptr, &amp;bufsize, <span class="org-string">"&lt;%d:&gt; "</span>, (<span class="org-type">unsigned</span> <span class="org-type">int</span>)getpid());
+    <span class="org-keyword">else</span> <span class="org-keyword">if</span> (dlog_thread)
+      snprintx(&amp;ptr, &amp;bufsize, <span class="org-string">"&lt;:%s&gt; "</span>, dlog_get_thread_name());
+
+    va_start(ap, format);
+    vsnprintx(&amp;ptr, &amp;bufsize, format, ap);
+    va_end(ap);
+
+    <span class="org-keyword">if</span> (errnum)
+      vsnprintx(&amp;ptr, &amp;bufsize, <span class="org-string">": %s"</span>, strerror(errnum));
+
+    snprintx(&amp;ptr, &amp;bufsize, <span class="org-string">"\n"</span>);
+
+    <span class="org-keyword">if</span> (bufsize &gt; 0)
+      write(dlog_fd, buf, <span class="org-keyword">sizeof</span>(buf) - bufsize);
+
+    fsync(dlog_fd);
+  }
+}
+</pre>
+</div>
+
+<p>
+또, thread만 지원했던 버전과는 달리, dlog<sub>trace</sub><sub>child와</sub> dlog<sub>thread</sub>
+변수 상태에 따라 "&lt;PID:THREAD-NAME&gt;", "&lt;PID:&gt;", "&lt;:THREAD-NAME&gt;" 등의
+정보를 출력합니다.
+</p>
+
+<p>
+이제 실제로 테스트 해 봅시다. 먼저 앞 장에서 테스트 목적으로 만든
+tmp.c를 조금 바꿔서 multi-process + multi-thread 기능을 하도록
+만듭니다. 출력이 너무 많아지는 것을 막기 위해 NUM<sub>WORKERS를</sub> 2로 설정한
+것과 몇 개의 헤더 파일 추가, 그리고 아래 <code>main()</code>⁠을 제외하고 나머지는
+같습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-comment-delimiter">/* </span><span class="org-comment">... </span><span class="org-comment-delimiter">*/</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;unistd.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/types.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/wait.h&gt;</span>
+
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">NUM_WORKERS</span>     2
+
+<span class="org-comment-delimiter">/* </span><span class="org-comment">... </span><span class="org-comment-delimiter">*/</span>
+
+<span class="org-type">int</span>
+<span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
+{
+  <span class="org-type">int</span> <span class="org-variable-name">i</span>;
+  <span class="org-type">void</span> *<span class="org-variable-name">retval</span>;
+  <span class="org-type">pid_t</span> <span class="org-variable-name">id</span>;
+  <span class="org-type">int</span> <span class="org-variable-name">status</span>;
+
+  dlog_init();
+  dlog_process_init();
+  dlog_thread_init();
+
+  dlog_set_thread_name(<span class="org-string">"main"</span>);
+
+  dlog(0, 0, <span class="org-string">"Let's rock!"</span>);
+
+  id = fork();
+
+  <span class="org-keyword">for</span> (i = 0; i &lt; NUM_WORKERS; i++) {
+    pthread_create(&amp;workers[i], <span class="org-constant">NULL</span>, worker_proc, (<span class="org-type">void</span> *)i);
+  }
+
+  <span class="org-keyword">for</span> (i = 0; i &lt; NUM_WORKERS; i++) {
+    pthread_join(workers[i], &amp;retval);
+    dlog(0, 0, <span class="org-string">"thread finished with return val %d"</span>, (<span class="org-type">int</span>)retval);
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">... </span><span class="org-comment-delimiter">*/</span>
+  }
+
+  <span class="org-keyword">if</span> (id == 0)
+    _exit(0);
+  <span class="org-keyword">else</span>
+    wait(&amp;status);
+
+  dlog(0, 0, <span class="org-string">"Bye!"</span>);
+
+  <span class="org-keyword">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+위 파일을 컴파일하고 실행한 결과는 다음과 같습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ gcc -I. tmp.c dlog.c -lpthread
+$ ./a.out
+a.out: &lt;21772:main&gt; Let<span class="org-string">'s rock!</span>
+<span class="org-string">a.out: &lt;21772:21774&gt; thread started</span>
+<span class="org-string">a.out: &lt;21772:21775&gt; thread started</span>
+<span class="org-string">a.out: &lt;21772:main&gt; thread finished with return val 0</span>
+<span class="org-string">a.out: &lt;21772:main&gt; thread finished with return val 1</span>
+<span class="org-string">a.out: &lt;21773:21776&gt; thread started</span>
+<span class="org-string">a.out: &lt;21773:main&gt; thread finished with return val 0</span>
+<span class="org-string">a.out: &lt;21773:21777&gt; thread started</span>
+<span class="org-string">a.out: &lt;21773:main&gt; thread finished with return val 1</span>
+<span class="org-string">a.out: &lt;21772:main&gt; Bye!</span>
+<span class="org-string">$ _</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">6.1</span> 생각해 볼 점</h3>
+<div class="outline-text-3" id="text-6-1">
+<ol class="org-ol">
+<li>지금까지 만든 dlog 모듈의 경우, mask와 출력 파일 등의 default 값을
+설정하는 방법은 만들지 않았습니다. 이는 <code>dlog_init()</code>⁠에 default mask,
+default output file 등을 인자로 받아서 변경할 수 있도록 만들 수
+있습니다.</li>
+<li><code>dlog()</code>⁠는 메시지 출력만 하지만, GNU <code>error()</code>⁠와 비슷하게, <code>exit(3)</code>⁠까지
+호출하는 <code>derror()</code>⁠도 손쉽게 만들 수 있습니다.</li>
+<li>Why reinvent the wheel?  이 글에서 주욱 설명한 dlog 대신 <code>syslog()</code>⁠를
+써서 모든 문제를 해결할 수 있습니다.  다만 syslog를 쓸 경우, syslog
+daemon이 떠 있어야 하고, syslog 설정을 바꾸기 위해서 root 권한이
+필요할 수 있습니다.  또, 오래된 syslog인 경우, 짧은 시간에 다량의
+메시지가 입력으로 들어오면 일부 메시지를 무시하는 경우가 있다는 글을
+읽은 적이
+있습니다. <a href="http://groups.google.com/group/comp.unix.admin/browse_frm/thread/52f588755580036b/">여기에</a></li>
+<li><code>syslog()</code>⁠를 쓰던, 위 dlog를 쓰던, 아니면 그냥 <code>printf()</code>⁠를 쓰던, 어떤
+경우에도 async-safe하지 않습니다. 즉, signal handler에서 쓸 수
+없습니다.  글쓴이가 알기로, pthread의 거의 모든 함수들은
+async-safe하지 않으므로, signal handler에서 쓸 수 있는 편리한?
+함수를 만들기는 거의 불가능합니다.  (방법을 아신다면 글쓴이에게
+연락을&#x2026; ^^)</li>
+</ol>
+
+<p>
+마지막으로, 현재 버전의 dlog 모듈 및 snprintx 모듈은 <a href="http://www.cinsk.org/gitweb/?p=snippets.git;a=tree">여기</a>에서 얻을 수
+있습니다.
+</p>
+</div>
+</div>
+
+
+          <hr/>
+
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'cinsk'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="http://blog.getbootstrap.com">Blog</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/wiki">Roadmap and changelog</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript"
+            src="http://platform.twitter.com/widgets.js"></script>
+
+    <script src="http://www.cinsk.org/bootstrap/js/jquery.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-transition.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-alert.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-modal.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-dropdown.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-scrollspy.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tab.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tooltip.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-popover.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-button.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-collapse.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-carousel.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-typeahead.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-affix.js"></script>
+
+    <script src="http://cinsk.github.io/js/holder/holder.js"></script>
+    <script src="http://cinsk.github.io/prettify.js"></script>
+
+    <script src="http://cinsk.github.io/js/application.js"></script>
+
+  </body>
+</html>
+
+<!--
+ Local Variables:
+ mode: nxml
+ fill-column: 78
+ End:
+-->

@@ -1,0 +1,151 @@
+.title  { text-align: center; }
+.todo   { color: red; }
+.done   { color: green; }
+.tag    { background-color: #add8e6; font-weight:normal }
+.target { }
+.timestamp { color: #bebebe; }
+.timestamp-kwd { color: #5f9ea0; }
+.right  {margin-left:auto; margin-right:0px;  text-align:right;}
+.left   {margin-left:0px;  margin-right:auto; text-align:left;}
+.center {margin-left:auto; margin-right:auto; text-align:center;}
+p.verse { margin-left: 5% }
+pre {
+    border: 1pt solid #AEBDCC;
+    background-color: #F3F5F7;
+    padding: 5pt;
+    font-family: "Dejavu Sans Mono", courier, monospace;
+    font-size: 90%;
+    overflow:auto;
+}
+table {
+    border-collapse: collapse;
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+td, th { vertical-align: top;  }
+th.right  { text-align:center;  }
+th.left   { text-align:center;   }
+th.center { text-align:center; }
+td.right  { text-align:right;  }
+td.left   { text-align:left;   }
+td.center { text-align:center; }
+dt { font-weight: bold; }
+div.figure { padding: 0.5em; }
+div.figure p { text-align: center; }
+div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+}
+textarea { overflow-x: auto; }
+.linenr { font-size:smaller }
+.code-highlighted {background-color:#ffff00;}
+.org-info-js_info-navigation { border-style:none; }
+#org-info-js_console-label { font-size:10px; font-weight:bold;
+                             white-space:nowrap; }
+.org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+
+p.postamble { text-align: center;
+        font-size: 12px;
+      }
+
+#content {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#content:before,
+#content:after {
+  display: table;
+  content: " ";
+}
+
+#content:after {
+  clear: both;
+}
+
+#content:before,
+#content:after {
+  display: table;
+  content: " ";
+}
+
+#content:after {
+  clear: both;
+}
+
+@media (min-width: 768px) {
+  #content {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  #content {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #content {
+    width: 1170px;
+  }
+}
+
+
+blockquote p {
+  font-size: inherit;
+  font-style: italic;
+}
+
+pre.src,
+pre.example {
+  background-color: #DCDCDC;
+  color: #000000;
+  font-size: 13px;
+    width: 92%;
+    margin: 6px 4% 6px 4%;
+}
+
+pre.example {
+  border-top: solid 5px #9c0001;
+  border-bottom: solid 5px #9c0001;
+}
+
+pre.src {
+    //width: 92%;
+    //margin: 0 auto; // center <pre> block
+    // margin: 5px auto 10px auto;  // center <pre> block
+    // margin: 2px 4% 2px 4%;
+    // padding-top: 5pt;
+}
+
+pre.src:hover:before { display: none; }
+
+#footnotes {
+  font-style: italic;
+}
+
+#footnotes h2.footnotes {
+  font-size: 18px;
+}
+
+disqus_thread {
+  margin-top: 28px;
+}
+
+.outline-3 { margin-left: 1em; }
+.outline-text-3 { margin-left: 1em; }
+.outline-4 { margin-left: 1em; }
+.outline-text-4 { margin-left: 1em; }
+
+#postamble {
+    margin-top: 40px;
+    padding: 10px;
+    border-top: 1px solid #999;
+}

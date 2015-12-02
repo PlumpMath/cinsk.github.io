@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    
+    <meta name="author" content="cinsk (Seong-Kook Shin)"/>
+    
+
+    <title>Daemon 만들때 알아둘 점</title>
+
+    <!-- Le styles -->
+    <link href="http://cinsk.github.io/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/bootstrap-responsive.css"
+          rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/docs.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/prettify.css" rel="stylesheet"/>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="/feed.xml">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://cinsk.github.io/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://cinsk.github.io/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://cinsk.github.io/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://cinsk.github.io/ico/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="http://cinsk.github.io/ico/favicon.png"/>
+
+    <link href="../css/org.css" rel="stylesheet"/>
+    <link href="../css/articles.css" rel="stylesheet"/>
+
+    
+    <link href="../css/ko.css" rel="stylesheet"/>
+    
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <!-- Navbar
+         ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar"
+                  data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">cinsk.org</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <!-- toplink: invalid parameter, label() not found -->
+
+              
+              <li class=""><a href="../home/cinsk/www/www/index.html">Home</a></li>
+              
+              
+              
+              <li class=""><a href="../home/cinsk/www/www/cfaqs/index.ko.html">C FAQ</a></li>
+              
+              
+              
+              <li class="active"><a href="../home/cinsk/www/www/articles.ko.html">글 목록</a></li>
+              
+              
+              
+              <li class=""><a href="../home/cinsk/www/www/emacs/index.ko.html">Emacs</a></li>
+              
+              
+              
+              <li class=""><a href="../home/cinsk/www/www/resume.html">Résumé</a></li>
+              
+              
+              <!--
+              
+              -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subhead
+         ================================================== -->
+    <header class="jumbotron subhead" id="overview">
+      <div class="container">
+        <h1>Daemon 만들때 알아둘 점</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav">
+            
+
+            <!--
+            
+            -->
+          </ul>
+        </div>
+
+        <div class="span9">
+          <div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. introduction</a></li>
+<li><a href="#orgheadline6">2. Controlling terminal</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgheadline3">2.0.1. 제어 터미널 없애기</a></li>
+<li><a href="#orgheadline4">2.0.2. 제어 터미널 못 만들게 하기</a></li>
+<li><a href="#orgheadline5">2.0.3. 아 모르겠고, 귀찮다.. 간단한 방법은 없나요?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline8">3. CWD</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgheadline7">3.0.1. pathname configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline11">4. Signals</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgheadline9">4.0.1. SIGHUP</a></li>
+<li><a href="#orgheadline10">4.0.2. SIGTERM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline16">5. files</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgheadline12">5.0.1. umask</a></li>
+<li><a href="#orgheadline13">5.0.2. standard descriptors</a></li>
+<li><a href="#orgheadline14">5.0.3. log file</a></li>
+<li><a href="#orgheadline15">5.0.4. PID file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Daemon은 request 프로그램에 무관하게 (백그라운드 프로세스로) 동작하는
+프로그램을 말합니다.  이 글에서는 daemon 프로그램을 만드는 데 필요한
+것들을 다룹니다. (<a href="http://catb.org/~esr/jargon/html/D/daemon.html">Jargon daemon 정의</a>)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">2</span> Controlling terminal</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Daemon 프로세스는 제어 터미널(controlling terminal)을 가지지 않는
+것이 좋습니다.  만약 제어 터미널이 있을 경우, 다음과 같은 문제가
+발생할 수 있습니다.
+</p>
+
+<ul class="org-ul">
+<li>사용자가 터미널 escape 문자를 써서 (대표적으로 CONTROL-c,
+CONTROL-z 등) 원치 않게 프로세스를 끝내 버리거나, suspend시킬 수
+있습니다.</li>
+<li>원격 터미널 연결이 끊길 경우, 원치 않게 프로세스가 종료될 수
+있습니다.</li>
+</ul>
+
+<p>
+따라서 제어 터미널이 없는 상태로 만들어야 하는데, 약간 과정이 복잡합니다.
+크게, 다음 두 단계를 거칩니다.
+</p>
+
+<ol class="org-ol">
+<li>제어 터미널이 없는 상태로 만들기 &#x2013; 사실 이것만으로도 충분하지만,
+후에 (실수로) 제어 터미널을 얻는 것을 강제로 막을려면, 아래 단계까지
+진행하는 것이 좋습니다.</li>
+
+<li>제어 터미널을 못 만드는 상태로 만들기</li>
+</ol>
+</div>
+
+
+
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">2.0.1</span> 제어 터미널 없애기</h4>
+<div class="outline-text-4" id="text-2-0-1">
+<p>
+먼저 Unix (또는 Linux)의 세션, 프로세스 그룹을 이해해야 합니다.
+</p>
+
+<p>
+세션은 각각을 구별하기 위한 세션 id를 가지며 (sid), 프로세스 그룹도
+id를 가집니다 (pgid).  물론, 프로세스도 id를 가지고 (pid) 있습니다.
+</p>
+
+<p>
+프로세스 그룹은 여러 프로세스의 집합입니다.  이 때, 이 집합에 속한
+한 프로세스는 프로세스 그룹 리더가 됩니다.  프로세스 그룹 리더의 경우
+pgid와 pid가 서로 같습니다.
+</p>
+
+<p>
+일단 daemon 프로세스가 (제어 터미널이 없는) 세션 리더가 되어야 합니다. 
+세션 리더가 되려면 <code>setsid(2)</code>⁠를 호출해야 하는데, 이 시스템 콜은
+현재 프로세스가 프로세스 그룹 리더가 아닐 경우에만 동작합니다.
+</p>
+
+<p>
+(shell에 의해) 현재 프로세스는 그룹 리더일 것이기 때문에, 그룹
+리더가 아닌, 프로세스를 만들기 위해 <code>fork(2)</code>⁠를 호출합니다.
+그리고 <code>fork()</code>⁠를 호출한 부모 프로세스는 바로 종료합니다.  그러면
+자식 프로세스의 경우, 부모가 죽었기 때문에, <code>init(8)</code>⁠가 부모
+프로세스가 되며 (즉, ppid == 1), 프로세스 그룹 리더가 아니게
+됩니다.
+</p>
+
+<p>
+이 때, <code>setsid()</code>⁠를 호출해서, 이 프로세스가 세션 리더가 되도록
+합니다.
+</p>
+
+<p>
+이 때까지 과정을 살펴보기 위해, 다음과 같은 예제 프로그램을
+만들어 봅시다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">void</span>
+<span class="org-function-name">print_id</span>(<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">comment</span>)
+{
+  fprintf(stderr, <span class="org-string">"sid: %5d, pgid: %5d, pid: %5d, ppid: %5d   # %s\n"</span>,
+          (<span class="org-type">int</span>)getsid(0), (<span class="org-type">int</span>)getpgid(0), (<span class="org-type">int</span>)getpid(), (<span class="org-type">int</span>)getppid(),
+          comment);
+}
+
+<span class="org-type">int</span>
+<span class="org-function-name">main</span>(<span class="org-type">void</span>)
+{
+  <span class="org-type">pid_t</span> <span class="org-variable-name">pid</span>;
+
+  print_id(<span class="org-string">"start"</span>);
+
+  <span class="org-keyword">if</span> ((pid = fork()) &lt; 0) {
+    fprintf(stderr, <span class="org-string">"fork() failed: %s\n"</span>, strerror(errno));
+    <span class="org-keyword">return</span> 1;
+  }
+  <span class="org-keyword">else</span> <span class="org-keyword">if</span> (pid &gt; 0) {           <span class="org-comment-delimiter">/* </span><span class="org-comment">parent </span><span class="org-comment-delimiter">*/</span>
+    _exit(0);
+  }
+  <span class="org-comment-delimiter">/* </span><span class="org-comment">child </span><span class="org-comment-delimiter">*/</span>
+  print_id(<span class="org-string">"after fork()"</span>);
+  <span class="org-keyword">if</span> (setsid() == -1) {
+    fprintf(stderr, <span class="org-string">"setsid() failed: %s\n"</span>, strerror(errno));
+    <span class="org-keyword">return</span> 1;
+  }
+  print_id(<span class="org-string">"after setsid()"</span>);
+  <span class="org-keyword">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+이 프로그램을 실행하면, 아래와 비슷한 결과를 얻을 수 있습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ ./a.out
+sid: 19945, pgid: 25987, pid: 25987, ppid: 19945   <span class="org-comment-delimiter"># </span><span class="org-comment">start</span>
+sid: 19945, pgid: 25987, pid: 25988, ppid:     1   <span class="org-comment-delimiter"># </span><span class="org-comment">after fork()</span>
+sid: 25988, pgid: 25988, pid: 25988, ppid:     1   <span class="org-comment-delimiter"># </span><span class="org-comment">after setsid()</span>
+$ _
+</pre>
+</div>
+
+<p>
+위 결과를 보면, 첫번째 줄에서, 처음 프로그램이 시작되었을 때,
+pid와 pgid가 서로 같은 것을 볼 수 있습니다.  즉, 이 때,
+프로세스는 프로세스 그룹 리더입니다.  또, sid와 pid가 서로 다르기
+때문에, 세션 리더는 아닙니다.
+</p>
+
+<p>
+그리고, 두번째 줄을 보면,
+<code>fork()</code>⁠를 수행하고, (부모 프로세스는 종료) 자식 프로세스의 경우, 
+pid와 pgid가 서로 다른 것을 볼 수 있습니다.  즉, 자식 프로세스의 경우,
+프로세스 그룹 리더가 아닙니다.   따라서 <code>setsid()</code>⁠를 호출할 수 있는
+상태가 됩니다.
+</p>
+
+<p>
+마지막 세번째 줄을 보면, <code>setsid()</code>⁠를 부른 다음의 상태를 알 수
+있습니다.  즉, sid, pgid, pid가 모두 같은 것을 볼 수 있으며, 이제
+이 프로세스는 세션 리더이며, 프로세스 그룹 리더이며, 제어
+터미널이 없는 상태가 됩니다.
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="orgheadline2"></a>왜 <code>_exit()</code>⁠를 썼나요?<br  /><div class="outline-text-6" id="text-2-0-1-0-1">
+<p>
+이 글의 내용과는 약간 떨어져 있지만, 중간에 <code>fork(2)</code> 이후, 부모
+프로세스가 <code>_exit(3)</code>⁠를 호출해서 종료하는 것을 알 수 있습니다.
+<code>_exit(3)</code>⁠는 <code>exit(3)</code>⁠와 비슷하지만, 좀 더 저수준의 함수입니다.
+</p>
+
+<p>
+<code>exit(3)</code>⁠를 쓰게 되면 여러가지 문제가 발생할 수 있는데, 몇 가지만
+다뤄보면:
+</p>
+
+<p>
+첫째, 일반적으로 자식 프로세스는 부모 프로세스의 메모리 상태를
+그대로 물려받게 되는데, 이 때, stdio 관련 (예: <code>stdin</code>, <code>stdout</code> 등)
+버퍼도 그대로 물려받습니다.  <code>exit(3)</code>⁠가 호출되면, stdio 관련 버퍼를
+비우게 되는데, 만약 어떤 데이터가 파일에 기록되지 않고, 버퍼에
+남아있을 경우, <code>fork(2)</code> 이후에, 이 잔류 데이터는 부모 프로세스와
+자식 프로세스에 두 벌로 존재합니다.  따라서, 이러한 데이터에
+의해, 파일에 중복되서 기록되는 경우가 발생할 수 있습니다.
+</p>
+
+<p>
+둘째, <code>exit(3)</code>⁠가 호출되면 <code>atexit(3)</code>⁠로 등록했던 핸들러들이
+수행됩니다.  즉, 부모와 자식 두 프로세스가 모두 <code>exit(3)</code>⁠로
+종료하게 되면, 이 핸들러들이 두번 실행되는 것이고, 이로 인해 원치
+않은 문제가 발생할 수 있습니다.
+</p>
+
+<p>
+세째, <code>exit(3)</code>⁠를 호출하면, <code>tmpfile(3)</code>⁠로 만들었던 임시 파일이
+삭제됩니다.  즉, 부모 프로세스가 <code>exit(3)</code>⁠로 종료하면, 자식
+프로세스에서 같은 파일을 더 이상 쓸 수 없게 됩니다.
+</p>
+</div></li></ol>
+</div>
+
+
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">2.0.2</span> 제어 터미널 못 만들게 하기</h4>
+<div class="outline-text-4" id="text-2-0-2">
+<p>
+제어 터미널을 못 만들게 하려면, 현재 프로세스가 세션 그룹 리더가
+아니게 만들면 됩니다.
+</p>
+
+<p>
+앞 예제 프로그램 출력의 마지막 줄(세번째 줄)을 보면, 프로세스가
+현재 세션 그룹 리더인 것을 (sid == pid) 알 수 있습니다.
+</p>
+
+<p>
+이 상태에서 한 번 더 <code>fork(2)</code>⁠를 하고, 이 때 부모 프로세스를 종료하고
+자식 프로세스의 상태를 살펴보면, 아래와 같은 결과를 얻을 수 있습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ ./a.out
+sid: 19945, pgid: 26159, pid: 26159, ppid: 19945   <span class="org-comment-delimiter"># </span><span class="org-comment">start</span>
+sid: 19945, pgid: 26159, pid: 26160, ppid:     1   <span class="org-comment-delimiter"># </span><span class="org-comment">after fork()</span>
+sid: 26160, pgid: 26160, pid: 26160, ppid:     1   <span class="org-comment-delimiter"># </span><span class="org-comment">after setsid()</span>
+sid: 26160, pgid: 26160, pid: 26161, ppid:     1   <span class="org-comment-delimiter"># </span><span class="org-comment">after 2nd fork()</span>
+$ _
+</pre>
+</div>
+
+<p>
+위 결과의 마지막 줄을 보면, 현재 프로세스는 (sid != pid) 세션
+리더가 아니기 때문에, (혹시 실수로라도) 제어 터미널을 얻을 수
+없는 상태가 됩니다.
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">2.0.3</span> 아 모르겠고, 귀찮다.. 간단한 방법은 없나요?</h4>
+<div class="outline-text-4" id="text-2-0-3">
+<p>
+앞 내용을 요약하면, 다음과 같습니다.
+</p>
+
+<ol class="org-ol">
+<li><code>fork(2)</code>⁠를 부르고 부모 프로세스는 <code>_exit(3)</code>⁠로 종료</li>
+<li><code>setsid(2)</code>⁠를 부른다</li>
+<li><code>fork(2)</code>⁠를 부르고 부모 프로세스는 <code>_exit(3)</code>⁠로 종료</li>
+</ol>
+
+<p>
+이 때, 1번과 2번은 <code>daemon(3)</code> 함수로 대치할 수 있습니다.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdlib.h&gt;</span>
+
+<span class="org-type">int</span> <span class="org-function-name">daemon</span>(<span class="org-type">int</span> <span class="org-variable-name">NOCHDIR</span>, <span class="org-type">int</span> <span class="org-variable-name">NOCLOSE</span>);
+</pre>
+</div>
+
+<p>
+<i>NOCHDIR</i>⁠이 0이면, <code>daemon(3)</code>⁠은 현재 디렉토리를 <code>/</code>⁠로 바꿉니다.
+이 이유는 다음 장에서 설명합니다.
+</p>
+
+<p>
+<i>NOCLOSE</i>⁠가 0⁠이면, <code>daemon(3)</code>⁠은 표준 파일 디스크립터
+(<code>STDIN_FILENO</code>, <code>STDOUT_FILENO</code>, <code>STDERR_FILENO</code>)를 모두
+닫습니다.  이 이유도 뒤에서 설명합니다.
+</p>
+
+<p>
+따라서, 손쉽게 daemon 프로세스를 만들려면, 아래와 같이 합니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">int</span>
+<span class="org-function-name">main</span>(<span class="org-type">void</span>)
+{
+  <span class="org-type">pid_t</span> <span class="org-variable-name">pid</span>;
+
+  <span class="org-keyword">if</span> (daemon(1, 1) == -1) {
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">handle error </span><span class="org-comment-delimiter">*/</span>
+    <span class="org-keyword">return</span> 1;
+  }
+
+  <span class="org-keyword">if</span> ((pid = fork()) == -1) {
+    <span class="org-keyword">return</span> 1;
+  }
+  <span class="org-keyword">else</span> <span class="org-keyword">if</span> (pid &gt; 0) {           <span class="org-comment-delimiter">/* </span><span class="org-comment">parent </span><span class="org-comment-delimiter">*/</span>
+    _exit(0);
+  }
+  <span class="org-comment-delimiter">/* </span><span class="org-comment">child </span><span class="org-comment-delimiter">*/</span>
+
+  ...
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">3</span> CWD</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Daemon 프로그램은 작업 디렉토리(CWD, current working directory)를
+<code>/</code>⁠로 변경하는 것이 바람직합니다.  만약 <code>/</code>⁠가 아닌, 특정 디렉토리에서 
+실행되면, 문제가 발생할 수 있습니다.
+</p>
+
+<p>
+(예: 해당 디렉토리 unmount 할 수 없음)
+</p>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">3.0.1</span> pathname configuration</h4>
+<div class="outline-text-4" id="text-3-0-1">
+<p>
+메모리에 (로그 파일 등) 파일 이름을 저장할 때에는, 항상
+절대 경로로 저장하는 것이 좋습니다.
+</p>
+
+<p>
+왜냐하면, 현재 디렉토리가 <code>/</code>⁠로 바뀌면, 바뀌기 전 상대 경로로 된 파일을
+찾을 수 없기 때문입니다.  
+</p>
+
+<p>
+좀 더 자세히 설명하면 다음과 같습니다. 
+보통 데몬 프로그램의 설정 파일은 <code>/etc/</code> 아래에 위치하는데,
+대부분은 command-line 옵션으로 줄 수도 있게 설계합니다.  예를
+들어 Apache2 web 서버의 경우, -f 옵션으로 특정 설정 파일을 지정할
+수 있습니다:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ pwd
+/home/cinsk
+$ httpd -f override.conf
+</pre>
+</div>
+
+<p>
+만약 이 프로세스 안에서 (위 예처럼) 설정 파일 위치를 상대 경로로
+저장했다면,  이 프로세스가 데몬이 되는 과정에서, 현재 디렉토리를
+<code>/</code>⁠로 변경했을 것이고, 이 후 SIGHUP을 받고 나서, "override.conf"를
+읽으려 하면, 원래 파일 위치인 <code>/home/cinsk/override.conf</code>⁠가 아닌,
+<code>/override.conf</code>⁠를 읽으려 할 것이고, 에러가 발생합니다.
+</p>
+
+<p>
+따라서, command-line 또는 설정 파일 내용에서, 파일 경로가 주어진
+경우, 프로세스 내부에서는 이 경로를 절대 경로로 저장해야
+안전합니다.  상대 경로로 된 파일 이름을 절대 경로로 바꿀려면,
+현재 디렉토리를 <code>/</code>⁠로 바꾸기 전에 아래 함수 중 하나를 쓰면
+됩니다.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">char</span> *<span class="org-function-name">canonicalize_file_name</span>(<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">NAME</span>);
+<span class="org-type">char</span> *<span class="org-function-name">realpath</span>(<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">NAME</span>, <span class="org-type">char</span> *<span class="org-keyword">restrict</span> <span class="org-variable-name">RESOLVED</span>);
+</pre>
+</div>
+
+<p>
+<code>canonicalize_file_name(3)</code>⁠이 가장 쓰기 편하지만, GNU 확장 기능입니다.
+이 함수는 동적으로 할당된 메모리에 결과를 담아 리턴합니다. 따라서 나중에
+<code>free(3)</code>⁠해 주어야 합니다.
+</p>
+
+<p>
+<code>realpath(3)</code>⁠는 POSIX 표준입니다.  단, 이 경우, <i>RESOLVED</i> 인자는 NULL이
+아니어야 하며, 최종 절대 경로 결과가 <code>PATH_MAX</code>⁠를 넘을 경우, 에러를
+발생합니다.   즉, <code>PATH_MAX</code>⁠가 넘는 경로를 쓸 수 없습니다.
+</p>
+
+<p>
+몇몇 시스템에서 제공하는 <code>realpath(3)</code>⁠는 확장 기능으로서, <i>RESOLVED</i>⁠에
+<code>NULL</code>⁠을 전달할 수 있습니다.  그러면, <code>realpath(3)</code>⁠는 동적으로 메모리를
+할당해 주며, 이 결과는 나중에 <code>free(3)</code>⁠해 주어야 합니다.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">4</span> Signals</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">4.0.1</span> <a id="orgtarget1"></a> SIGHUP</h4>
+<div class="outline-text-4" id="text-4-0-1">
+<p>
+일반적으로 터미널이 죽은 경우 (혹은 원격으로 터미널 연결이 끊긴
+경우), <i>SIGHUP</i>⁠이 발생합니다.
+</p>
+
+<p>
+데몬 형태가 아닌 프로그램의 경우, 실행 도중 터미널 연결이 끊기면,
+<i>SIGHUP</i>⁠이 발생하고, 특별히 이 시그널을 처리하지 않은 경우,
+프로세스가 종료하게 됩니다.
+</p>
+
+<p>
+앞에서 다뤘지만, 데몬 프로세스는 제어 터미널이 없기 때문에, 터미널
+연결이 끊기더라도 아무런 영향을 받지 않습니다.  즉, 데몬 프로세스의
+경우, <i>SIGHUP</i> 시그널을 받을 일이 없습니다.
+</p>
+
+<p>
+전통적으로 데몬 프로세스의 경우, 설정 파일이 변경될 경우,
+프로세스를 다시 시작하지 않고, 대신, 특정 시그널을 받으면, 실행
+도중에 설정 파일을 다시 읽어서 변경 사항을 반영하도록 설계가 되어
+있는 것이 일반적입니다.
+</p>
+
+<p>
+그리고, 이 시그널로 (본래 목적으로 쓰일 가능성이 없는) <i>SIGHUP</i>⁠을
+사용합니다.
+</p>
+
+<p>
+SIGHUP을 받으면, 설정 파일을 다시 읽어서, 변경 사항을 현재
+프로세스에 반영하면 되는데, 이 작업이 의외로 까다롭습니다.
+</p>
+
+<p>
+왜냐하면 시그널 핸들러에서 쓸 수 있는 안전한 함수는 매우 제한적이기
+때문입니다.  (이 함수의 목록이 궁금하면 <a href="http://pubs.opengroup.org/onlinepubs/009695399/functions/xsh_chap02_04.html">IEEE Std 1003.1, § 2.4
+Signal Concepts</a>을 참고하기 바랍니다.)  간단히 말해, <code>fopen()</code>,
+<code>malloc()</code> 등과 같은 함수를 쓸 수 없습니다.
+</p>
+
+<p>
+따라서, 시그널 핸들러 안에서, 설정 파일을 다시 읽는 것이 아니라,
+전역 변수 등을 특정한 값으로 설정하고, 데몬 프로세스 main loop
+등에서 주기적으로 이 변수 값을 조사하다가, 그 값이 시그널
+핸들러에서 설정한 값이 될 경우, 설정 파일을 다시 읽는 형태로
+만듭니다.
+</p>
+
+<p>
+혹은, <code>pipe()</code>⁠를 써서, 시그널 핸들러 안에서 pipe에 특정 값을 쓰고,
+main loop 에서 <code>select()</code> 등으로 이 pipe에 데이터가 들어왔는지
+검사하는 형태로 만듭니다.
+</p>
+
+<p>
+<code>pipe()</code>⁠를 부르지 않고, <code>pselect()</code> 또는 <code>ppoll()</code>,
+<code>epoll_pwait()</code> 등을 쓸 수도 있습니다.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">4.0.2</span> SIGTERM</h4>
+<div class="outline-text-4" id="text-4-0-2">
+<p>
+프로세스를 끝내기 위해 <i>SIGTERM</i>⁠이 발생하면, (특별히 이 시그널을
+처리하지 않았다면) 프로세스가 종료됩니다.
+</p>
+
+<p>
+일반적으로 클라이언트의 요청을 받아서 처리하는 서버 형태의 daemon
+프로세스라면, 바로 종료할 경우, 그 시점에 연결해 있던 클라이언트는
+접속이 끊기게 됩니다.
+</p>
+
+<p>
+이를 해결하는 가장 좋은 방법은, <i>SIGTERM</i>⁠을 받았을 경우, daemon
+프로세스가 (graceful하게) 더 이상 새로운 요청을 받지 않도록
+만들고, 현재 처리 중인 요청은 다 처리하고 종료하면 됩니다.  예를
+들어, socket 연결을 처리하는 서버 프로그램이라면 listening socket을
+닫으면 됩니다.
+</p>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-orgheadline16" class="outline-2">
+<h2 id="orgheadline16"><span class="section-number-2">5</span> files</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">5.0.1</span> umask</h4>
+<div class="outline-text-4" id="text-5-0-1">
+<p>
+(대부분 로그) 파일에 기록할 필요가 있을 경우, 파일 권한 설정에 대해
+모든 권한을 얻기 위해, "<code>umask(0)</code>"를 부르는 것이 좋습니다.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13"><span class="section-number-4">5.0.2</span> standard descriptors</h4>
+<div class="outline-text-4" id="text-5-0-2">
+<p>
+Daemon 프로세스의 경우, 제어 터미널(controlling terminal)을 쓰지
+않기 때문에, 표준 파일 디스크립터를 모두 닫는 것이 좋습니다.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">fd number</th>
+<th scope="col" class="org-left">macro name</th>
+<th scope="col" class="org-left">stream</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-left"><code>STDIN_FILENO</code></td>
+<td class="org-left">stdin</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-left"><code>STDOUT_FILENO</code></td>
+<td class="org-left">stdout</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left"><code>STDERR_FILENO</code></td>
+<td class="org-left">stderr</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+간단히 세 file descriptor에 대해 <code>close(2)</code>⁠를 호출하는 것도
+좋지만, 이 경우, <code>stdin</code>, <code>stdout</code>, <code>stderr</code>⁠가 의심스러운 상태가 될
+수 있습니다.  즉, 닫힌 경우에, <code>printf(3)</code> 등을 호출했을 경우,
+안전을 보장할 수 없습니다.
+가장 좋은 방법은, 세 스트림을 닫고, <code>/dev/null</code>⁠로 다시 열어주는
+것입니다.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c">stdin = freopen(<span class="org-string">"/dev/null"</span>, <span class="org-string">"r"</span>, stdin);
+stdout = freopen(<span class="org-string">"/dev/null"</span>, <span class="org-string">"w"</span>, stdout);
+stderr = freopen(<span class="org-string">"/dev/null"</span>, <span class="org-string">"w"</span>, stderr);
+</pre>
+</div>
+
+<p>
+이렇게 불렀다면, 나중에 (실수로?) <code>printf(3)</code> 또는 <code>scanf(3)</code>⁠를
+부르더라도 안전합니다.
+혹시 파일 디스크립터 0, 1, 2를 쓰는 함수가 나올 수도 있으므로,
+위 호출 순서를 지키는 것이 좋습니다.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14"><span class="section-number-4">5.0.3</span> log file</h4>
+<div class="outline-text-4" id="text-5-0-3">
+<p>
+Daemon 프로세스의 로그는 일반적으로 특정 파일에 기록합니다.
+(또는 syslog를 사용할 수도 있음)
+</p>
+
+<p>
+한가지 신경써야 하는 것은, 앞에 <a href="#orgtarget1">SIGHUP</a>에서도 다뤘지만, <i>SIGHUP</i>
+시그널이 발생했을 경우, <code>open(2)</code> 또는 <code>freopen(3)</code>⁠을 써서, 해당
+로그 파일을 다시 open하는 것이 좋습니다.  이는 <code>logrotate(8)</code>⁠와
+같은 프로그램이, 현재 daemon 프로그램이 열어서 log를 쓰고 있는 파일
+내용을 다른 파일로 옮길때 도움이 됩니다.
+</p>
+
+<p>
+좀 더 자세히 설명하면, <code>logrotate(8)</code>⁠는 현재 daemon 프로세스가 log를
+추가하고 있는 파일을 <code>rename(2)</code>⁠을 써서, 다른 이름으로 바꾸는데,
+바꾸고 나서 (일반적인 logrotate 설정에 의해), daemon 프로세스에게
+<i>SIGHUP</i>⁠을 보냅니다.  이 때, daemon 프로세스가 적절한 대응을 하지
+않는다면, 이미 열어두었던 파일에 계속 log를 기록할 것이고, 이
+경우, logrotate(8)가 파일 이름을 바꾸었지만, 계속 바뀐 파일에 log를
+기록하게 됩니다.
+따라서, <i>SIGHUP</i>⁠을 받으면, 기존에 열어 두었던 file descriptor 또는
+<code>FILE *</code>⁠를 닫고, 설정 파일에 있는 로그 파일 이름으로 새로 파일을
+open해야 합니다.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">5.0.4</span> PID file</h4>
+<div class="outline-text-4" id="text-5-0-4">
+<p>
+데몬 프로세스를 안전하게 끝내거나, 기타 목적으로 시그널(signal)을 
+전해 줄 필요가 있습니다.  데몬 프로세스의 경우, shell에서 실행했더라도,
+데몬 프로세스의 pid를 알아낼 방법이 없습니다.
+</p>
+
+<p>
+한가지 방법으로, 시작할 때, 데몬 프로세스의 pid를 파일에 기록해
+놓을 수 있습니다.  일반적으로 이 데몬의 이름이 xxx라면,
+<code>/var/run/xxx.pid/</code> 파일에 pid를 기록합니다.  또는
+<code>/var/run/xxx/xxx.pid</code>⁠로 기록하기도 합니다.
+</p>
+
+<p>
+자세한 것은 <a href="http://www.pathname.com/fhs/pub/fhs-2.3.html#VARRUNRUNTIMEVARIABLEDATA">Filesystem Hierarchy Standard</a>을 참고하기 바랍니다.
+</p>
+
+<p>
+좀 더 유연한 방법으로, 설정 파일에서 pid 파일의 경로를 저장해 놓는 것도
+좋습니다.
+</p>
+
+<p>
+방어적으로(defensive) 개발한다면, pid 파일의 디렉토리가 없을 경우,
+이 디렉토리를 만드는 것까지 고려하는 것이 좋을 것입니다.
+</p>
+
+<p>
+이 때, <code>mkdir(2)</code>⁠을 재귀적으로 호출해서 디렉토리를 생성하는 것까지
+하기는 귀찮기 때문에, 단순하게 <code>system(3)</code>⁠을 호출해서 <code>mkdir(1)</code>⁠을
+수행하는 것이 여러모로 편할 것입니다.
+</p>
+
+<p>
+<code>writepid()</code>⁠의 현재 버전은 <a href="https://github.com/cinsk/snippets/blob/master/writepid.h">writepid.h</a>, <a href="https://github.com/cinsk/snippets/blob/master/writepid.c">writepid.c</a>를 참고하기
+바랍니다.
+</p>
+</div>
+</div>
+
+
+          <hr/>
+
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'cinsk'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="http://blog.getbootstrap.com">Blog</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/wiki">Roadmap and changelog</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript"
+            src="http://platform.twitter.com/widgets.js"></script>
+
+    <script src="http://www.cinsk.org/bootstrap/js/jquery.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-transition.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-alert.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-modal.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-dropdown.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-scrollspy.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tab.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tooltip.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-popover.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-button.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-collapse.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-carousel.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-typeahead.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-affix.js"></script>
+
+    <script src="http://cinsk.github.io/js/holder/holder.js"></script>
+    <script src="http://cinsk.github.io/prettify.js"></script>
+
+    <script src="http://cinsk.github.io/js/application.js"></script>
+
+  </body>
+</html>
+
+<!--
+ Local Variables:
+ mode: nxml
+ fill-column: 78
+ End:
+-->

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>cinsk's yard</title>
+
+
+    <!-- Le styles -->
+    <link href="http://cinsk.github.io/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/bootstrap-responsive.css"
+          rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/docs.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/prettify.css" rel="stylesheet"/>
+    <link href="../../../css/articles.css" rel="stylesheet"/>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="/feed.xml">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://cinsk.github.io/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://cinsk.github.io/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://cinsk.github.io/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://cinsk.github.io/ico/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="http://cinsk.github.io/ico/favicon.png"/>
+
+    <link href="/css/org.css" rel="stylesheet"/>
+    <link href="/css/articles.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+      <!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+    </script>
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">cinsk.org</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <!-- toplink: invalid parameter, label() not found -->
+
+              <!--
+              id: home<br/>
+              label: Home<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class="active"><a href="../../../home/cinsk/www/www/index.html">Home</a></li>
+              
+              
+              <!--
+              id: cfaq<br/>
+              label: C FAQ<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/cfaqs/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/cfaqs/index.html">C FAQ</a></li>
+              
+              
+              <!--
+              id: article<br/>
+              label: Articles<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/articles.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/articles.html">Articles</a></li>
+              
+              
+              <!--
+              id: emacs<br/>
+              label: Emacs<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/emacs/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/emacs/index.html">Emacs</a></li>
+              
+              
+              <!--
+              id: resume<br/>
+              label: Résumé<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/resume.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/resume.html">Résumé</a></li>
+              
+              
+
+              <!--
+              
+                -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Subhead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1>cinsk's yard</h1>
+    <!-- <p class="lead">Smart ediff widen frame on Emacs</p> -->
+  </div>
+</header>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="span10"></div>
+      <div class="span2">
+        <!-- This div should be floating and should not scroll,
+             but I don't know anything about CSS, *sigh* -- cinsk -->
+        <section id="lang">
+          <-- DEBUG: url[en]:  --><-- DEBUG: url[ko]:  -->
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <header>
+  <h2 class='article-title'>Smart ediff widen frame on Emacs</h2>
+</header>
+<aside class='article-meta'>
+  <ul class='unstyled'>
+    <li class="date"><strong>26 Apr 2012</strong></li>
+    <li class="tags">ediff, emacs, and widen</li>
+  </ul>
+</aside>
+<p>One of the reason that I love Emacs is the ediff package, which provides nice diff interface that I cannot find similar feature in other editors. Here are some screenshots of sample ediff session:
+<span id="continue"></span></p>
+
+
+
+<div class="bs-docs-example-images">
+<img src="../../../img/posts/ediff-1.png" width="320"/>
+<img src="../../../img/posts/ediff-2.png" width="320"/>
+</div>
+
+<p>
+The first one (on left-side) uses the default split, called
+<i>vertical split</i>, and the second one (on the right-side) is called
+<i>horizontal split</i>. You can switch back and force using <code>|</code> or <code>M-x
+ediff-toggle-split</code> command in the ediff control buffer. As you can
+see here, the horizontal split looks much more readable. One
+problem, though. Normally, I uses 80 character width for a emacs
+frame. If I choose to use the horizontal split, it automatically
+split the windows in the 80-char-width frame, so that each window
+will have about 40 characters. (Actually, depending on the width of
+the scroll bar and the internal borders, it will be smaller than 40
+characters).
+</p>
+
+<p>
+Around a couple of years ago, I wrote custom hook function to
+automatically widen the frame on the "horizontal split" and restore
+to the original frame width when ediff session finished. What makes
+me to feel stupid is, Ediff has already provided that feature years
+ago. If you use <code>m</code> or <code>M-x ediff-toggle-wide-display</code> on the ediff
+control buffer, the frame width will span to that of the display.
+</p>
+
+<p>
+One problem is, I use two LCD minitor, combined into one X display
+(using nvidia's TwinView feature). Each monitor supports 1920x1080,
+so my X window system provides 3840x1080 display. That means, if I
+call <code>ediff-toggle-wide-display</code>, the screen will look like:
+</p>
+
+
+<div class="figure">
+<p><img src="ediff-widen-display.png" alt="ediff-widen-display.png" />
+</p>
+</div>
+
+<p>
+As you can see, this is unacceptable. So, again, I need to modify
+the configuration little bit, so that it will widen the frame in a
+reasonable amount.
+</p>
+
+<p>
+Let's find out which code should be modified. On the ediff control
+buffer, <code>C-h k m</code> shows that the <code>m</code> command is binded to
+<code>ediff-toggle-wide-display</code> in <code>ediff-util.el</code>. After reading the
+function code, <code>ediff-toggle-wide-display</code> will call the function in
+the value of <code>ediff-make-wide-display-function</code>, which is set to
+<code>ediff-make-wide-display</code> by default. This means that, if I write my
+own function that does the job of <code>ediff-make-wide-display</code>, problem
+will be solved! Yeah~
+</p>
+
+<p>
+But what makes me troubled is, it is not straight-forward to
+determine the 'reasonable amount of frame width. Several ideas come
+up to my mind:
+</p>
+
+<ul class="org-ul">
+<li>Normally, most people prefer 80 character width for a window. What
+about <code>80 * 2 = 160</code> for the widened frame? &#x2014; No, using hard-coded
+value is always a bad choice.</li>
+<li>Each buffer can have its own <code>fill-column</code> value, which is 70 by
+default. What about to use <code>fill-column * 2</code>? &#x2014; No, probably using
+the previous width of the windows is the better.</li>
+<li>Ediff provides 2 way diff or 3 way diff job. Merely doubling the
+width is not good. Depending 2-way-diff or 3-way-diff, I might
+need to multiply by two or by three.</li>
+<li>In any case, user might want to use specific width. It will be
+handy, if <code>m</code> command can have prefix value for the exact width of
+the window. For example, <code>160m</code> will set window width to 160, so
+that total frame width will be <code>160 * 2 = 320</code> character width.</li>
+</ul>
+
+<p>
+To provide the prefix value, I need to wrap the
+<code>ediff-toggle-wide-display</code> with my own advice function:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defadvice</span> <span class="org-function-name">ediff-toggle-wide-display</span> (around cinsk/ad-ediff-toggle-wide-display
+                                             ())
+  (interactive)
+  (<span class="org-keyword">let</span> ((w (prefix-numeric-value current-prefix-arg))
+        (min-width (<span class="org-keyword">cond</span> ((window-live-p ediff-window-A)
+                          (<span class="org-keyword">if</span> (eq ediff-split-window-function 
+                                  'split-window-vertically)
+                              <span class="org-comment-delimiter">;; </span><span class="org-comment">ediff windows splitted like A/B</span>
+                              (window-width ediff-window-A)
+                            <span class="org-comment-delimiter">;; </span><span class="org-comment">ediff windows splitted like A|B</span>
+                            (frame-width (window-frame ediff-window-A))))
+                         ((buffer-live-p ediff-buffer-A)
+                          (buffer-local-value 'fill-column
+                                              ediff-buffer-A))
+                         (t (max fill-column 70)))))
+    (setq w (max min-width w))
+    (message <span class="org-string">"width: %S"</span> w)
+
+    (<span class="org-keyword">let</span> ((cinsk/ediff-wide-window-width w))
+      ad-do-it)))
+
+(ad-activate 'ediff-toggle-wide-display)
+</pre>
+</div>
+
+<p>
+Since advice function cannot change the function interface of the
+advised function, I'm not sure if I can use <code>current-prefix-arg</code> in
+the advice function like above. One more bad design is, above code
+relies on the dynamic binding of the local variable,
+<code>cinsk/ediff-wide-window-width</code>. Anyway it works as I expected. :)
+</p>
+
+<p>
+For the <code>ediff-make-wide-display-function</code>, I'll use following
+function instead of genuine one:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">cinsk/ediff-make-wide-display</span> ()
+  <span class="org-doc">"Construct an alist of parameters for the wide display.</span>
+<span class="org-doc">Saves the old frame parameters in `</span><span class="org-doc"><span class="org-constant">ediff-wide-display-orig-parameters</span></span><span class="org-doc">'.</span>
+<span class="org-doc">The frame to be resized is kept in `</span><span class="org-doc"><span class="org-constant">ediff-wide-display-frame</span></span><span class="org-doc">'.</span>
+<span class="org-doc">This function modifies only the left margin and the width of the display.</span>
+<span class="org-doc">It assumes that it is called from within the control buffer."</span>
+  (<span class="org-keyword">if</span> (not (fboundp 'ediff-display-pixel-width))
+      (<span class="org-warning">error</span> <span class="org-string">"Can't determine display width"</span>))
+  (<span class="org-keyword">let*</span> ((frame-A (window-frame ediff-window-A))
+  (frame-A-params (frame-parameters frame-A))
+         (fw (frame-width frame-A))
+         (fpw (frame-pixel-width frame-A))
+  (cw (ediff-frame-char-width frame-A))
+         (febw cw)                      <span class="org-comment-delimiter">; </span><span class="org-comment">frame external border width</span>
+         (fibw (- fpw (* fw cw)))       <span class="org-comment-delimiter">; </span><span class="org-comment">frame internal border width</span>
+         desired-fw desired-fpw desired-left)
+
+    (setq ediff-wide-display-orig-parameters
+   (list (cons 'left (max 0 (eval (cdr (assoc 'left frame-A-params)))))
+  (cons 'width (cdr (assoc 'width frame-A-params))))
+   ediff-wide-display-frame frame-A)
+
+    (setq desired-fw (* cinsk/ediff-wide-window-width
+                        (<span class="org-keyword">if</span> (and (boundp 'ediff-3way-job) ediff-3way-job)
+                            3 2)))
+
+    <span class="org-comment-delimiter">;; </span><span class="org-comment">ensure that DESIRED-FW is smaller than the screen size</span>
+    (<span class="org-keyword">if</span> (&gt; (+ (* desired-fw cw) febw fibw) (ediff-display-pixel-width))
+        (setq desired-fw (/ (- (ediff-display-pixel-width) fibw febw) cw)))
+
+    <span class="org-comment-delimiter">;;</span><span class="org-comment">(setq desired-fpw (+ (* desired-fw cw) fbw))</span>
+    (setq desired-fpw (* desired-fw cw))
+    (<span class="org-keyword">let</span> ((left (eval (cdr (assoc 'left frame-A-params)))))
+      (<span class="org-keyword">cond</span> ((eq cinsk/ediff-wide-display-policy 'left)
+             (setq desired-left (- left (* (- desired-fw fw) cw))))
+
+            ((eq cinsk/ediff-wide-display-policy 'right)
+             (setq desired-left left))
+
+            (t                          <span class="org-comment-delimiter">; </span><span class="org-comment">center</span>
+             (setq desired-left (- left (/ (* (- desired-fw fw) cw) 2)))))
+
+      <span class="org-comment-delimiter">;; </span><span class="org-comment">ensure that the frame will be inside of the display border.</span>
+      (<span class="org-keyword">if</span> (&lt; (- desired-left (/ febw 2)) 0)
+          (setq desired-left (/ febw 2)))
+
+      (<span class="org-keyword">if</span> (&gt; (+ desired-left (+ (* desired-fw cw) fibw (/ febw 2)))
+             (ediff-display-pixel-width))
+          (setq desired-left (- (ediff-display-pixel-width) 
+                                (+ (* desired-fw cw) fibw (/ febw 2))))))
+
+    <span class="org-comment-delimiter">;; </span><span class="org-comment">(message "resizing WIDTH to %S where LEFT to %S" desired-fw desired-left)</span>
+
+    (modify-frame-parameters
+     frame-A `((left . ,desired-left) (width . ,desired-fw)
+               (user-position . t)))))
+</pre>
+</div>
+
+<p>
+Of course, I need to set <code>ediff-make-wide-display-function</code> before
+loading ediff module, so put below line in front of the init file:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq ediff-make-wide-display-function 'cinsk/ediff-make-wide-display)
+(<span class="org-keyword">require</span> '<span class="org-constant">ediff</span>)
+</pre>
+</div>
+
+<p>
+And if you want to restore to the previous frame configuration on
+ediff exit, add following code:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(add-hook 'ediff-quit-hook
+              (<span class="org-keyword">lambda</span> ()
+                (<span class="org-keyword">if</span> ediff-wide-display-p
+                    'ediff-toggle-wide-display)))
+</pre>
+</div>
+
+<p>
+You may also want to register above function <code>(lambda () ...)</code> in
+<code>ediff-suspend-hook</code> if you want to restore the frame on ediff
+suspension.
+</p>
+
+<p>
+If you want full source, check out my <a href="https://github.com/cinsk/emacs-scripts/blob/master/snippets/ediff.el">github repository</a>.
+</p>
+
+
+      <hr/>
+
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'cinsk'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Copyright &copy; 2013  Seong-Kook Shin;  All rights reserved except, </p>
+        <p>CSS design, layouts are reserved to <a href="https://github.com/twitter/bootstrap/">bootstrap</a>,</p>
+        <p>Icons and symbols are reserved to <a href="http://glyphicons.com">Glyphicons</a></p>
+        <!--
+        <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="http://blog.getbootstrap.com">Blog</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/wiki">Roadmap and changelog</a></li>
+        </ul>
+        -->
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript"
+            src="http://platform.twitter.com/widgets.js"></script>
+
+    <script src="http://www.cinsk.org/bootstrap/js/jquery.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-transition.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-alert.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-modal.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-dropdown.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-scrollspy.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tab.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tooltip.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-popover.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-button.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-collapse.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-carousel.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-typeahead.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-affix.js"></script>
+
+    <script src="http://cinsk.github.io/js/holder/holder.js"></script>
+    <script src="http://cinsk.github.io/prettify.js"></script>
+
+    <script src="http://cinsk.github.io/js/application.js"></script>
+
+  </body>
+</html>

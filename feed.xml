@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>cinsk&#39;s yard</title>
+    <description>Personal homepage of Seong-Kook Shin (a.k.a. cinsk)</description>
+    <link>http://www.cinsk.org</link>
+    <atom:link href="http://www.cinsk.org/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>Remove a node from a list in almost O(1)</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Remove a node from a list in almost O(1)&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;12 Aug 2014&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;list, remove, and swap&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Tue, 12 Aug 2014 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2014/08/12/remove-node-from-list.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2014/08/12/remove-node-from-list.html</guid>
+    </item>
+    
+    <item>
+      <title>Check stale NFS mount point</title>
+      
+      
+      <description>&lt;div id=&quot;table-of-contents&quot;&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id=&quot;text-table-of-contents&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#orgheadline1&quot;&gt;1. Check stale NFS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Check stale NFS mount point&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;02 Jul 2014&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;check, nfs, and stale&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Wed, 02 Jul 2014 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2014/07/02/check-nfs.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2014/07/02/check-nfs.html</guid>
+    </item>
+    
+    <item>
+      <title>Easy way to connect Scalr-managed servers</title>
+      
+      
+      <description>&lt;div id=&quot;table-of-contents&quot;&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id=&quot;text-table-of-contents&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1&quot;&gt;1. Backgrounds&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-2&quot;&gt;2. Download &amp;amp; Installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-3&quot;&gt;3. Usage&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Easy way to connect Scalr-managed servers&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;13 Feb 2014&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;Scalr, firewall, proxy, and ssh&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;It&#39;s annoying to connect one of the virtual machine managed by Scalr for various reasons. So I created small shell script for easy connection; browse the servers with its IP address, then connect to them.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Thu, 13 Feb 2014 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2014/02/13/ssh-to-scalr-managed-servers.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2014/02/13/ssh-to-scalr-managed-servers.html</guid>
+    </item>
+    
+    <item>
+      <title>Easy way to select Emacs windows and frames</title>
+      
+      
+      <description>&lt;div id=&quot;table-of-contents&quot;&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id=&quot;text-table-of-contents&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#orgheadline1&quot;&gt;1. Window/Frame Selection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#orgheadline2&quot;&gt;2. Source&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Easy way to select Emacs windows and frames&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;30 Nov 2013&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;emacs, frame, and window&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;Easy way to resize windows, and select windows or frames.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Sat, 30 Nov 2013 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2013/11/30/emacs-wfutils.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2013/11/30/emacs-wfutils.html</guid>
+    </item>
+    
+    <item>
+      <title>Easy way to experiment Redis replication</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Easy way to experiment Redis replication&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;22 Nov 2013&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;redis, replication, and sentinel&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;Easy way to setup the local redis replication using GNU screen(1)
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Fri, 22 Nov 2013 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2013/11/22/redis-replica.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2013/11/22/redis-replica.html</guid>
+    </item>
+    
+    <item>
+      <title>Emacs init scripts and measuring performance</title>
+      
+      
+      <description>&lt;div id=&quot;table-of-contents&quot;&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id=&quot;text-table-of-contents&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#orgheadline1&quot;&gt;1. Background&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#orgheadline2&quot;&gt;2. Usage&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Emacs init scripts and measuring performance&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;21 Nov 2013&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;customization, emacs, init, and uinit&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;How did I load lots of init scripts?
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Thu, 21 Nov 2013 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2013/11/21/emacs-uinit.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2013/11/21/emacs-uinit.html</guid>
+    </item>
+    
+    <item>
+      <title>A dirty macro that convert the scala type to string type in binary representation</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;A dirty macro that convert the scala type to string type in binary representation&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;26 Sep 2013&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;bin, binary, print, representation, and string&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;Handy function that convert the scala type to string type in C.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Thu, 26 Sep 2013 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2013/09/26/binary-rep.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2013/09/26/binary-rep.html</guid>
+    </item>
+    
+    <item>
+      <title>How I handle TCP CLOSE_WAIT during server-side development</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;How I handle TCP CLOSE_WAIT during server-side development&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;10 Jul 2013&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;CLOSE_WAIT, daemon, network, and tcp&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;During our server-side application development, we encontered a lot of connections are in CLOSE_WAIT state, so that our server process is out of file descriptors.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Wed, 10 Jul 2013 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2013/07/10/closewait-dirtypatch.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2013/07/10/closewait-dirtypatch.html</guid>
+    </item>
+    
+    <item>
+      <title>Mountain Lion: Emacs python-mode and ipython</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Mountain Lion: Emacs python-mode and ipython&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;11 Mar 2013&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;completion, emacs, ipython, mac, macosx, and python-mode&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;Recently, I found that ipython in my mac (mountain lion) does not work correctly in Emacs python-mode.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Mon, 11 Mar 2013 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2013/03/11/mlion-ipython.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2013/03/11/mlion-ipython.html</guid>
+    </item>
+    
+    <item>
+      <title>Parallel command execution using GNU screen(1)</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Parallel command execution using GNU screen(1)&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;04 Dec 2012&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;screen and xargs&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;I have been working on to develop large-scale web application, which deals with a lot of image files. To test the application, we need a huge number of large (the resolution should be higher than 640x480) images. Since we didn&#39;t have lots of samples, I decided to grab from &lt;a href=&quot;http://images.google.com/&quot;&gt;Google images&lt;/a&gt;. For my own execuse, the testing will be done in private network, which makes me less obligation for the copyright issue.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Tue, 04 Dec 2012 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2012/12/04/screen-parallel.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2012/12/04/screen-parallel.html</guid>
+    </item>
+    
+    <item>
+      <title>CouchDB: tool for design documents, couch-register-design</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;CouchDB: tool for design documents, couch-register-design&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;11 Nov 2012&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;bigcouch, cloudant, couchapp, and couchdb&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;Whenever I experiment CouchDB, especially design documents, always I feel unhandy to upload the document.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Sun, 11 Nov 2012 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2012/11/11/couch-register-design.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2012/11/11/couch-register-design.html</guid>
+    </item>
+    
+    <item>
+      <title>Emacs: tabs and spaces, trailing whitespaces</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Emacs: tabs and spaces, trailing whitespaces&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;04 Nov 2012&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;emacs, space, tab, and whitespace&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;Long time ago, when I never heard about Emacs, and the times when I used to code in Borland Turbo C, I hated spaces. I even didn&#39;t understand people who uses spaces to indent their codes. The main reason was, I hated that the code looks ugly (precisely, if the indentation broken) whenever I looked at the source code in other text editors.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Sun, 04 Nov 2012 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2012/11/04/emacs-tabs-vs-spaces.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2012/11/04/emacs-tabs-vs-spaces.html</guid>
+    </item>
+    
+    <item>
+      <title>Emacs mail address completion</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Emacs mail address completion&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;16 Oct 2012&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;bigcouch, cloudant, couchapp, and couchdb&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;I don&#39;t use Emacs for reading mails. All of my mail servers uses IMAP, and for productivity, Emacs as a mail client is too slow. It&#39;s kind of sad.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Tue, 16 Oct 2012 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2012/10/16/emacs-mailaddr-completion.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2012/10/16/emacs-mailaddr-completion.html</guid>
+    </item>
+    
+    <item>
+      <title>Waiting until TCP port is opened/closed using bash and nc(netcat)</title>
+      
+      
+      <description>&lt;div id=&quot;table-of-contents&quot;&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id=&quot;text-table-of-contents&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#orgheadline1&quot;&gt;1. Updated&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Waiting until TCP port is opened/closed using bash and nc(netcat)&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;23 Sep 2012&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;screen and xargs&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;Recently, I wrote a shell script which interacts with a TCP server. Since the script took charge of launching the server, sometimes my script fails because the server did not open the socket yet.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Sun, 23 Sep 2012 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2012/09/23/waittcp-sh.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2012/09/23/waittcp-sh.html</guid>
+    </item>
+    
+    <item>
+      <title>Emacs ruby-mode and RVM prompt</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Emacs ruby-mode and RVM prompt&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;31 Aug 2012&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;emacs, prompt, ruby, and rvm&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;On emacs ruby-mode, if you do &lt;code&gt;M-x run-ruby&lt;/code&gt; (or &lt;code&gt;C-c C-s&lt;/code&gt;), the inferior ruby interpreter is provided in the &quot;=*ruby*=&quot; buffer so that you can evaluate lots of ruby statements or expressions.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Fri, 31 Aug 2012 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2012/08/31/emacs-ruby-rvm.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2012/08/31/emacs-ruby-rvm.html</guid>
+    </item>
+    
+    <item>
+      <title>OS X Emacs 24.1 Fontset revised</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;OS X Emacs 24.1 Fontset revised&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;10 Jul 2012&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;emacs, font, fontset, and macosx&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;Whenever I installed new Emacs version, the init script for fontset turned out not working.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Tue, 10 Jul 2012 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2012/07/10/osx-emacs-fontset.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2012/07/10/osx-emacs-fontset.html</guid>
+    </item>
+    
+    <item>
+      <title>Smart ediff widen frame on Emacs</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Smart ediff widen frame on Emacs&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;26 Apr 2012&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;ediff, emacs, and widen&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;One of the reason that I love Emacs is the ediff package, which provides nice diff interface that I cannot find similar feature in other editors. Here are some screenshots of sample ediff session:
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Thu, 26 Apr 2012 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2012/04/26/smart-ediff.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2012/04/26/smart-ediff.html</guid>
+    </item>
+    
+    <item>
+      <title>Emacs, Mac, Fontset, Font and X resources</title>
+      
+      
+      <description>&lt;header&gt;
+  &lt;h2 class=&#39;article-title&#39;&gt;Emacs, Mac, Fontset, Font and X resources&lt;/h2&gt;
+&lt;/header&gt;
+&lt;aside class=&#39;article-meta&#39;&gt;
+  &lt;ul class=&#39;unstyled&#39;&gt;
+    &lt;li class=&quot;date&quot;&gt;&lt;strong&gt;05 Apr 2012&lt;/strong&gt;&lt;/li&gt;
+    &lt;li class=&quot;tags&quot;&gt;emacs, font, fontset, and macosx&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;
+&lt;p&gt;Recently, I bought a macbook pro for my personal use.
+&lt;span id=&quot;continue&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+
+</description>
+      
+      <pubDate>Thu, 05 Apr 2012 00:00:00 +0900</pubDate>
+      <link>http://www.cinsk.org/2012/04/05/emacs-mac-fontset.html</link>
+      <guid isPermaLink="true">http://www.cinsk.org/2012/04/05/emacs-mac-fontset.html</guid>
+    </item>
+    
+  </channel>
+</rss>

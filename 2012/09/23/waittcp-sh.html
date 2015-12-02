@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>cinsk's yard</title>
+
+
+    <!-- Le styles -->
+    <link href="http://cinsk.github.io/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/bootstrap-responsive.css"
+          rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/docs.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/prettify.css" rel="stylesheet"/>
+    <link href="../../../css/articles.css" rel="stylesheet"/>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="/feed.xml">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://cinsk.github.io/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://cinsk.github.io/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://cinsk.github.io/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://cinsk.github.io/ico/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="http://cinsk.github.io/ico/favicon.png"/>
+
+    <link href="/css/org.css" rel="stylesheet"/>
+    <link href="/css/articles.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+      <!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+    </script>
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">cinsk.org</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <!-- toplink: invalid parameter, label() not found -->
+
+              <!--
+              id: home<br/>
+              label: Home<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class="active"><a href="../../../home/cinsk/www/www/index.html">Home</a></li>
+              
+              
+              <!--
+              id: cfaq<br/>
+              label: C FAQ<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/cfaqs/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/cfaqs/index.html">C FAQ</a></li>
+              
+              
+              <!--
+              id: article<br/>
+              label: Articles<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/articles.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/articles.html">Articles</a></li>
+              
+              
+              <!--
+              id: emacs<br/>
+              label: Emacs<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/emacs/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/emacs/index.html">Emacs</a></li>
+              
+              
+              <!--
+              id: resume<br/>
+              label: Résumé<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/resume.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/resume.html">Résumé</a></li>
+              
+              
+
+              <!--
+              
+                -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Subhead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1>cinsk's yard</h1>
+    <!-- <p class="lead">Waiting until TCP port is opened/closed using bash and nc(netcat)</p> -->
+  </div>
+</header>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="span10"></div>
+      <div class="span2">
+        <!-- This div should be floating and should not scroll,
+             but I don't know anything about CSS, *sigh* -- cinsk -->
+        <section id="lang">
+          <-- DEBUG: url[en]:  --><-- DEBUG: url[ko]:  -->
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Updated</a></li>
+</ul>
+</div>
+</div>
+<header>
+  <h2 class='article-title'>Waiting until TCP port is opened/closed using bash and nc(netcat)</h2>
+</header>
+<aside class='article-meta'>
+  <ul class='unstyled'>
+    <li class="date"><strong>23 Sep 2012</strong></li>
+    <li class="tags">screen and xargs</li>
+  </ul>
+</aside>
+<p>Recently, I wrote a shell script which interacts with a TCP server. Since the script took charge of launching the server, sometimes my script fails because the server did not open the socket yet.
+<span id="continue"></span></p>
+
+
+<p>
+To come up with this problem, I used to wait certain amount of time
+using sleep(1) like this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span class="org-comment-delimiter"># </span><span class="org-comment">launch the server which automatically daemonizes itself.</span>
+start-server 
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">one second is enough for my system.</span>
+sleep 1
+
+client do something
+</pre>
+</div>
+
+<p>
+It was fine for my system, until I realized this method would not
+work on slow machine. Worse, when my system in a heavy-load, my
+system also failed to run above script successfully.
+</p>
+
+<p>
+I would solve this problem by raising the amount of seconds
+sleeping, but I do not want to wait more on my relatively fast
+system.
+</p>
+
+<p>
+Then I realized that netcat (a.k.a. <code>nc</code>) provides such feature with
+the "-z" option.
+</p>
+
+<p>
+To test whether <code>www.cinsk.org</code> (TCP port 80) is opened, I can launch
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span class="org-comment-delimiter"># </span><span class="org-comment">In BSD-like (MacOS) system</span>
+$ nc -z www.cinsk.org 80
+Connection to www.cinsk.org 80 port [tcp/http] succeeded!
+$ _
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">On my Linux system, no message but just return zero on success</span>
+$ nc -z www.cinsk.org 80
+$ _
+</pre>
+</div>
+
+<p>
+Then I found another problem. Suppose that the firewall drops all
+packets for that port. Since by default, netcat(<code>nc</code>) will wait
+permanently until the port is open, the script that uses netcat(<code>nc</code>)
+will not return.
+</p>
+
+<p>
+Thanks to the rich interface of netcat, it provides another option
+"-w" to specify the amount of time it will wait. The problem is,
+MacOS nc (BSD) does not work with "-w" option if the firewall drops
+all packets. Installing GNU version will solve this problem. (by the
+command "<code>brew install netcat</code>")
+</p>
+
+<p>
+Finally, I wrote wait4tcp.sh to lessen the burden for others.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span class="org-comment-delimiter"># </span><span class="org-comment">Wait until port 80 8080 5984 are opened</span>
+$ ./wait4tcp.sh HOSTNAME 80 8080 5984
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">The same as above, except it will retry only 10 times per each port.</span>
+$ ./wait4tcp.sh -w 10 HOSTNAME 80 8080 5984
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">Wait until port 80 is closed</span>
+$ ./wait4tcp.sh -c HOSTNAME 80
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">The same as above, except it will retry permanently.</span>
+$ ./wait4tcp.sh -w -1 -c HOSTNAME 80
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">With the bash brace expansion, wait for port range 6379..6383 are opened</span>
+$ ./wait4tcp.sh HOSTNAME {6379..6383}
+</pre>
+</div>
+
+<p>
+By default, wait4tcp.sh will retry 100 times per each port. Retrying
+100 times is done less than 1 second in my system. Using "-w -1"
+option will retry permanently.
+</p>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Updated</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Recently, I read valuable article from <a href="http://www.catonmat.net/blog/tcp-port-scanner-in-bash/">TCP Port Scanner in Bash</a>,
+and found that bash provides special filenames for redirections.
+</p>
+
+<p>
+As Peteris suggested, I changed to bash special filenames and
+<code>timeout(1)</code> so that there is no dependency to netcat(<code>nc</code>).
+</p>
+
+<p>
+Here is the full source code for <code>wait4tcp.sh</code>:
+</p>
+
+<script src="https://gist.github.com/3769111.js"> </script>
+</div>
+
+
+      <hr/>
+
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'cinsk'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Copyright &copy; 2013  Seong-Kook Shin;  All rights reserved except, </p>
+        <p>CSS design, layouts are reserved to <a href="https://github.com/twitter/bootstrap/">bootstrap</a>,</p>
+        <p>Icons and symbols are reserved to <a href="http://glyphicons.com">Glyphicons</a></p>
+        <!--
+        <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="http://blog.getbootstrap.com">Blog</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/wiki">Roadmap and changelog</a></li>
+        </ul>
+        -->
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript"
+            src="http://platform.twitter.com/widgets.js"></script>
+
+    <script src="http://www.cinsk.org/bootstrap/js/jquery.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-transition.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-alert.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-modal.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-dropdown.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-scrollspy.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tab.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tooltip.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-popover.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-button.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-collapse.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-carousel.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-typeahead.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-affix.js"></script>
+
+    <script src="http://cinsk.github.io/js/holder/holder.js"></script>
+    <script src="http://cinsk.github.io/prettify.js"></script>
+
+    <script src="http://cinsk.github.io/js/application.js"></script>
+
+  </body>
+</html>

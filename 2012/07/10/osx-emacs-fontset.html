@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>cinsk's yard</title>
+
+
+    <!-- Le styles -->
+    <link href="http://cinsk.github.io/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/bootstrap-responsive.css"
+          rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/docs.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/prettify.css" rel="stylesheet"/>
+    <link href="../../../css/articles.css" rel="stylesheet"/>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="/feed.xml">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://cinsk.github.io/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://cinsk.github.io/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://cinsk.github.io/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://cinsk.github.io/ico/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="http://cinsk.github.io/ico/favicon.png"/>
+
+    <link href="/css/org.css" rel="stylesheet"/>
+    <link href="/css/articles.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+      <!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+    </script>
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">cinsk.org</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <!-- toplink: invalid parameter, label() not found -->
+
+              <!--
+              id: home<br/>
+              label: Home<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class="active"><a href="../../../home/cinsk/www/www/index.html">Home</a></li>
+              
+              
+              <!--
+              id: cfaq<br/>
+              label: C FAQ<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/cfaqs/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/cfaqs/index.html">C FAQ</a></li>
+              
+              
+              <!--
+              id: article<br/>
+              label: Articles<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/articles.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/articles.html">Articles</a></li>
+              
+              
+              <!--
+              id: emacs<br/>
+              label: Emacs<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/emacs/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/emacs/index.html">Emacs</a></li>
+              
+              
+              <!--
+              id: resume<br/>
+              label: Résumé<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/resume.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/resume.html">Résumé</a></li>
+              
+              
+
+              <!--
+              
+                -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Subhead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1>cinsk's yard</h1>
+    <!-- <p class="lead">OS X Emacs 24.1 Fontset revised</p> -->
+  </div>
+</header>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="span10"></div>
+      <div class="span2">
+        <!-- This div should be floating and should not scroll,
+             but I don't know anything about CSS, *sigh* -- cinsk -->
+        <section id="lang">
+          <-- DEBUG: url[en]:  --><-- DEBUG: url[ko]:  -->
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <header>
+  <h2 class='article-title'>OS X Emacs 24.1 Fontset revised</h2>
+</header>
+<aside class='article-meta'>
+  <ul class='unstyled'>
+    <li class="date"><strong>10 Jul 2012</strong></li>
+    <li class="tags">emacs, font, fontset, and macosx</li>
+  </ul>
+</aside>
+<p>Whenever I installed new Emacs version, the init script for fontset turned out not working.
+<span id="continue"></span></p>
+
+
+
+<p>
+It is sad that even now Emacs fontset related API is somewhat
+unstable. I cannot blame Emacs developers for this. Part of the
+reason is there are so many bad font (esp. Korean font) which works
+very poorly on non-Windows machines.
+</p>
+
+<p>
+Anyway, the script in <a href="../../../2012/04/05/emacs-mac-fontset.html">my previous post</a> does not work with the stable
+24.1 binary from <a href="http://emacsformacosx.com/">EmacsForMacOsX</a>.
+</p>
+
+<p>
+Here are working version of Emacs snippet that uses different font
+for multiple charset:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">when</span> (eq system-type 'darwin)
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">These configuration seems to work in</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">GNU Emacs 24.1.1 (x86_64-apple-darwin, NS apple-appkit-1038.36)</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">of 2012-06-11 on bob.porkrind.org</span>
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">default font family</span>
+  (set-face-attribute 'default nil <span class="org-builtin">:family</span> <span class="org-string">"Consolas"</span>)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">default font size</span>
+  <span class="org-comment-delimiter">;;</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">WARNING: depending on the default font, some height value may</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">cause a broken frame display; that is, the beginning of the </span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">buffer is not visible.</span>
+  (set-face-attribute 'default nil <span class="org-builtin">:height</span> 165)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">You may add :size POINT in below font-spec if you want to use</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">specific size of Hangul font regardless of default font size</span>
+  (set-fontset-font t 'hangul
+                    (font-spec <span class="org-builtin">:name</span> <span class="org-string">"NanumGothicCoding"</span>)))
+</pre>
+</div>
+
+<p>
+Height 165 seems to work well with "Consolas" font.
+</p>
+
+<p>
+Yes! The height is 165 (about 16 pt). As I'm growing old, I cannot
+use smaller font size any more. It sucks! Anyway, here is the
+screenshot with the above setting:
+</p>
+
+
+<div class="figure">
+<p><img src="osx-emacs-fontset.png" alt="osx-emacs-fontset.png" />
+</p>
+</div>
+
+<p>
+I tried with several fonts such as Monaco, Andale Mono, and so on
+but I found Consolas is superior among others (this is my biased
+opinion, of course.)
+</p>
+
+
+      <hr/>
+
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'cinsk'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Copyright &copy; 2013  Seong-Kook Shin;  All rights reserved except, </p>
+        <p>CSS design, layouts are reserved to <a href="https://github.com/twitter/bootstrap/">bootstrap</a>,</p>
+        <p>Icons and symbols are reserved to <a href="http://glyphicons.com">Glyphicons</a></p>
+        <!--
+        <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="http://blog.getbootstrap.com">Blog</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/wiki">Roadmap and changelog</a></li>
+        </ul>
+        -->
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript"
+            src="http://platform.twitter.com/widgets.js"></script>
+
+    <script src="http://www.cinsk.org/bootstrap/js/jquery.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-transition.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-alert.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-modal.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-dropdown.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-scrollspy.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tab.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tooltip.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-popover.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-button.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-collapse.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-carousel.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-typeahead.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-affix.js"></script>
+
+    <script src="http://cinsk.github.io/js/holder/holder.js"></script>
+    <script src="http://cinsk.github.io/prettify.js"></script>
+
+    <script src="http://cinsk.github.io/js/application.js"></script>
+
+  </body>
+</html>

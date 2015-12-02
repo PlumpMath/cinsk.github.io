@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    
+    <meta name="author" content="cinsk (Seong-Kook Shin)"/>
+    
+
+    <title>xerror</title>
+
+    <!-- Le styles -->
+    <link href="http://cinsk.github.io/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/bootstrap-responsive.css"
+          rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/docs.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/prettify.css" rel="stylesheet"/>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="/feed.xml">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://cinsk.github.io/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://cinsk.github.io/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://cinsk.github.io/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://cinsk.github.io/ico/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="http://cinsk.github.io/ico/favicon.png"/>
+
+    <link href="../css/org.css" rel="stylesheet"/>
+    <link href="../css/articles.css" rel="stylesheet"/>
+
+    
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <!-- Navbar
+         ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar"
+                  data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">cinsk.org</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <!-- toplink: invalid parameter, label() not found -->
+
+              
+              <li class=""><a href="../home/cinsk/www/www/index.html">Home</a></li>
+              
+              
+              
+              <li class=""><a href="../home/cinsk/www/www/cfaqs/index.html">C FAQ</a></li>
+              
+              
+              
+              <li class="active"><a href="../home/cinsk/www/www/articles.html">Articles</a></li>
+              
+              
+              
+              <li class=""><a href="../home/cinsk/www/www/emacs/index.html">Emacs</a></li>
+              
+              
+              
+              <li class=""><a href="../home/cinsk/www/www/resume.html">Résumé</a></li>
+              
+              
+              <!--
+              
+              -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subhead
+         ================================================== -->
+    <header class="jumbotron subhead" id="overview">
+      <div class="container">
+        <h1>xerror</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav">
+            
+
+            <!--
+            
+            -->
+          </ul>
+        </div>
+
+        <div class="span9">
+          <div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Introduction</a></li>
+<li><a href="#orgheadline2">2. Initialization</a></li>
+<li><a href="#orgheadline3">3. xerror() function</a></li>
+<li><a href="#orgheadline4">4. xdebug() function</a></li>
+<li><a href="#orgheadline5">5. Redirection</a></li>
+<li><a href="#orgheadline6">6. Backtrace</a></li>
+<li><a href="#orgheadline7">7. The ignore file</a></li>
+<li><a href="#orgheadline8">8. Download</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+I have implemented simple C/C++ message module.  This module is
+currently heavily used in the real world C/C++ daemons and tools.
+</p>
+
+<p>
+You can grab it, and freely use it in your application.
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">int</span> <span class="org-function-name">xerror_init</span>(<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">program_name</span>, <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">ignore_search_dir</span>);
+
+<span class="org-type">void</span> <span class="org-function-name">xerror</span>(<span class="org-type">int</span> <span class="org-variable-name">status</span>, <span class="org-type">int</span> <span class="org-variable-name">errnum</span>, <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">format</span>, ...);
+<span class="org-type">void</span> <span class="org-function-name">xdebug</span>(<span class="org-type">int</span> <span class="org-variable-name">errnum</span>, <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">format</span>, ...);
+
+<span class="org-type">int</span> <span class="org-function-name">xifdebug</span>(<span class="org-type">void</span>);
+
+<span class="org-type">FILE</span> *<span class="org-function-name">xerror_redirect</span>(<span class="org-type">FILE</span> *<span class="org-variable-name">error_stream</span>);
+
+<span class="org-type">int</span> <span class="org-function-name">xbacktrace_on_signals</span>(<span class="org-type">int</span> <span class="org-variable-name">signo</span>, ...);
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Initialization</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+To use <i>xerror</i> module, you need to call the initialization
+function, <code>xerror_init()</code>.  <code>PROGRAM_NAME</code> is the name of the your
+program or your library.  If it is zero, <i>xerror</i> will try to detect
+it by its own way.  <code>IGNORE_SEARCH_DIR</code> is the pathname of the
+directory, which will be searched for the <i>ignore file</i>.  If you
+pass zero, <i>xerror</i> will use the current working directory.
+</p>
+
+<p>
+Normally, you can pass zero for all arguments to <code>xerror_init()</code>,
+like this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">int</span>
+<span class="org-function-name">main</span>(<span class="org-type">void</span>)
+{
+  xerror_init(0, 0);
+  ...
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> xerror() function</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<i>xerror</i> module provides <code>xerror()</code>, which can be used like
+<code>error(3)</code>, the GNU extension to the <i>glibc</i>.  The first parameter,
+<code>STATUS</code> is the exit status of the program.  If you pass non-zero
+value, <code>xerror()</code> will call <code>exit(3)</code> with that value.  The second
+parameter, <code>ERRNUM</code> is the system error number.  Normally, you may
+pass <code>errno</code> to it.  If it is non-zero value, <code>xerror()</code> will append
+the system error message for that error number.  From the third
+parameter to the rest, it is analogous to the arguments of
+<code>printf(3)</code>.
+</p>
+
+<p>
+For example, you could show the error message of the <code>fopen(3)</code> like
+this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">void</span>
+<span class="org-function-name">foo</span>(<span class="org-type">void</span>)
+{
+  <span class="org-type">FILE</span> *<span class="org-variable-name">fp</span>;
+  fp = fopen(config_file, <span class="org-string">"r"</span>);
+  <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>fp)
+    xerror(1, errno, <span class="org-string">"cannot open %s"</span>, config_file);
+  ...
+}
+</pre>
+</div>
+
+<p>
+The format of the message is one of the two forms in below; the
+former is used when <code>ERRNUM</code> is zero.  Otherwise the latter form
+will be used.  The message is confirming to the <a href="http://www.gnu.org/prep/standards/html_node/Errors.html#Errors">GNU Coding Standard</a>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">program_name: error_message
+program_name: error_message: system_error_message
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> xdebug() function</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+You may use <code>xerror()</code> to display the debugging message in your
+application development.  However, <i>xerror</i> module provides better
+interface for the debugging purpose.  You can use <code>xdebug()</code> for
+displaying debugging messages.  It is somewhat differ from
+<code>xerror()</code> in following ways:
+</p>
+
+<ol class="org-ol">
+<li><code>xdebug()</code> does not accept <code>STATUS</code>.  So, <code>xdebug()</code> only prints
+message, not to terminate the program.</li>
+<li><code>xdebug()</code> print messages only in debugging mode.</li>
+</ol>
+
+<p>
+You can check the current mode whether it is currently debugging
+mode or not, by using <code>xifdebug()</code> function.
+</p>
+
+<p>
+You can enter the debugging mode by one of following ways:
+</p>
+
+<ul class="org-ul">
+<li>Set the environment variable <code>XDEBUG</code> to 1.</li>
+<li>Define global variable, <code>debug_mode</code> and set it to 1, <b>after</b>
+    calling <code>xerror_init()</code>.</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">5</span> Redirection</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+By default, all message output from <i>xerror</i> module goes to
+<i>stderr</i>.
+</p>
+
+<p>
+If you want to redirect it to a file, you could call
+<code>xerror_redirect()</code> to redirect the stream.  For example:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">int</span>
+<span class="org-function-name">main</span>(<span class="org-type">void</span>)
+{
+  <span class="org-type">FILE</span> *<span class="org-variable-name">fp</span>;
+  xerror_init(0, 0);
+  fp = fopen(<span class="org-string">"log.txt"</span>, <span class="org-string">"a"</span>);
+  <span class="org-keyword">if</span> (fp)
+    xerror_redirect(fp);
+  ...
+}
+</pre>
+</div>
+
+<p>
+<i>xerror</i> module never close the file stream.  Since
+<code>xerror_redirect()</code> will return the previous file stream that was
+used before, you may want to call <code>fclose(3)</code> on it, preferably in
+the handler function registered by <code>atexit(3)</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">6</span> Backtrace</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<i>xerror</i> module provides a backtrace dump when the process crashes.
+Specifically, when the process receives some signal, <i>xerror</i> module
+will dump the backtrace information.  To use this feature, you need
+to register the signal handler for the signal that you want via
+<code>xbacktrace_on_signals()</code>.  You may register more than one signal
+using this function.  Note that the last argument for this function
+should be always zero:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-type">int</span>
+<span class="org-function-name">main</span>(<span class="org-type">void</span>)
+{
+  xerror_init(0, 0);
+  xbacktrace_on_signals(SIGSEGV, SIGILL, SIGFPE, SIGBUS, 0);
+  ...
+}
+</pre>
+</div>
+
+<p>
+Backtrace dump will be only activated, when the environment
+variable, <code>XBACKTRACE</code> is defined. (better to set <code>1</code>.)  There are
+two kind of backtrace that <i>xerror</i> uses.
+</p>
+
+<ul class="org-ul">
+<li>When <code>gdb(1)</code> and <code>backtrace(1)</code> are installed, and both program
+is reachable from the <code>PATH</code> environment variable, <i>xerror</i> module
+will get the backtrace information using <code>gdb(1)</code>.  If the
+environment variable, <code>XBACKTRACE_NOGDB</code> is defined, then <i>xerror</i>
+will not use <code>gdb(1)</code>, but uses the following way.  You can
+download <code>backtrace(1)</code> script <a href="https://github.com/cinsk/snippets/blob/master/backtrace">here</a>.</li>
+<li>If one of the programs it needs is not found, or
+<code>XBACKTRACE_NOGDB</code> is defined, then <i>xerror</i> module will use
+<code>backtrace(3)</code> from <i>glibc</i>.</li>
+</ul>
+
+<p>
+Backtrace information is stored in a file.  The filename will have
+the form of <code>backtrace.PID</code>, where <i>PID</i> is the <i>pid</i> of the
+process.  If you define the environment variable <code>XBACKTRACE_FILE</code>
+prior to run the progra, then you can orverride the filename.
+</p>
+
+<p>
+When <code>gdb(1)</code> is used for the backtrace information, the output will
+look like following.  Note that the top two or three frames are
+internal to the <i>xerror</i> modules, so that you can ignore them.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-gdb-script"><span class="org-comment-delimiter">#</span><span class="org-comment">1  0x00007fb00e88c3c9 in do_system (line=&lt;optimized out&gt;) ...</span>
+        ...
+<span class="org-comment-delimiter">#</span><span class="org-comment">2  0x0000000000401e34 in bt_handler_gdb ...</span>
+        ...
+<span class="org-keyword">No</span> locals.
+<span class="org-comment-delimiter">#</span><span class="org-comment">3  &lt;signal handler called&gt;</span>
+<span class="org-keyword">No</span> locals.
+<span class="org-comment-delimiter">#</span><span class="org-comment">4  0x0000000000402462 in bar (a=1) at xerror.c:748</span>
+        <span class="org-keyword">p</span> = 0x0
+        <span class="org-keyword">i</span> = 4
+        <span class="org-keyword">j</span> = -559038737
+<span class="org-comment-delimiter">#</span><span class="org-comment">5  0x000000000040247f in foo (a=1, b=3) at xerror.c:755</span>
+<span class="org-keyword">No</span> locals.
+<span class="org-comment-delimiter">#</span><span class="org-comment">6  0x0000000000402579 in main (argc=2, argv=0x7fff2a472df8) at xerror.c:781</span>
+<span class="org-keyword">No</span> locals.
+<span class="org-keyword">A</span> debugging session is active.
+
+        <span class="org-keyword">Inferior</span> 1 [process 24948] will be detached.
+
+<span class="org-keyword">Quit</span> anyway? (y or n) [answered Y; input not from terminal]
+<span class="org-keyword">Segmentation</span> fault
+</pre>
+</div>
+
+<p>
+As you can see above, <code>gdb(1)</code> output may contains the values of
+local variables, and backtrace of the other threads.  This
+information is far superior than the alternative way,
+<code>backtrace(3)</code>.
+</p>
+
+<p>
+When <i>xerror</i> module uses <code>backtrace(3)</code> instead of <code>gdb(1)</code>, the
+output will look like following:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">Got signal (11) at address 0x0, RIP=[0x402462]
+
+Backtrace:
+./a.out[0x401d42]
+/lib64/libc.so.6(+0x35b50)[0x7f1e965fbb50]
+./a.out[0x402462]
+./a.out[0x40247f]
+./a.out[0x402579]
+/lib64/libc.so.6(__libc_start_main+0xfd)[0x7f1e965e84bd]
+./a.out[0x401249]
+Segmentation fault
+</pre>
+</div>
+
+<p>
+Note that, dumping backtrace cannot be perfect.  Somethimes it may
+not work, especially, if the stack of process is damaged, there is
+no way to get the reasonable backtrace.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">7</span> The ignore file</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+If you want to filter-out some debugging messages from <code>xdebug()</code>,
+you can create <code>.xerrignore</code> file in the current directory.
+</p>
+
+<p>
+<i>xerror</i> module uses the directory you passed in <code>xerror_init()</code>,
+and search for the ignore file there.  If it is not found, it will
+move to the parent directory and search it again until the root
+directory.
+</p>
+
+<p>
+The format of <code>.xerrignore</code> is very similar to the <code>.gitignore</code> file
+of the GIT version control system.  That is, if the first character
+of the line begins with '<code>#</code>', it is a comment line.  All empty
+lines and comment lines are ignored.  Each line contains one shell
+wildcard pattern which would match to the basename of the source
+filename.  For example:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text"># This is a comment
+
+xerror.*
+logger.c
+</pre>
+</div>
+
+<p>
+If you place the above <code>.xerrignore</code> to the current directory, all
+debugging messages from the file pattern <code>xerror.*</code> and <code>logger.c</code>
+will be ignored.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">8</span> Download</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li><a href="https://github.com/cinsk/snippets/blob/master/xerror.h">xerror.h</a></li>
+<li><a href="https://github.com/cinsk/snippets/blob/master/xerror.c">xerror.c</a></li>
+<li><a href="https://github.com/cinsk/snippets/blob/master/backtrace">backtrace</a></li>
+</ul>
+
+<p>
+Or, you could clone the whole repository like this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git clone https://github.com/cinsk/snippets.git
+</pre>
+</div>
+
+<p>
+Note that this repository contains other junk/useless/unmaintained
+codes.  Just ignore others. <code>:)</code>
+</p>
+</div>
+
+
+          <hr/>
+
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'cinsk'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="http://blog.getbootstrap.com">Blog</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/wiki">Roadmap and changelog</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript"
+            src="http://platform.twitter.com/widgets.js"></script>
+
+    <script src="http://www.cinsk.org/bootstrap/js/jquery.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-transition.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-alert.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-modal.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-dropdown.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-scrollspy.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tab.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tooltip.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-popover.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-button.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-collapse.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-carousel.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-typeahead.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-affix.js"></script>
+
+    <script src="http://cinsk.github.io/js/holder/holder.js"></script>
+    <script src="http://cinsk.github.io/prettify.js"></script>
+
+    <script src="http://cinsk.github.io/js/application.js"></script>
+
+  </body>
+</html>
+
+<!--
+ Local Variables:
+ mode: nxml
+ fill-column: 78
+ End:
+-->

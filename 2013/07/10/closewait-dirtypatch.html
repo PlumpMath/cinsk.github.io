@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>cinsk's yard</title>
+
+
+    <!-- Le styles -->
+    <link href="http://cinsk.github.io/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/bootstrap-responsive.css"
+          rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/docs.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/prettify.css" rel="stylesheet"/>
+    <link href="../../../css/articles.css" rel="stylesheet"/>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="/feed.xml">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://cinsk.github.io/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://cinsk.github.io/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://cinsk.github.io/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://cinsk.github.io/ico/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="http://cinsk.github.io/ico/favicon.png"/>
+
+    <link href="/css/org.css" rel="stylesheet"/>
+    <link href="/css/articles.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+      <!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+    </script>
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">cinsk.org</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <!-- toplink: invalid parameter, label() not found -->
+
+              <!--
+              id: home<br/>
+              label: Home<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class="active"><a href="../../../home/cinsk/www/www/index.html">Home</a></li>
+              
+              
+              <!--
+              id: cfaq<br/>
+              label: C FAQ<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/cfaqs/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/cfaqs/index.html">C FAQ</a></li>
+              
+              
+              <!--
+              id: article<br/>
+              label: Articles<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/articles.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/articles.html">Articles</a></li>
+              
+              
+              <!--
+              id: emacs<br/>
+              label: Emacs<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/emacs/index.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/emacs/index.html">Emacs</a></li>
+              
+              
+              <!--
+              id: resume<br/>
+              label: Résumé<br/>
+              locale: <br/>
+              url: ../../../home/cinsk/www/www/resume.html<br/>
+              self: false<br/>
+              -->
+              
+              <li class=""><a href="../../../home/cinsk/www/www/resume.html">Résumé</a></li>
+              
+              
+
+              <!--
+              
+                -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Subhead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1>cinsk's yard</h1>
+    <!-- <p class="lead">How I handle TCP CLOSE_WAIT during server-side development</p> -->
+  </div>
+</header>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="span10"></div>
+      <div class="span2">
+        <!-- This div should be floating and should not scroll,
+             but I don't know anything about CSS, *sigh* -- cinsk -->
+        <section id="lang">
+          <-- DEBUG: url[en]:  --><-- DEBUG: url[ko]:  -->
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <header>
+  <h2 class='article-title'>How I handle TCP CLOSE_WAIT during server-side development</h2>
+</header>
+<aside class='article-meta'>
+  <ul class='unstyled'>
+    <li class="date"><strong>10 Jul 2013</strong></li>
+    <li class="tags">CLOSE_WAIT, daemon, network, and tcp</li>
+  </ul>
+</aside>
+<p>During our server-side application development, we encontered a lot of connections are in CLOSE_WAIT state, so that our server process is out of file descriptors.
+<span id="continue"></span></p>
+
+
+<p>
+We are in the middle of development of a client application that runs 
+in the mobile androids, and the server-side application that runs in
+a cloud infrastrure.
+</p>
+
+<p>
+I'm in the server-side team, and our team is focusing on the
+development of server-side.  Our server-side have multiple front-end
+server that expose the interface for the clients.  Front-end servers
+are like load-balancers, they dispatch the client requests to the one
+of the several back-end workers.  Since we're in the middle of the
+development, our front-end servers and back-end servers have a couple
+of bugs in them.  They sometimes made the server crash, even hang
+unpredictively.
+</p>
+
+<p>
+Unfortunately, while we were tring to stablize our server
+applications, the client team needed a prototype server cluster, so
+that they can develop their client application and test the
+interaction between client and the front-end.
+Personally, I don't want to provide our prototype servers to the client
+team until the server-side is stablized, but the client team also
+need to hurry, to meet the dead-line, so we have no choice but to
+provide them still-unstable-servers.
+</p>
+
+<p>
+The biggest problem was, the server application leaves <code>CLOSE_WAIT</code>
+state TCP connections on unexpected network situation.  So, after a
+couple of hours, the server process ran out of file descriptors,
+denying client requests.  Since we use sophiscated third-party network
+library, it would take some times to fix the problem.
+</p>
+
+<p>
+So, I need some kind of watchdog, which periodically check whether the
+server process leaves <code>CLOSE_WAIT</code> connections, and kill them, leave
+some logs, and so on.  Our server application is managed by init(1)
+like launcher, so when the server processes are terminated, the
+launcher automatically raise them.
+</p>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Implementation</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+I was in hurry to implement this wachdog program, so I decided to
+write small <i>bash</i> script, but later changed to Ruby script.
+Fortunately, all of our servers already have Ruby 1.8 installed.
+</p>
+
+<p>
+At some time slice, the output of the <code>netstat(1)</code> would like this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ netstat -ntp
+...
+tcp  0  0  10.149.8.221:46271  54.235.151.255:6379  ESTABLISHED 16125/fe-server
+tcp  0  0  10.149.8.221:46283  54.235.151.255:6379  ESTABLISHED 16118/fe-server          
+tcp  0  0  10.149.8.221:46267  54.235.151.255:6379  ESTABLISHED 16120/fe-server          
+tcp  0  0  10.149.8.221:35250  10.158.95.68:58964   CLOSE_WAIT  16063/fe-server   
+tcp  0  0  10.149.8.221:43557  10.147.191.96:52421  ESTABLISHED 16063/fe-server
+tcp  0  0  10.149.8.221:8010   107.22.161.62:37126  CLOSE_WAIT  -
+...
+$ _
+</pre>
+</div>
+
+<p>
+The <code>netstat(1)</code> from net-tools, accept <i>-n</i> option, indicates to use
+numerical addresses and ports, <i>-t</i> options indicates to show only TCP
+connections, and <i>-p</i> options to show the related PID and program names.
+</p>
+
+<p>
+It looks trival to catch the PID of the process that has one or more
+<code>CLOSE_WAIT</code> connections.  One thing to keep in mind is, <code>netstat(1)</code>
+sometimes displays "-" in the PID/PROGRAM field.  I don't have
+enough time when <code>netstat(1)</code> shows "-", but fortunately, <code>fuser(1)</code>
+can identify the owner PID of the connection.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ fuser -n tcp 8010
+35250/tcp:           16063
+$ fuser -n tcp 8010 2&gt;/dev/null
+ 16063$<span class="org-variable-name">_</span>
+</pre>
+</div>
+
+<p>
+My first implementation was, just simply count the number of
+<code>CLOSE_WAIT</code> connections per process, and <code>kill(1) $PID</code> if the
+process has more than N <code>CLOSE_WAIT</code> connections.
+</p>
+
+<p>
+The limitation of the first implementation is, it may kill the
+process with <code>CLOSE_WAIT</code> connection that the process just about to
+<code>close(2)</code> it.
+</p>
+
+<p>
+So the second implementation work like this:
+</p>
+
+<ol class="org-ol">
+<li>save the connection information (source address:port, destination
+address:port) per process as a <i>set</i>-like container</li>
+<li>Wait for certain amount of the time</li>
+<li>save the connection information again, in another <i>set</i>-like
+container.</li>
+<li>Get the intersection of the two <i>set</i>.</li>
+<li>If the number of elements in the intersection exceeds N, kill the
+process.</li>
+</ol>
+
+<p>
+I couldn't come up with a good implementation of <i>set</i>-like container
+in <code>bash(1)</code>, so I re-implement from the scratch with <code>ruby(1)</code>.
+</p>
+
+<p>
+After few hours, another problem arised.  Some server processes,
+goes coma, and does not adhere to <code>SIGTERM</code>.  We can only kill them with
+<code>SIGKILL</code>, so I modified the killing line like this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span class="org-builtin">kill</span> $<span class="org-variable-name">pid</span>; sleep 2; <span class="org-builtin">kill</span> -0 $<span class="org-variable-name">pid</span> &amp;&amp; <span class="org-builtin">kill</span> -9 $<span class="org-variable-name">pid</span>
+</pre>
+</div>
+
+<p>
+This line, first send <code>SIGTERM</code> to the $pid, then sleep for 2
+seconds, and if it still can send a signal to the process (in other
+words, if the process is still alive), send <code>SIGKILL</code> to the $pid.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Usage</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+I named the script, <code>resreap</code>.  The reason was, we call our server
+processes as resources, so it stands for 'RESource REAPer'.  The
+full source code is available from <a href="https://github.com/cinsk/snippets/blob/master/resreap">here</a>.
+</p>
+
+<p>
+With some extra features, my script, called <code>resreap</code>, can accept
+following options:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ ./resreap --help
+Kill processes that have enough CLOSE_WAIT socket(s)
+Usage: resreap [OPTION...]
+
+    -f PAT        Kill only processes whose command matches PAT
+    -F HOST:PORT  Ignore if foreign endpoint matches to HOST:PORT
+                  HOST should be<span class="org-keyword"> in</span> IPv4 numerical notation.
+
+    -l N          If a process has more than or equal to N CLOSE_WAIT
+                  socket(s), it will be killed with a signal
+                  (default: 2)
+
+    -i N          Set sleep interval between checks<span class="org-keyword"> in</span> seconds
+                  (default: 2)
+
+    -c CMD        Before sending a signal, execute CMD<span class="org-keyword"> in</span> the shell,
+                  If this CMD returns non-zero returns, the process
+                  will not receive any signal.
+
+    -s SIG        Set the signal name (e.g. TERM) that will be send
+                  to a process (default: TERM)
+    -w SEC        Set the waiting time<span class="org-keyword"> in</span> seconds between the signal and
+                  SIGKILL (default: 2)
+
+    -d            dry run, no kill
+    -D            debug mode
+
+    -h            show this poor help messages and exit
+    -v            show version information and exit
+
+Note that if a process receives the signal, and the process is alive
+<span class="org-keyword">for</span> 2 second(s), the process will receive SIGKILL.
+
+If you are going to use <span class="org-string">"-f"</span> option, I recommend to try <span class="org-string">"-d -D"</span> option
+first.  If you get the pid of the culprit process, try to get the
+<span class="org-builtin">command</span> name by <span class="org-string">"ps -p PID -o command="</span> where PID is the pid of that
+process.
+
+You could send two signal(s) before sending SIGKILL using <span class="org-string">'-S'</span> option.
+This can be useful since some JVM print stacktrace on SIGQUIT.
+
+$ _
+</pre>
+</div>
+
+<p>
+For example, if you want to kill a process if it has more than 2
+<code>CLOSE_WAIT</code> connections, and you only care for java program, then you
+can do:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ ./resreap -l 2 -f ^java
+</pre>
+</div>
+
+<p>
+Plus, if you want to ignore <code>CLOSE_WAIT</code> connection on 127.0.0.1:2049,
+you could do:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ ./resreap -F 127.0.0.1:2049
+</pre>
+</div>
+
+<p>
+I really hope that we don't need to use this awful script for our
+servers. :)
+</p>
+</div>
+
+
+      <hr/>
+
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'cinsk'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Copyright &copy; 2013  Seong-Kook Shin;  All rights reserved except, </p>
+        <p>CSS design, layouts are reserved to <a href="https://github.com/twitter/bootstrap/">bootstrap</a>,</p>
+        <p>Icons and symbols are reserved to <a href="http://glyphicons.com">Glyphicons</a></p>
+        <!--
+        <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="http://blog.getbootstrap.com">Blog</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/wiki">Roadmap and changelog</a></li>
+        </ul>
+        -->
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript"
+            src="http://platform.twitter.com/widgets.js"></script>
+
+    <script src="http://www.cinsk.org/bootstrap/js/jquery.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-transition.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-alert.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-modal.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-dropdown.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-scrollspy.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tab.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tooltip.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-popover.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-button.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-collapse.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-carousel.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-typeahead.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-affix.js"></script>
+
+    <script src="http://cinsk.github.io/js/holder/holder.js"></script>
+    <script src="http://cinsk.github.io/prettify.js"></script>
+
+    <script src="http://cinsk.github.io/js/application.js"></script>
+
+  </body>
+</html>

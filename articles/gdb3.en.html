@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    
+    <meta name="author" content="cinsk (Seong-Kook Shin)"/>
+    
+
+    <title>Adding new GDB Commands in Python</title>
+
+    <!-- Le styles -->
+    <link href="http://cinsk.github.io/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/bootstrap-responsive.css"
+          rel="stylesheet"/>
+    <link href="http://cinsk.github.io/css/docs.css" rel="stylesheet"/>
+    <link href="http://cinsk.github.io/prettify.css" rel="stylesheet"/>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="/feed.xml">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://cinsk.github.io/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://cinsk.github.io/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://cinsk.github.io/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://cinsk.github.io/ico/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="http://cinsk.github.io/ico/favicon.png"/>
+
+    <link href="../css/org.css" rel="stylesheet"/>
+    <link href="../css/articles.css" rel="stylesheet"/>
+
+    
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <!-- Navbar
+         ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar"
+                  data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">cinsk.org</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <!-- toplink: invalid parameter, label() not found -->
+
+              
+              <li class=""><a href="../home/cinsk/www/www/index.html">Home</a></li>
+              
+              
+              
+              <li class=""><a href="../home/cinsk/www/www/cfaqs/index.html">C FAQ</a></li>
+              
+              
+              
+              <li class="active"><a href="../home/cinsk/www/www/articles.html">Articles</a></li>
+              
+              
+              
+              <li class=""><a href="../home/cinsk/www/www/emacs/index.html">Emacs</a></li>
+              
+              
+              
+              <li class=""><a href="../home/cinsk/www/www/resume.html">Résumé</a></li>
+              
+              
+              <!--
+              
+              -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subhead
+         ================================================== -->
+    <header class="jumbotron subhead" id="overview">
+      <div class="container">
+        <h1>Adding new GDB Commands in Python</h1>
+        <p class="lead">Using gdbx.py</p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav">
+            
+
+            <!--
+            
+            -->
+          </ul>
+        </div>
+
+        <div class="span9">
+          <div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Introduction</a></li>
+<li><a href="#orgheadline2">2. hexdump</a></li>
+<li><a href="#orgheadline3">3. iconv</a></li>
+<li><a href="#orgheadline4">4. xmllint</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This is the shortened English version of my Korea article,
+<a href="gdb3.html">Debugging with GDB: gdbx.py</a>.
+</p>
+
+<p>
+From GDB version 7.0 (I strongly recommend version 7.1 or higher,
+though), GDB contains a Python interpreter so that it is possible to
+use Python to create GDB init script.  I made some useful custom GDB
+commands in Python; <code>hexdump</code>, <code>iconv</code>, and <code>xmllint</code>.  As you expect,
+these commands are nothing more than a wrapper to call <code>hexdump(1)</code>,
+<code>iconv(1)</code>, and <code>xmllint(1)</code>.
+</p>
+
+<p>
+To use these commands, you need to insert following line in your <code>.gdbinit</code>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">source ~/src/gdb/gdbx.py
+</pre>
+</div>
+
+<p>
+Here's the link to the repository: <a href="https://github.com/cinsk/gdb-scripts/blob/master/gdbx.py">github</a>
+</p>
+
+<p>
+The rest article explains how to use these custom commands.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> hexdump</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+While GDB <code>x</code> command prints various data in your custom format, it is
+not still pretty (at least for me.)  GDB <code>hexdump</code> operates like GDB
+<code>dump</code>, prints the data in <code>hexdump(1)</code>-like output:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">hexdump value EXPR [## OPTION...]
+hexdump memory START_ADDR END_ADDR [## OPTION...]
+</pre>
+</div>
+
+<p>
+If you want to print the value of an expression (i.e. variable), GDB
+<code>hexdump value</code> is your choice.  To print the memory region, use GDB
+<code>hexdump memory</code>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text"># Print the string constant, "hello, world"
+(gdb) hexdump value "hello, world"
+00000000  68 65 6c 6c 6f 2c 20 77  6f 72 6c 64 00           |hello, world.|
+0000000d
+# Print the value in the variable 'buffer'
+(gdb) hexdump value buffer
+00000000  3c 6d 65 73 73 61 67 65  20 66 72 6f 6d 3d 22 63  |&lt;message from="c|
+00000010  69 6e 73 6b 79 40 73 61  6d 73 75 6e 67 2e 63 6f  |insky@xxxxxxx.co|
+00000020  6d 2f 74 76 22 20 74 6f  3d 22 63 69 6e 73 6b 79  |m/tv" to="cinsky|
+00000030  40 73 61 6d 73 75 6e 67  2e 63 6f 6d 2f 77 65 62  |@xxxxxxx.com/web|
+...
+# Print the value (only the first 32 bytes)
+(gdb) hexdump memory buffer ((char*)buffer+32)
+00000000  3c 6d 65 73 73 61 67 65  20 66 72 6f 6d 3d 22 63  |&lt;message from="c|
+00000010  69 6e 73 6b 79 40 73 61  6d 73 75 6e 67 2e 63 6f  |insky@xxxxxxx.co|
+00000020
+(gdb) _
+</pre>
+</div>
+
+<p>
+By default, GDB <code>hexdump</code> prints the data using <code>hexdump(1)</code> '-C'
+option.  If you want use different option, add '##' in the
+commandline, then add your options.  For example, to print the data in
+octal format, use '-b' option:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">(gdb) hexdump memory valid ((char*)valid+32) ## -b
+0000000 074 155 145 163 163 141 147 145 040 146 162 157 155 075 042 143
+0000010 151 156 163 153 171 100 163 141 155 163 165 156 147 056 143 157
+0000020
+(gdb) _
+</pre>
+</div>
+
+<p>
+Refer to the man page of <code>hexdump(1)</code> for more options.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> iconv</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+If you want debug a program that uses various character encodings,
+there are some cases like that (1) You want to verify the data in
+specified character encoding, (2) You knew that the data contains
+foreign language message, but you're not sure what kind of character
+encoding it uses.
+</p>
+
+<p>
+GDB <code>iconv</code> command make easy to solve above problems.
+</p>
+
+<p>
+First, you need to set the system's default character encoding. (By
+'system', I mean the internal Python interpreter's) To get or set the
+system encoding you can use following command:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">iconv encoding [#ENCODING]
+</pre>
+</div>
+
+<p>
+If you give no argument, GDB <code>iconv encoding</code> prints the current
+default character encoding.  If you give one argument that incicates
+certain encoding, GDB <code>iconv encoding</code> replace the current character
+encoding to the specified one.
+</p>
+
+<p>
+The argument, '#ENCODING' uses special form; the first character
+should be always '#', uses only lower-case character, and you need to
+substitute all non-alpha-numeric character to '_'.  For example, if
+you want to use "ISO_8859-10:1992", your choice will be
+"iso_8859_10_1992":
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">(gdb) iconv encoding #iso_8859_10_1992
+</pre>
+</div>
+
+<p>
+In general cases, most of modern Linux distribution uses "UTF-8" as
+their default encoding, you may want to do:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">(gdb) iconv encoding #utf_8
+</pre>
+</div>
+
+<p>
+The actual conversion will be done with following commands:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">iconv value EXPR #ENCODING [#ENCODING...]
+iconv memory START_ADDR END_ADDR [#ENCODING...]
+</pre>
+</div>
+
+<p>
+The meaning of EXPR, START_ADDR, and END_ADDR is the same as GDB
+<code>hexdump</code> or GDB <code>dump</code> command.
+</p>
+
+<p>
+For example, suppose that the char array, buffer contains a string,
+and you are certain that it contains a Korean message.  But you're not
+sure of the encoding it encoded.  As most Korean messages are encoded
+in one of "euc-kr", "cp949", "UTF-8" or "UCS-2", you may use following
+command:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">(gdb) iconv value buffer #euc_kr #cp949 #utf_8 #ucs_2
+Target encoding is UTF8:
+EUC-KR: |asdf하이^@|
+ CP949: |asdf하이^@|
+ UTF-8: |asdf|
+        iconv: illegal input sequence at position 4
+ UCS-2: |獡晤쿇쳀|
+        iconv: incomplete character or shift sequence at end of buffer
+(gdb) _
+</pre>
+</div>
+
+<p>
+From the above example, you know that the default system
+encoding("Target encoding" in above) is UTF8.  Then it was encoded in
+either one of EUC-KR or CP949.  (For your information, CP949 is a kind
+of superset of EUC-KR.)  Then, you can see that it is definitely not
+UTF-8 encoded, for iconv(1) prints an error message for that.
+</p>
+
+<p>
+However, UCS-2 encoding output was interesting.  If you don't
+recognize either Korean or Chinese, it will be difficult to guess.
+But, the output from UCS-2 shows four letters; first two letters in
+Chinses, and the second two letters in Korean.  In addition, <code>iconv(1)</code>
+prints an error message that looks different from the message of
+UTF-8.
+</p>
+
+<p>
+In details, GDB 'iconv' sends full data to the <code>iconv(1)</code> command.  This
+means the '\0' character itself also sent to <code>iconv(1)</code>.  That's why you
+can see the strange output "^@" in the end of first two encodings
+(EUC-KR and CP949).  Since a character in UCS-2 encoding uses 2-byte
+(16bit), having only '\0' character in the end of the buffer makes
+<code>iconv(1)</code> complaining about that it need 1 byte more.  That's why it
+prints "incomplete character" in the error message.  To solve this,
+you need to limit the data length so that GDB 'iconv' exclude the last
+'\0' character.  The easiest way is to use GDB <code>iconv memory</code> command:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">(gdb) ptype buffer
+type = char [9]
+(gdb) p/x buffer
+$1 = {0x61, 0x73, 0x64, 0x66, 0xc7, 0xcf, 0xc0, 0xcc, 0x0}
+(gdb) iconv memory buffer ((char*)buffer+8'') #euc_kr #cp949 #utf_8 #ucs_2
+Target encoding is UTF8:
+EUC-KR: |asdf하이|
+ CP949: |asdf하이|
+ UTF-8: |asdf|
+        iconv: illegal input sequence at position 4
+ UCS-2: |獡晤쿇쳀|
+(gdb) _
+</pre>
+</div>
+
+<p>
+By limiting the data sent, you'll find no error message was appeared
+in UCS-2.  However, it contains meaningless characters, so we can
+guess that the answer will be "The variable buffer contains a message
+encoded either EUC-KR or CP949".
+</p>
+
+<p>
+The reason that GDB <code>iconv</code> uses strange encoding format such as
+"#iso_8859_10_1992", is to support auto-completion on encoding names.
+I was not successful to use any of '-', '(', ')', or ':' on
+auto-completion that GDB python interface provided.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">4</span> xmllint</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+If your program deals with XML document, or sends/receives a XML data,
+you may need to verify the consitency of data in XML point of view.
+For example, the XML syntax of the data may be broken or the data is
+not compatible with your XML schema.  To solve this problem, GDB
+<code>xmllint</code> command is provided:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">xmllint value EXPR [## OPTION...]
+xmllint memory START_ADDR END_ADDR [## OPTION...]
+</pre>
+</div>
+
+<p>
+As you expected, options of above command are in same context of GDB
+<code>hexdump</code> command.
+</p>
+
+<p>
+To check the XML validity of the variable, 'buffer', you need:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">(gdb) xmllint value buffer
+/tmp/gdb-AGFSXH:1: parser error : Opening and ending tag mismatch: items line 1 and item
+session sessionid="copy3252345-600" status="completed" progress="????"/&gt; &lt;/item&gt;
+                                                                               ^
+/tmp/gdb-AGFSXH:1: parser error : Opening and ending tag mismatch: event line 1 and items
+essionid="copy3252345-600" status="completed" progress="????"/&gt; &lt;/item&gt; &lt;/items&gt;
+                                                                               ^
+/tmp/gdb-AGFSXH:1: parser error : Opening and ending tag mismatch: message line 1 and event
+"copy3252345-600" status="completed" progress="????"/&gt; &lt;/item&gt; &lt;/items&gt; &lt;/event&gt;
+                                                                               ^
+/tmp/gdb-AGFSXH:1: parser error : Extra content at the end of the document
+copy3252345-600" status="completed" progress="????"/&gt; &lt;/item&gt; &lt;/items&gt; &lt;/event&gt; 
+                                                                               ^
+(gdb) _
+</pre>
+</div>
+
+<p>
+If GDB <code>xmllint</code> could not find any error, it will dump the data like:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">(gdb) xmllint value buffer
+&lt;?xml version="1.0"?&gt;
+&lt;iq xmlns="jabber:client" from="cinsk@somewhere/res1" type="result"
+to="cinsk@somewhere/res2" id="qewr"&gt;&lt;info:query xmlns:info="http://
+jabber.org/protocol/disco#info"&gt;&lt;info:identity category="xmpp robot"
+type="robot"/&gt;&lt;info:features var="http://jabber.org/protocol/disco#
+info"/&gt;&lt;info:feature var="http://jabber.org/protocol/disco#items"/&gt;
+&lt;/info:query&gt;&lt;/iq&gt;
+(gdb) _
+</pre>
+</div>
+
+<p>
+As you know, the data was supposed to be processed by the program, not
+human, so it is hardly readable.  To format/indent the data for you,
+human, use <code>xmllint(1)</code>'s '&#x2013;format' option:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">(gdb) xmllint value buffer ## --format
+&lt;?xml version="1.0"?&gt;
+&lt;iq xmlns="jabber:client" from="cinsk@somewhere/res1" type="result" to="cinsk@somewhere/res2" id="qewr"&gt;
+  &lt;info:query xmlns:info="http://jabber.org/protocol/disco#info"&gt;
+    &lt;info:identity category="xmpp robot" type="robot"/&gt;
+    &lt;info:features var="http://jabber.org/protocol/disco#info"/&gt;
+    &lt;info:feature var="http://jabber.org/protocol/disco#items"/&gt;
+  &lt;/info:query&gt;
+&lt;/iq&gt;
+(gdb) _
+</pre>
+</div>
+
+<p>
+You can even uses your schema file to check against 'buffer':
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">(gdb) xmllint value buffer ## --schema /somewhere/schema.xsd
+&lt;?xml version="1.0"?&gt;
+&lt;iq xmlns="jabber:client" from="cinsk@somewhere/res1" type="result"
+to="cinsk@somewhere/res2" id="qewr"&gt;&lt;info:query xmlns:info="http://
+jabber.org/protocol/disco#info"&gt;&lt;info:identity category="xmpp robot"
+type="robot"/&gt;&lt;info:features var="http://jabber.org/protocol/disco#
+info"/&gt;&lt;info:feature var="http://jabber.org/protocol/disco#items"/&gt;
+&lt;/info:query&gt;&lt;/iq&gt;
+/tmp/gdb-4NR2cb:1: element features: Schemas validity error : Element
+'{http://jabber.org/protocol/disco#info}features': This element is not
+expected. Expected is one of ( {http://jabber.org/protocol/disco#info}
+identity, {http://jabber.org/protocol/disco#info}feature ).
+/tmp/gdb-4NR2cb fails to validate
+
+(gdb) _
+</pre>
+</div>
+
+<p>
+That's all. :)
+</p>
+</div>
+
+
+          <hr/>
+
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'cinsk'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="http://blog.getbootstrap.com">Blog</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/wiki">Roadmap and changelog</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript"
+            src="http://platform.twitter.com/widgets.js"></script>
+
+    <script src="http://www.cinsk.org/bootstrap/js/jquery.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-transition.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-alert.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-modal.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-dropdown.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-scrollspy.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tab.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-tooltip.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-popover.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-button.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-collapse.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-carousel.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-typeahead.js"></script>
+    <script src="http://cinsk.github.io/js/bootstrap-affix.js"></script>
+
+    <script src="http://cinsk.github.io/js/holder/holder.js"></script>
+    <script src="http://cinsk.github.io/prettify.js"></script>
+
+    <script src="http://cinsk.github.io/js/application.js"></script>
+
+  </body>
+</html>
+
+<!--
+ Local Variables:
+ mode: nxml
+ fill-column: 78
+ End:
+-->
